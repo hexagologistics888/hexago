@@ -257,9 +257,10 @@ nav {
 
 .reach-btn,
 .reach-btn-outline {
-    display: inline-flex !important;
+    display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    align-self: center !important;
     width: 170px !important;
     height: 54px !important;
     padding: 0 !important;
@@ -270,7 +271,7 @@ nav {
     text-decoration: none !important;
     box-sizing: border-box !important;
     white-space: nowrap !important;
-    line-height: 1 !important;
+    line-height: 54px !important;
     flex-shrink: 0 !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     -webkit-background-clip: unset !important;
