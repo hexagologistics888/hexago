@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Hexago Logistics and Transport</title>
+    <meta name="description" content="Learn about Hexago Logistics and Transport — our mission, vision, values and the team behind India's growing logistics partner based in Aluva, Kerala.">
+
+   <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-hero {
+            min-height: 320px;
+            background: url("images/about.jpeg") center/cover no-repeat;
+        }
+        
+            .who-we-are-section {
+                background: #f8fbff;
+            }
+
+            /* Image Fit Inside Card */
+            .custom-img {
+                height: 350px;
+                object-fit: cover;
+                width: 100%;
+            }
+
+            /* Optional: Make it slightly smaller on mobile */
+            @media (max-width: 768px) {
+                .custom-img {
+                    height: 250px;
+                }
+            }
+
+    
+        .service-card {
+            border-radius: 15px;
+            transition: 0.3s;
+            }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            background: #0d6efd;
+            color: white;
+            }
+
+        .card {
+            border-radius: 15px;
+            }
+
+        footer {
+            font-size: 14px;
+            }
+
+    </style>
+
+
+</head>
+<body>
+
+        <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">
+                    <img src="images/logo1.jpeg" alt="Hexago Logistics and Transport Logo">
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about_us.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="index.html#sector">Sectors</a></li>
+                <li><a href="contact_us.html">Contact Us</a></li>
+                <li><a href="careers.html">Careers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<!-- Hero Section -->
+<section class="page-hero about-hero">
+    <div class="hero-overlay"></div>
+    <div class="page-hero-content">
+        <h1>About Hexago Logistics</h1>
+        <p>Delivering excellence in logistics, transportation, and supply chain solutions.</p>
+    </div>
+</section>
+
+<!-- Company Overview -->
+<section class="who-we-are-section py-5">
+    <div class="container">
+        <div class="row align-items-center g-4">
+
+            <!-- Image Column -->
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm overflow-hidden">
+                    <img src="images/carousel1.jpeg" 
+                         class="card-img-top custom-img">
+                </div>
+            </div>
+
+            <!-- Text Column -->
+            <div class="col-lg-6">
+                <h3 class="fw-bold mb-3">Who We Are</h3>
+
+                <p class="text-muted">
+                    Hexa-Go Logistics and Transport is a modern logistics and transportation company
+                    committed to delivering reliable, efficient, and cost-effective supply chain solutions.
+                </p>
+
+                <p class="text-muted">
+                    We specialize in freight transportation, logistics coordination, and supply chain
+                    optimization across multiple industries. Our mission is to simplify logistics while
+                    ensuring speed, safety, and transparency.
+                </p>
+
+                <p class="text-muted">
+                    With advanced technology, skilled professionals, and a customer-centric approach,
+                    Hexa-Go Logistics ensures seamless cargo movement from origin to destination.
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Mission Vision Values -->
+    <section class="bg-light py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Mission, Vision & Values</h2>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow border-0 text-center p-3">
+                    <div class="card-body">
+                        <h4 class="fw-bold text-primary">Our Mission</h4>
+                        <p>
+                            To provide efficient, safe, and reliable logistics solutions
+                            that empower businesses and ensure timely delivery.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow border-0 text-center p-3">
+                    <div class="card-body">
+                        <h4 class="fw-bold text-primary">Our Vision</h4>
+                        <p>
+                            To become a leading logistics partner known for innovation,
+                            trust, and excellence in transportation services.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow border-0 text-center p-3">
+                    <div class="card-body">
+                        <h4 class="fw-bold text-primary">Our Values</h4>
+                        <p>
+                            Integrity, reliability, innovation, customer satisfaction,
+                            and continuous improvement in logistics services.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section class="py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Core Services</h2>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+                <div class="service-card text-center shadow p-4">
+                    <h5>Transportation</h5>
+                    <p>Reliable road transportation services for safe and timely deliveries.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="service-card text-center shadow p-4">
+                    <h5>Warehousing</h5>
+                    <p>Secure storage and warehouse management solutions.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="service-card text-center shadow p-4">
+                    <h5>Freight Services</h5>
+                    <p>Efficient freight management and cargo handling solutions.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="service-card text-center shadow p-4">
+                    <h5>Supply Chain</h5>
+                    <p>Complete supply chain management and logistics optimization.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    </section>
+
+
+    <!-- Why Choose Us -->
+    <section class="bg-primary text-white py-5">
+    <div class="container text-center">
+
+        <h2 class="fw-bold mb-4">Why Choose Hexa-Go Logistics?</h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+                <h4>Fast Delivery</h4>
+            </div>
+
+            <div class="col-md-3">
+                <h4>Reliable Service</h4>
+            </div>
+
+            <div class="col-md-3">
+                <h4>Secure Transport</h4>
+            </div>
+
+            <div class="col-md-3">
+                <h4>Customer Support</h4>
+            </div>
+
+        </div>
+    </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo mt-4">
+                    <img src="images/logo3.png" alt="Driver Logistics">
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="contact_us.html">Contact</a>
+                <a href="index.html#blogs">Blogs</a>
+                <a href="#">Track</a>
+            </div>
+            <div class="footer-links">
+                <a href="contact_us.html">Help</a>
+                <a href="careers.html">Careers</a>
+                <a href="#">Privacy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 All rights reserved</p>
+            <p>Ver 1.0.0</p>
+            <p><a href="#" style="color: white; text-decoration: none;">Powered by Hexago</a></p>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="script.js"></script>
+<div class="cookie-banner hidden" id="cookieBanner">
+  <p>🍪 We use cookies to improve your experience. By continuing, you agree to our <a href="#">Privacy Policy</a>.</p>
+  <div class="cookie-banner-btns">
+    <button class="cookie-accept" onclick="cookieConsent('accept')">Accept All</button>
+    <button class="cookie-decline" onclick="cookieConsent('decline')">Decline</button>
+  </div>
+</div>
+<script>
+(function(){var b=document.getElementById('cookieBanner');if(!b)return;if(localStorage.getItem('hexago_cookie_consent')){b.classList.add('hidden');return;}setTimeout(function(){b.classList.remove('hidden');},800);})();
+function cookieConsent(c){localStorage.setItem('hexago_cookie_consent',c);var b=document.getElementById('cookieBanner');if(b)b.classList.add('hidden');}
+</script>
+
+</body>
+</html>

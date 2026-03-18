@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Hexago Logistics and Transport</title>
+
+    <!-- Fonts & Bootstrap (same as home) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body{
+            background:#f5f7fa;
+        }
+
+        .contact-hero {
+            background-image: url('images/carousel2.jpg');
+        }
+
+        .contact-section{
+            padding:70px 20px;
+        }
+
+        .contact-card{
+            background:white;
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .contact-info{
+            background:#0d1b2a;
+            color:white;
+            border-radius:20px;
+            padding:40px;
+            height:100%;
+        }
+
+        .contact-info h4{
+            margin-bottom:20px;
+            font-weight:600;
+        }
+
+        .contact-info p{
+            margin-bottom:15px;
+            font-size:15px;
+        }
+
+        .form-control{
+            border-radius:10px;
+            padding:12px;
+            margin-bottom:15px;
+        }
+
+        .send-btn{
+            background:#ff6b00;
+            color:white;
+            border:none;
+            padding:12px 30px;
+            border-radius:30px;
+            font-weight:600;
+        }
+
+        .map-section{
+            margin-top:60px;
+            border-radius:20px;
+            overflow:hidden;
+            box-shadow:0 10px 25px rgba(0,0,0,0.1);
+        }
+
+       .footer-bottom{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+    <nav>
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo1.jpeg" alt="Hexago Logo">
+            </a>
+        </div>
+
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about_us.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="index.html#sector">Sectors</a></li>
+                <li><a href="contact_us.html">Contact Us</a></li>
+                <li><a href="careers.html">Careers</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero -->
+<section class="page-hero contact-hero">
+    <div class="hero-overlay"></div>
+    <div class="page-hero-content">
+        <h1>Get in Touch with Hexago</h1>
+        <p>We're here to help with your logistics needs</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section container">
+    <div class="row g-4">
+        
+        <!-- Form -->
+        <div class="col-lg-7">
+            <div class="contact-card">
+                <h3 class="mb-4">Send us a Message</h3>
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Full Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control" placeholder="Email Address" required>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Company Name">
+                    <input type="tel" class="form-control" placeholder="Phone Number">
+                    <select class="form-control">
+                        <option>Select Service Interested In</option>
+                        <option>Warehouse Management (3PL)</option>
+                        <option>Full Truck Load (FTL)</option>
+                        <option>Partial Truck Load (PTL)</option>
+                        <option>4PL Logistics</option>
+                    </select>
+                    <textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
+
+                    <button class="send-btn mt-3">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-5">
+            <div class="contact-info">
+                <h4>Contact Information</h4>
+                <p><strong>📍 Address:</strong><br>
+                Hexago Logistics and Transport,<br>
+                Vadakumury building Metro pillar 174<br>
+                Aluva, Ernakulam, Kerala, India</p>
+
+                <p><strong>📞 Phone:</strong><br>
+                +91 7034298745 <br>
+                +91 8848776836</p>
+
+                <p><strong>✉️ Email:</strong><br>
+                Mail-hexagologistics888@gmail.com</p>
+
+                <p><strong>🕒 Working Hours:</strong><br>
+                Mon - Sat : 9:30 AM – 7:30 PM</p>
+
+                <hr style="border-color:rgba(255,255,255,0.2);">
+
+                <h4>Why Reach Us?</h4>
+                <p>• Tailored logistics solutions<br>
+                   • Fast response from operations team<br>
+                   • Dedicated transport & warehouse support<br>
+                   • Pan-India delivery network</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map -->
+    <div class="map-section">
+        <iframe 
+            src="https://www.google.com/maps?q=Aluva,Kerala&output=embed" 
+            width="100%" 
+            height="350" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div>
+            <div class="footer-logo mt-4">
+                <img src="images/logo3.png" alt="Hexago Logistics and Transport">
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="contact_us.html">Contact</a>
+            <a href="index.html#blogs">Blogs</a>
+            <a href="#">Track</a>
+        </div>
+        <div class="footer-links">
+            <a href="contact_us.html">Help</a>
+            <a href="careers.html">Careers</a>
+            <a href="#">Privacy</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 All rights reserved</p>
+        <p>Ver 1.0.0</p>
+        <p><a href="#" style="color:white;text-decoration:none;">Powered by Hexago</a></p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="script.js"></script>
+
+<div class="cookie-banner hidden" id="cookieBanner">
+  <p>🍪 We use cookies to improve your experience. By continuing, you agree to our <a href="#">Privacy Policy</a>.</p>
+  <div class="cookie-banner-btns">
+    <button class="cookie-accept" onclick="cookieConsent('accept')">Accept All</button>
+    <button class="cookie-decline" onclick="cookieConsent('decline')">Decline</button>
+  </div>
+</div>
+<script>
+(function(){var b=document.getElementById('cookieBanner');if(!b)return;if(localStorage.getItem('hexago_cookie_consent')){b.classList.add('hidden');return;}setTimeout(function(){b.classList.remove('hidden');},800);})();
+function cookieConsent(c){localStorage.setItem('hexago_cookie_consent',c);var b=document.getElementById('cookieBanner');if(b)b.classList.add('hidden');}
+</script>
+
+</body>
+</html>
