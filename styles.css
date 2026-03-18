@@ -1,5 +1,9 @@
 /* Driver Logistics Website Styles */
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -589,6 +593,10 @@ h2 .highlight,
 /* Sectors Section */
 
 /* SECTION CENTERING */
+#sector {
+  scroll-margin-top: 80px;
+}
+
 .sectors-section {
   display: flex;
   flex-direction: column;
