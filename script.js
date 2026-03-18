@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 delay: 0.4,
                 ease: 'power3.out'
             });
-            gsap.from('.hero-content .reach-btn', {
+            gsap.from('.hero-content .hero-btn--primary', {
                 y: buttonY,
                 opacity: 0,
                 duration: 1,
@@ -229,10 +229,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 1. Continuous "Breathing" Pulse on Primary Buttons
         // We ensure Anime js only runs its loop if the user accepts motion
-        const reachButtons = document.querySelectorAll('.reach-btn');
+        const reachButtons = document.querySelectorAll('.hero-btn--primary');
         if (reachButtons.length > 0) {
             anime({
-                targets: '.reach-btn',
+                targets: '.hero-btn--primary',
                 scale: [1, 1.05],
                 duration: 1500,
                 easing: 'easeInOutSine',
