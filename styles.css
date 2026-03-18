@@ -245,62 +245,64 @@ nav {
     letter-spacing: -0.01em;
 }
 
+/* ── Hero CTA Buttons ── */
 .hero-buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 25px;
+    margin-top: 2.5rem;
     flex-wrap: wrap;
-    margin-top: 1.5rem;
 }
 
+/* Shared base — pixel-perfect equal size on all slides */
 .reach-btn,
 .reach-btn-outline {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 170px !important;
-    height: 54px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border-radius: 50px !important;
-    font-weight: 600 !important;
-    font-size: 1rem !important;
-    text-decoration: none !important;
-    box-sizing: border-box !important;
-    white-space: nowrap !important;
-    line-height: 1 !important;
-    flex-shrink: 0 !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    -webkit-background-clip: unset !important;
-    background-clip: unset !important;
-    -webkit-text-fill-color: unset !important;
+    width: 168px;
+    height: 56px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    border-radius: 50px;
+    box-sizing: border-box;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: unset;
 }
 
+/* Solid red */
 .reach-btn {
     background: #e63946;
     color: #ffffff;
     border: 2px solid #e63946;
-    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.35);
+    box-shadow: 0 4px 14px rgba(230, 57, 70, 0.35);
 }
-
 .reach-btn:hover {
     background: #c1121f;
     border-color: #c1121f;
     color: #ffffff;
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.5);
+    box-shadow: 0 8px 24px rgba(230, 57, 70, 0.5);
 }
 
+/* Ghost outline */
 .reach-btn-outline {
     background: transparent;
     color: #ffffff;
-    border: 2px solid rgba(255,255,255,0.8);
+    border: 2px solid rgba(255, 255, 255, 0.85);
 }
-
 .reach-btn-outline:hover {
-    background: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.14);
     border-color: #ffffff;
     color: #ffffff;
     transform: translateY(-3px);
@@ -468,17 +470,21 @@ nav {
     z-index: 2;
 }
 
-.highlight {
-    background: linear-gradient(135deg, #ff3b30, #ff6b35);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.highlight,
+h2 .highlight,
+.cta-banner h2 .highlight,
+.cta-banner .highlight {
+    color: #ff4d4d !important;
+    -webkit-text-fill-color: #ff4d4d !important;
+    background: transparent !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    background-image: none !important;
     font-style: italic;
-    position: relative;
-    display: inline-block;
+    font-weight: 800;
     text-decoration: underline;
-    text-decoration-color: rgba(255, 59, 48, 0.5);
-    text-underline-offset: 6px;
+    text-decoration-color: rgba(255, 77, 77, 0.5);
+    text-underline-offset: 5px;
     text-decoration-thickness: 3px;
 }
 
@@ -885,6 +891,12 @@ nav {
     background: linear-gradient(90deg, #0077b5, #00c6ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+/* Prevent gradient-clip from bleeding into child spans */
+.section-header h2 span {
+    -webkit-background-clip: unset;
+    background-clip: unset;
 }
 
 .section-header p {
