@@ -2,6 +2,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 * {
@@ -843,7 +844,7 @@ h2 .highlight,
 .clients-track {
     display: flex;
     gap: 3rem;
-    animation: scroll 30s linear infinite;
+    animation: scroll 22s linear infinite;
 }
 
 @keyframes scroll {
