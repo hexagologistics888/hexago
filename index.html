@@ -478,7 +478,7 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
     <!-- External JavaScript -->
-    <script defer src="script.js"></script>
+    <script src="script.js"></script>
     <script>
     const labels = document.querySelectorAll('.form-control-wave label');
 
@@ -604,17 +604,24 @@
 (function() {
   var banner = document.getElementById('cookieBanner');
   if (!banner) return;
+  // If user already gave consent (any visit), never show again
   if (localStorage.getItem('hexago_cookie_consent')) {
-    banner.classList.add('hidden');
+    banner.style.display = 'none';
     return;
   }
-  setTimeout(function() { banner.style.display = 'flex'; }, 800);
+  // First visit: show after short delay
+  banner.style.display = 'none';
+  setTimeout(function() { banner.style.display = 'flex'; }, 1200);
 })();
 
 function cookieConsent(choice) {
   localStorage.setItem('hexago_cookie_consent', choice);
   var banner = document.getElementById('cookieBanner');
-  if (banner) banner.classList.add('hidden');
+  if (banner) {
+    banner.style.transition = 'opacity 0.4s';
+    banner.style.opacity = '0';
+    setTimeout(function() { banner.style.display = 'none'; }, 400);
+  }
 }
 </script>
 

@@ -69,7 +69,7 @@
         <nav>
             <div class="logo">
                 <a href="/">
-                    <img src="images/logo1.jpeg" alt="Hexago Logistics and Transport Logo">
+                    <img src="images/logo3.png" alt="Hexago Logistics and Transport Logo">
                 </a>
             </div>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation" aria-expanded="false">☰</button>
@@ -289,17 +289,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script src="script.js"></script>
-<div class="cookie-banner hidden" id="cookieBanner">
-  <p>🍪 We use cookies to improve your experience. By continuing, you agree to our <a href="#">Privacy Policy</a>.</p>
-  <div class="cookie-banner-btns">
-    <button class="cookie-accept" onclick="cookieConsent('accept')">Accept All</button>
-    <button class="cookie-decline" onclick="cookieConsent('decline')">Decline</button>
-  </div>
-</div>
-<script>
-(function(){var b=document.getElementById('cookieBanner');if(!b)return;if(localStorage.getItem('hexago_cookie_consent')){b.classList.add('hidden');return;}setTimeout(function(){b.classList.remove('hidden');},800);})();
-function cookieConsent(c){localStorage.setItem('hexago_cookie_consent',c);var b=document.getElementById('cookieBanner');if(b)b.classList.add('hidden');}
-</script>
 
 </body>
 </html>
