@@ -345,7 +345,7 @@
         <div class="overlay"></div>
         <div class="hero-content">
           <h1>Sustainability-Focused Logistics.</h1>
-          <p>Moving India forward — reliably, efficiently, and responsibly since 2024.</p>
+          <p>Moving India forward &mdash; reliably, efficiently, and responsibly since 2024.</p>
           <div class="hero-buttons">
             <a href="contact_us.html" class="reach-btn">Get a Quote</a>
           </div>
@@ -460,7 +460,7 @@
 
     <div class="container position-relative">
         <h2 class="fw-bold display-5 mb-3">
-            Elevate Your <span class="highlight" style="color:#ff4d4d;-webkit-text-fill-color:#ff4d4d;background:none;">Supply Chain</span> Today
+            Elevate Your <span class="highlight">Supply Chain</span> Today
         </h2>
 
         <p class="lead mb-4">
@@ -837,6 +837,19 @@
 </div>
 
 <script>
+/* Home page fallback: force white navbar after scrolling */
+(function() {
+  var hdr = document.querySelector('header');
+  if (!hdr) return;
+  function syncHeaderScroll() {
+    var scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    hdr.classList.toggle('scrolled', scrollTop > 40);
+  }
+  window.addEventListener('scroll', syncHeaderScroll, { passive: true });
+  window.addEventListener('load', syncHeaderScroll);
+  syncHeaderScroll();
+})();
+
 /* Scroll to #sector if page was loaded with that hash (e.g. from another page) */
 (function() {
   if (window.location.hash === '#sector') {
@@ -871,6 +884,42 @@ function cookieConsent(choice) {
 }
 </script>
 
+
+<!-- Supply Chain highlight animation -->
+<script>
+(function () {
+  var span = document.querySelector('.cta-banner .highlight');
+  if (!span) return;
+
+  // Wrap each character in an animated span
+  var text = span.textContent;
+  span.innerHTML = text.split('').map(function (ch) {
+    return ch === ' '
+      ? '<span class="hl-char" aria-hidden="true" style="display:inline-block;width:0.3em"> </span>'
+      : '<span class="hl-char" aria-hidden="true">' + ch + '</span>';
+  }).join('');
+  span.setAttribute('aria-label', text);
+
+  var chars = span.querySelectorAll('.hl-char');
+
+  function reveal() {
+    if (span.classList.contains('hl-revealed')) return;
+    span.classList.add('hl-revealed');
+    chars.forEach(function (ch, i) {
+      ch.style.animationDelay = (i * 52) + 'ms';
+    });
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) {
+      reveal();
+      io.disconnect();
+    }
+  }, { threshold: 0.5 });
+
+  io.observe(document.querySelector('.cta-banner') || span);
+})();
+</script>
 
 <!-- Back to Top -->
 <button id="back-to-top" aria-label="Back to top">&#8679;</button>
