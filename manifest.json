@@ -1,0 +1,31 @@
+{
+  "name": "Hexago Logistics and Transport",
+  "short_name": "Hexago",
+  "description": "Pan-India logistics — FTL, PTL, 3PL Warehousing & 4PL Supply Chain. Based in Aluva, Kerala.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#002855",
+  "theme_color": "#FF6B35",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["business", "logistics", "transport", "productivity"],
+  "icons": [
+    { "src": "images/logo3.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "images/logo3.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Get a Quote",
+      "short_name": "Quote",
+      "url": "/contact_us.html",
+      "description": "Request a logistics quote"
+    },
+    {
+      "name": "Our Services",
+      "short_name": "Services",
+      "url": "/service.html",
+      "description": "View all logistics services"
+    }
+  ]
+}

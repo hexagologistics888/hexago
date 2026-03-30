@@ -12,9 +12,9 @@
     <meta name="geo.region" content="IN-KL">
     <meta name="geo.placename" content="Aluva, Kerala">
     <link rel="manifest" href="manifest.json">
-    <link rel="alternate" hreflang="en-in" href="https://hexagologistics.in/contact_us.html">
-    <link rel="alternate" hreflang="en"    href="https://hexagologistics.in/contact_us.html">
-    <link rel="alternate" hreflang="x-default" href="https://hexagologistics.in/contact_us.html">
+    <link rel="alternate" hreflang="en-in" href="https://hexago-ochre.vercel.app/contact_us.html">
+    <link rel="alternate" hreflang="en"    href="https://hexago-ochre.vercel.app/contact_us.html">
+    <link rel="alternate" hreflang="x-default" href="https://hexago-ochre.vercel.app/contact_us.html">
 
     <!-- Security Headers -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -23,7 +23,7 @@
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://hexagologistics.in/contact_us.html">
+    <link rel="canonical" href="https://hexago-ochre.vercel.app/contact_us.html">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo3.png">
@@ -31,10 +31,10 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hexagologistics.in/contact_us.html">
+    <meta property="og:url" content="https://hexago-ochre.vercel.app/contact_us.html">
     <meta property="og:title" content="Contact Hexago Logistics — Get a Quote Today">
     <meta property="og:description" content="Reach our logistics team for FTL, PTL, Warehousing, 4PL quotes. Call +91 7034298745 or email us. Based in Aluva, Kerala.">
-    <meta property="og:image" content="https://hexagologistics.in/images/logo3.png">
+    <meta property="og:image" content="https://hexago-ochre.vercel.app/images/logo3.png">
     <meta property="og:locale" content="en_IN">
     <meta property="og:site_name" content="Hexago Logistics and Transport">
 
@@ -42,7 +42,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact Hexago Logistics and Transport">
     <meta name="twitter:description" content="Get in touch with Hexago Logistics for FTL, PTL, Warehousing and 4PL quotes across India.">
-    <meta name="twitter:image" content="https://hexagologistics.in/images/logo3.png">
+    <meta name="twitter:image" content="https://hexago-ochre.vercel.app/images/logo3.png">
 
     <!-- Breadcrumb Schema -->
     <script type="application/ld+json">
@@ -50,8 +50,8 @@
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hexagologistics.in/" },
-        { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://hexagologistics.in/contact_us.html" }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hexago-ochre.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://hexago-ochre.vercel.app/contact_us.html" }
       ]
     }
     </script>
@@ -62,13 +62,13 @@
       "@context": "https://schema.org",
       "@type": "ContactPage",
       "name": "Contact Hexago Logistics and Transport",
-      "url": "https://hexagologistics.in/contact_us.html",
+      "url": "https://hexago-ochre.vercel.app/contact_us.html",
       "description": "Contact Hexago Logistics for FTL, PTL, Warehousing and 4PL quotes. Call +91 7034298745 or email us.",
-      "isPartOf": { "@type": "WebSite", "url": "https://hexagologistics.in" },
+      "isPartOf": { "@type": "WebSite", "url": "https://hexago-ochre.vercel.app" },
       "mainEntity": {
         "@type": "Organization",
         "name": "Hexago Logistics and Transport",
-        "url": "https://hexagologistics.in",
+        "url": "https://hexago-ochre.vercel.app",
         "telephone": ["+91-7034298745", "+91-8848776836"],
         "email": "Mail-hexagologistics888@gmail.com",
         "address": {
@@ -388,37 +388,19 @@ if ('serviceWorker' in navigator) {
     var service = fd.get('service') || '';
     var message = fd.get('message') || '';
 
-    fetch(form.action, {
-      method: 'POST',
-      body: fd,
-      headers: { 'Accept': 'application/json' }
-    }).then(function(res) {
-      if (res.ok) {
-        btn.textContent = '\u2705 Message Sent!';
-        btn.style.background = '#10B981';
-
-        // Send WhatsApp notification
-        var waMsg = '\ud83d\udce9 *New Contact Form Submission*\n\n'
-          + '\ud83d\udc64 *Name:* ' + name + '\n'
-          + '\ud83c\udfe2 *Company:* ' + company + '\n'
-          + '\ud83d\udce7 *Email:* ' + email + '\n'
-          + '\ud83d\udcf1 *Phone:* ' + phone + '\n'
-          + '\ud83d\udce6 *Service:* ' + service + '\n'
-          + '\ud83d\udcdd *Message:* ' + message;
-        window.open('https://wa.me/917034298745?text=' + encodeURIComponent(waMsg), '_blank');
-
-        form.reset();
-        setTimeout(function() { btn.textContent = origText; btn.style.background = ''; btn.disabled = false; }, 3000);
-      } else {
-        btn.textContent = '\u274c Failed \u2014 try again';
-        btn.style.background = '#EF4444';
-        setTimeout(function() { btn.textContent = origText; btn.style.background = ''; btn.disabled = false; }, 3000);
-      }
-    }).catch(function() {
-      btn.textContent = '\u274c Network error';
-      btn.style.background = '#EF4444';
-      setTimeout(function() { btn.textContent = origText; btn.style.background = ''; btn.disabled = false; }, 3000);
-    });
+    // Send lead via WhatsApp
+    var waMsg = '\ud83d\udce9 *New Contact Form Submission*\n\n'
+      + '\ud83d\udc64 *Name:* ' + name + '\n'
+      + '\ud83c\udfe2 *Company:* ' + company + '\n'
+      + '\ud83d\udce7 *Email:* ' + email + '\n'
+      + '\ud83d\udcf1 *Phone:* ' + phone + '\n'
+      + '\ud83d\udce6 *Service:* ' + service + '\n'
+      + '\ud83d\udcdd *Message:* ' + message;
+    window.open('https://wa.me/917034298745?text=' + encodeURIComponent(waMsg), '_blank');
+    btn.textContent = '\u2705 Message Sent!';
+    btn.style.background = '#10B981';
+    form.reset();
+    setTimeout(function() { btn.textContent = origText; btn.style.background = ''; btn.disabled = false; }, 3000);
   });
 })();
 </script>

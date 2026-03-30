@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+Disallow: /.claude/
+Disallow: /images/*.pdf
+Disallow: /images/*.docx
+Disallow: /images/*.rar
+
+# Crawl-delay for polite crawling
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://hexagologistics.in/sitemap.xml
