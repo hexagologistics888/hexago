@@ -279,32 +279,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }); // End of matchMedia
 
-    // Supply Chain highlight animation — runs regardless of reduced-motion setting
-    const highlightText = document.querySelector('.cta-banner .highlight');
-    if (highlightText && typeof anime !== 'undefined') {
-        if (!highlightText.querySelector('.letter')) {
-            highlightText.innerHTML = highlightText.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-        }
-        const letters = highlightText.querySelectorAll('.letter');
-        ScrollTrigger.create({
-            trigger: '.cta-banner',
-            start: 'top 80%',
-            once: true,
-            onEnter: () => {
-                anime.remove(letters);
-                anime.timeline({ loop: false })
-                .add({
-                    targets: letters,
-                    translateY: [20, 0],
-                    translateZ: 0,
-                    opacity: [0, 1],
-                    easing: "easeOutExpo",
-                    duration: 1200,
-                    delay: (el, i) => 300 + 30 * i
-                });
-            }
-        });
-    }
 });
 
 

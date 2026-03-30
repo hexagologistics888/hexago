@@ -741,6 +741,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+<!-- Back to Top -->
+<button id="back-to-top" aria-label="Back to top">&#8679;</button>
 
 <!-- CTA Modal -->
 <div class="modal fade" id="ctaModal" tabindex="-1">
@@ -887,8 +889,38 @@ function cookieConsent(choice) {
 
 
 
-<!-- Back to Top -->
-<button id="back-to-top" aria-label="Back to top">&#8679;</button>
+<!-- Supply Chain animation: pure CSS + IntersectionObserver, no library dependency -->
+<style>
+.cta-banner .highlight .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.cta-banner .highlight.sc-animated .letter {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+<script>
+(function () {
+    var hl = document.querySelector('.cta-banner .highlight');
+    if (!hl) return;
+    if (!hl.querySelector('.letter')) {
+        hl.innerHTML = hl.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    }
+    hl.querySelectorAll('.letter').forEach(function (el, i) {
+        el.style.transitionDelay = (i * 55) + 'ms';
+    });
+    var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+            hl.classList.add('sc-animated');
+            io.disconnect();
+        }
+    }, { threshold: 0.4 });
+    io.observe(document.querySelector('.cta-banner'));
+})();
+</script>
 
 <!-- Floating WhatsApp -->
 <a href="https://wa.me/917034298745" target="_blank" rel="noopener noreferrer" class="float-call" aria-label="Chat on WhatsApp">
