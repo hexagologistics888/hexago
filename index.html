@@ -341,16 +341,17 @@
     <div class="carousel-inner">
 
       <!-- Slide 1 -->
-      <div class="carousel-item active hero-slide" style="background-image: url('images/carousel1.jpeg');">
+       <div class="carousel-item hero-slide" style="background-image: url('images/carousel3.jpg');">
         <div class="overlay"></div>
         <div class="hero-content">
-          <h1>Sustainability-Focused Logistics.</h1>
-          <p>Moving India forward &mdash; reliably, efficiently, and responsibly since 2024.</p>
+          <h1>Your Supply Chain Catalyst.</h1>
+          <p>Innovative solutions, industry trust, and unwavering commitment to your goals.</p>
           <div class="hero-buttons">
-            <a href="contact_us.html" class="reach-btn">Get a Quote</a>
+            <a href="contact_us.html" class="reach-btn">Start Today</a>
           </div>
         </div>
       </div>
+      
 
       <!-- Slide 2 -->
       <div class="carousel-item hero-slide" style="background-image: url('images/carousel2.jpg');">
@@ -365,13 +366,13 @@
       </div>
 
       <!-- Slide 3 -->
-      <div class="carousel-item hero-slide" style="background-image: url('images/carousel3.jpg');">
+      <div class="carousel-item active hero-slide" style="background-image: url('images/carousel1.jpeg');">
         <div class="overlay"></div>
         <div class="hero-content">
-          <h1>Your Supply Chain Catalyst.</h1>
-          <p>Innovative solutions, industry trust, and unwavering commitment to your goals.</p>
+          <h1>Sustainability-Focused Logistics.</h1>
+          <p>Moving India forward &mdash; reliably, efficiently, and responsibly since 2024.</p>
           <div class="hero-buttons">
-            <a href="contact_us.html" class="reach-btn">Start Today</a>
+            <a href="contact_us.html" class="reach-btn">Get a Quote</a>
           </div>
         </div>
       </div>
@@ -885,41 +886,6 @@ function cookieConsent(choice) {
 </script>
 
 
-<!-- Supply Chain highlight animation -->
-<script>
-(function () {
-  var span = document.querySelector('.cta-banner .highlight');
-  if (!span) return;
-
-  // Wrap each character in an animated span
-  var text = span.textContent;
-  span.innerHTML = text.split('').map(function (ch) {
-    return ch === ' '
-      ? '<span class="hl-char" aria-hidden="true" style="display:inline-block;width:0.3em"> </span>'
-      : '<span class="hl-char" aria-hidden="true">' + ch + '</span>';
-  }).join('');
-  span.setAttribute('aria-label', text);
-
-  var chars = span.querySelectorAll('.hl-char');
-
-  function reveal() {
-    if (span.classList.contains('hl-revealed')) return;
-    span.classList.add('hl-revealed');
-    chars.forEach(function (ch, i) {
-      ch.style.animationDelay = (i * 52) + 'ms';
-    });
-  }
-
-  var io = new IntersectionObserver(function (entries) {
-    if (entries[0].isIntersecting) {
-      reveal();
-      io.disconnect();
-    }
-  }, { threshold: 0.5 });
-
-  io.observe(document.querySelector('.cta-banner') || span);
-})();
-</script>
 
 <!-- Back to Top -->
 <button id="back-to-top" aria-label="Back to top">&#8679;</button>
