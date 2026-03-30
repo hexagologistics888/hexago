@@ -317,7 +317,7 @@ function setMobileMenuState(isOpen) {
     if (elements.toggle) {
         elements.toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         elements.toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-        elements.toggle.textContent = isOpen ? '✕' : '☰';
+        elements.toggle.textContent = isOpen ? 'X' : 'Menu';
     }
 }
 
@@ -343,6 +343,12 @@ function initMobileMenu() {
 
     elements.navLinks.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', closeMobileMenu);
+    });
+
+    elements.navLinks.addEventListener('click', (event) => {
+        if (event.target === elements.navLinks) {
+            closeMobileMenu();
+        }
     });
 
     document.addEventListener('keydown', (event) => {
