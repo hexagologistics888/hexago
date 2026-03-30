@@ -1,57 +1,93 @@
 // Driver Logistics Website JavaScript
 
 // Hero Slider Functionality
-let currentSlide = 0;
-const slides = document.querySelectorAll('.hero-slide');
-const indicators = document.querySelectorAll('.indicator');
+function initHeroCarousel() {
+    const heroCarousel = document.getElementById('heroCarousel');
+    if (!heroCarousel) return;
 
-function showSlide(index) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    indicators.forEach(ind => ind.classList.remove('active'));
-    
-    slides[index].classList.add('active');
-    indicators[index].classList.add('active');
-}
+    if (window.bootstrap && window.bootstrap.Carousel) {
+        const carousel = window.bootstrap.Carousel.getOrCreateInstance(heroCarousel, {
+            interval: 5000,
+            ride: 'carousel',
+            pause: false,
+            touch: true,
+            wrap: true
+        });
+        carousel.cycle();
+        return;
+    }
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
+    const slides = Array.from(heroCarousel.querySelectorAll('.hero-slide'));
+    const indicators = Array.from(
+        heroCarousel.querySelectorAll('.carousel-indicators [data-bs-slide-to]')
+    );
+
+    if (!slides.length) return;
+
+    let currentSlide = slides.findIndex((slide) => slide.classList.contains('active'));
+    if (currentSlide < 0) currentSlide = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, slideIndex) => {
+            slide.classList.toggle('active', slideIndex === index);
+        });
+
+        indicators.forEach((indicator, indicatorIndex) => {
+            const isActive = indicatorIndex === index;
+            indicator.classList.toggle('active', isActive);
+            indicator.setAttribute('aria-current', isActive ? 'true' : 'false');
+        });
+    }
+
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+        });
+    });
+
     showSlide(currentSlide);
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }, 5000);
 }
-
-function setSlide(index) {
-    currentSlide = index;
-    showSlide(currentSlide);
-}
-
-// Auto advance slides every 5 seconds
-setInterval(nextSlide, 5000);
 
 // Mobile Menu Toggle
 function toggleMobileMenu() {
     const navLinks = document.getElementById('navLinks');
     navLinks.classList.toggle('active');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    if (toggle) {
+        toggle.setAttribute('aria-expanded', navLinks.classList.contains('active') ? 'true' : 'false');
+    }
 }
 
-// Transparent → White navbar on scroll
-(function() {
+// Transparent -> White navbar on scroll
+function initScrollHeader() {
     var hdr = document.querySelector('header');
     if (!hdr) return;
+
+    var scrollThreshold = 40;
+
     function checkScroll() {
-        if (window.scrollY > 60) {
-            hdr.classList.add('scrolled');
-        } else {
-            hdr.classList.remove('scrolled');
-        }
+        var scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+        hdr.classList.toggle('scrolled', scrollTop > scrollThreshold);
     }
+
     window.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('resize', checkScroll, { passive: true });
+    window.addEventListener('load', checkScroll);
     checkScroll();
-})();
+}
 
 // GSAP & ScrollTrigger Animations
 try { gsap.registerPlugin(ScrollTrigger); } catch(e) {}
 
 // Initialize animations on page load
 document.addEventListener('DOMContentLoaded', function() {
+    initScrollHeader();
+    initHeroCarousel();
     
     let mm = gsap.matchMedia();
 
@@ -241,31 +277,34 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // 2. Majestic Text Stagger on the CTA Banner Highlight
-        const highlightText = document.querySelector('.cta-banner .highlight');
-        if (highlightText) {
-            // Split text into individual spans for anime.js
-            highlightText.innerHTML = highlightText.textContent.replace(/\S/g, "<span class='letter' style='display:inline-block'>$&</span>");
-            
-            // Trigger Anime.js animation using ScrollTrigger as the viewport watcher
-            ScrollTrigger.create({
-                trigger: '.cta-banner',
-                start: 'top 80%',
-                onEnter: () => {
-                    anime.timeline({loop: false})
-                    .add({
-                        targets: '.cta-banner .highlight .letter',
-                        translateY: [20,0],
-                        translateZ: 0,
-                        opacity: [0,1],
-                        easing: "easeOutExpo",
-                        duration: 1200,
-                        delay: (el, i) => 300 + 30 * i
-                    });
-                }
-            });
-        }
     }); // End of matchMedia
+
+    // Supply Chain highlight animation — runs regardless of reduced-motion setting
+    const highlightText = document.querySelector('.cta-banner .highlight');
+    if (highlightText && typeof anime !== 'undefined') {
+        if (!highlightText.querySelector('.letter')) {
+            highlightText.innerHTML = highlightText.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+        }
+        const letters = highlightText.querySelectorAll('.letter');
+        ScrollTrigger.create({
+            trigger: '.cta-banner',
+            start: 'top 80%',
+            once: true,
+            onEnter: () => {
+                anime.remove(letters);
+                anime.timeline({ loop: false })
+                .add({
+                    targets: letters,
+                    translateY: [20, 0],
+                    translateZ: 0,
+                    opacity: [0, 1],
+                    easing: "easeOutExpo",
+                    duration: 1200,
+                    delay: (el, i) => 300 + 30 * i
+                });
+            }
+        });
+    }
 });
 
 
