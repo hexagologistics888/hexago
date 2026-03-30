@@ -410,6 +410,10 @@
 
   <script>
     (function () {
+      var OFFLINE_RETURN_URL_KEY = 'hexago_offline_return_url';
+      var OFFLINE_RETURN_SCROLL_KEY = 'hexago_offline_return_scroll_y';
+      var OFFLINE_RESTORE_PENDING_KEY = 'hexago_offline_restore_pending';
+      var isOfflineRedirect = window.location.search.indexOf('offline=1') !== -1;
       var codeEl = document.getElementById('fallbackCode');
       var titleEl = document.getElementById('fallbackTitle');
       var copyEl = document.getElementById('fallbackCopy');
@@ -429,7 +433,36 @@
         secondaryHref: secondaryEl.getAttribute('href')
       };
 
+      function getReturnUrl() {
+        try {
+          return sessionStorage.getItem(OFFLINE_RETURN_URL_KEY) || '';
+        } catch (error) {
+          return '';
+        }
+      }
+
+      function resumeStoredPage() {
+        var returnUrl = getReturnUrl();
+        if (!returnUrl || navigator.onLine === false) return false;
+
+        try {
+          sessionStorage.setItem(OFFLINE_RESTORE_PENDING_KEY, '1');
+        } catch (error) {}
+
+        window.location.replace(returnUrl);
+        return true;
+      }
+
       function syncFallbackState() {
+        if (!navigator.onLine && isOfflineRedirect) {
+          document.body.classList.add('offline-mode');
+        }
+
+        if (navigator.onLine && isOfflineRedirect && getReturnUrl()) {
+          resumeStoredPage();
+          return;
+        }
+
         var isOffline = navigator.onLine === false;
         document.body.classList.toggle('offline-mode', isOffline);
 
@@ -442,6 +475,7 @@
           primaryEl.setAttribute('href', location.href);
           primaryEl.onclick = function (event) {
             event.preventDefault();
+            if (resumeStoredPage()) return;
             location.reload();
           };
           secondaryEl.textContent = 'Go to Home';
@@ -462,7 +496,11 @@
         secondaryEl.onclick = null;
       }
 
-      window.addEventListener('online', syncFallbackState);
+      window.addEventListener('online', function () {
+        if (!resumeStoredPage()) {
+          syncFallbackState();
+        }
+      });
       window.addEventListener('offline', syncFallbackState);
       syncFallbackState();
     })();

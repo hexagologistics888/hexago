@@ -206,6 +206,7 @@
     /* SERVICE CARDS */
     .srv-card {
       position: relative;
+      display: block;
       flex: 1 1 0;
       min-width: 0;
       height: 380px;
@@ -214,6 +215,8 @@
       cursor: pointer;
       box-shadow: 0 8px 25px rgba(0,0,0,0.12);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
     }
 
     @media (max-width: 900px) {
@@ -233,6 +236,11 @@
     .srv-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    }
+
+    .srv-card:focus-visible {
+      outline: 3px solid rgba(255, 107, 53, 0.35);
+      outline-offset: 4px;
     }
 
     .srv-card img {
@@ -415,37 +423,37 @@
       </div>
       <div class="srv-grid" data-stagger="100">
 
-        <div class="srv-card">
-          <img src="images/service-about.webp" alt="Freight Transport" width="1408" height="688" decoding="async" fetchpriority="high" />
+        <a class="srv-card" href="ftl.html" aria-label="View FTL service page">
+          <img src="images/service-about.webp" alt="FTL Services" width="1408" height="688" decoding="async" fetchpriority="high" />
           <div class="srv-content">
-            <h2>Freight Transport</h2>
-            <p>Efficient road, sea and air freight services across regions.</p>
+            <h2>FTL Services</h2>
+            <p>Dedicated truck capacity for larger consignments that need direct routing and tighter transit control.</p>
           </div>
-        </div>
+        </a>
 
-        <div class="srv-card">
-          <img src="images/service-warehousing.webp" alt="Warehousing" width="896" height="858" decoding="async" />
+        <a class="srv-card" href="ptl.html" aria-label="View PTL service page">
+          <img src="images/service-fleet.webp" alt="PTL Services" width="864" height="1102" decoding="async" />
           <div class="srv-content">
-            <h2>Warehousing</h2>
-            <p>Secure storage and inventory management solutions.</p>
+            <h2>PTL Services</h2>
+            <p>Shared truck movement for smaller shipments that need cost-efficient freight planning.</p>
           </div>
-        </div>
+        </a>
 
-        <div class="srv-card">
-          <img src="images/service-supply-chain.webp" alt="Supply Chain Management" width="896" height="1008" decoding="async" />
+        <a class="srv-card" href="warehousing.html" aria-label="View 3PL Warehousing service page">
+          <img src="images/service-warehousing.webp" alt="3PL Warehousing" width="896" height="858" decoding="async" />
           <div class="srv-content">
-            <h2>Supply Chain Management</h2>
-            <p>Optimized logistics planning and distribution systems.</p>
+            <h2>3PL Warehousing</h2>
+            <p>Secure storage, inventory control, and dispatch support for growing operations.</p>
           </div>
-        </div>
+        </a>
 
-        <div class="srv-card">
-          <img src="images/service-fleet.webp" alt="Fleet Management" width="864" height="1102" decoding="async" />
+        <a class="srv-card" href="fourpl.html" aria-label="View 4PL Supply Chain service page">
+          <img src="images/service-supply-chain.webp" alt="4PL Supply Chain" width="896" height="1008" decoding="async" />
           <div class="srv-content">
-            <h2>Fleet Management</h2>
-            <p>Real-time vehicle tracking and performance monitoring.</p>
+            <h2>4PL Supply Chain</h2>
+            <p>End-to-end logistics coordination across transport, warehousing, and execution planning.</p>
           </div>
-        </div>
+        </a>
 
       </div>
     </div>

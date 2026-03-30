@@ -5,7 +5,7 @@
      - Assets (CSS/JS/images/fonts): cache-first with network fill
    ============================================================ */
 
-const CACHE_NAME = 'hexago-v5';
+const CACHE_NAME = 'hexago-v7';
 const OFFLINE_PAGE = '/404.html';
 const NAVIGATION_TIMEOUT_MS = 4000;
 
@@ -15,11 +15,16 @@ const PRECACHE = [
   '/index.html',
   '/about_us.html',
   '/service.html',
+  '/ftl.html',
+  '/ptl.html',
+  '/warehousing.html',
+  '/fourpl.html',
   '/contact_us.html',
   '/careers.html',
   '/privacy_policy.html',
   '/404.html',
   '/styles.css',
+  '/service-pages.css',
   '/enhancements.css',
   '/enhancements.js',
   '/script.js',

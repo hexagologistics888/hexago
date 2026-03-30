@@ -243,19 +243,25 @@ nav {
 }
 
 .hero-content h1 {
-    font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+    font-size: clamp(2.2rem, 5vw, 4.4rem);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.03em;
-    margin-bottom: 1rem;
+    max-width: 14ch;
+    margin: 0 auto 1rem;
+    text-wrap: balance;
+    word-break: normal;
+    hyphens: none;
 }
 
 .hero-content p {
     font-size: clamp(1rem, 2vw, 1.35rem);
     font-weight: 400;
     opacity: 0.88;
-    margin-bottom: 2rem;
+    max-width: 34ch;
+    margin: 0 auto 2rem;
     letter-spacing: -0.01em;
+    text-wrap: pretty;
 }
 
 /* ── Hero CTA Buttons ── */
@@ -580,6 +586,8 @@ nav {
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    align-items: stretch;
+    grid-auto-rows: 1fr;
     gap: 2.5rem;
     padding: 1rem;
 }
@@ -593,7 +601,45 @@ nav {
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    height: 100%;
     /* GSAP takes care of interactions instead of CSS transitions */
+}
+
+.form-status-message {
+    margin-top: 1rem;
+    padding: 0.95rem 1rem;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    border: 1px solid transparent;
+}
+
+.form-status-success {
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.22);
+    color: #0f5132;
+}
+
+.form-status-error {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.2);
+    color: #991b1b;
+}
+
+.service-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.service-card-link:hover,
+.service-card-link:focus-visible {
+    text-decoration: none;
+    color: inherit;
+}
+
+.service-card-link:focus-visible {
+    outline: 3px solid rgba(255, 107, 53, 0.32);
+    outline-offset: 4px;
 }
 
 /* Base image styling */
@@ -601,6 +647,7 @@ nav {
     width: 100%;
     height: 250px;
     object-fit: cover;
+    display: block;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
@@ -608,9 +655,13 @@ nav {
 .service-card h3 {
     font-size: 1.25rem;
     color: #004E89; /* Distinct blue matching reference */
-    padding: 1.5rem;
+    min-height: 96px;
+    padding: 1.5rem 1.4rem 1.7rem;
     margin: 0;
     font-weight: 700;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.35;
 }
 
 .service-img{
@@ -709,7 +760,8 @@ nav {
   transform: perspective(900px) rotateY(0deg);
   transition: transform 0.7s ease;
   margin-top: 10px;
-  margin-bottom: 60px;
+  margin-bottom: 100px;
+  overflow: visible;
 }
 
 /* EACH IMAGE POSITION — uses --tz for responsive radius */
@@ -720,6 +772,7 @@ nav {
   width: 100%;
   height: 100%;
   transform: rotateY(calc((var(--i) - 1) * 45deg)) translateZ(var(--tz));
+  overflow: visible;
 }
 
 /* IMAGE STYLE */
@@ -727,18 +780,19 @@ nav {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   box-shadow: 0 8px 24px rgba(0,0,0,0.18);
 }
 
 /* SECTOR LABEL */
 .sector-label {
   position: absolute;
-  bottom: 0;
+  top: 100%;
   left: 0;
   right: 0;
   padding: 10px 8px 12px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.72));
+  background: linear-gradient(135deg, rgba(26,26,46,0.92), rgba(26,26,46,0.78));
+  backdrop-filter: blur(6px);
   color: #fff;
   font-size: 13px;
   font-weight: 600;
@@ -746,6 +800,7 @@ nav {
   border-radius: 0 0 12px 12px;
   letter-spacing: 0.4px;
   pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 /* TRANSPARENT ARROW BUTTONS */
@@ -784,26 +839,26 @@ nav {
 
 /* Large laptop / desktop */
 @media (min-width: 1201px) {
-  .image-container { --tz: 340px; width: 240px; height: 300px; margin-bottom: 70px; }
+  .image-container { --tz: 340px; width: 240px; height: 300px; margin-bottom: 110px; }
   .sectors-section { padding: 0 1rem 3rem; }
 }
 /* Laptop */
 @media (min-width: 901px) and (max-width: 1200px) {
-  .image-container { --tz: 290px; width: 210px; height: 260px; margin-bottom: 65px; }
+  .image-container { --tz: 290px; width: 210px; height: 260px; margin-bottom: 100px; }
 }
 /* Tablet */
 @media (max-width: 900px) {
-  .image-container { --tz: 200px; width: 150px; height: 190px; margin-bottom: 55px; }
+  .image-container { --tz: 200px; width: 150px; height: 190px; margin-bottom: 85px; }
   .section-title { font-size: 32px; }
 }
 /* Large phone */
 @media (max-width: 600px) {
-  .image-container { --tz: 150px; width: 110px; height: 140px; margin-bottom: 50px; }
+  .image-container { --tz: 150px; width: 110px; height: 140px; margin-bottom: 75px; }
   .sector-btn { width: 40px; height: 40px; font-size: 16px; }
 }
 /* Small phone */
 @media (max-width: 400px) {
-  .image-container { --tz: 120px; width: 85px; height: 110px; margin-bottom: 44px; }
+  .image-container { --tz: 120px; width: 85px; height: 110px; margin-bottom: 65px; }
 }
 
 

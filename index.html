@@ -491,7 +491,7 @@
         <div class="services-grid">
            <a href="warehousing.html" class="service-card service-card-link" aria-label="View 3PL Warehousing service page">
                 <img src="images/ser1.png" alt="3PL Warehousing" loading="lazy">
-                <h3 class="mt-4">3PL Warehousing</h3>
+                <h3>3PL Warehousing</h3>
             </a>
 
             <a href="ftl.html" class="service-card service-card-link" aria-label="View FTL service page">
@@ -754,6 +754,8 @@
         </h3>
 
         <form id="ctaModalForm" action="https://formspree.io/f/mgopkvvz" method="POST">
+          <input type="hidden" name="subject" value="Quote Request | {{ name }} | {{ service }}">
+          <input type="hidden" name="Submission Source" value="Homepage Quote Modal">
 
           <div class="row">
             <div class="col-md-6 mb-4">
@@ -818,6 +820,8 @@
           <button type="submit" class="btn unique-submit-btn w-100">
             Submit Request →
           </button>
+
+          <div id="ctaFormStatus" class="form-status-message" hidden></div>
 
         </form>
 
@@ -935,44 +939,34 @@ if ('serviceWorker' in navigator) {
 <script>
 (function() {
   var form = document.getElementById('ctaModalForm');
-  if (!form) return;
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = form.querySelector('[type="submit"]');
-    var origText = btn.textContent;
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
+  if (!form || !window.HexagoLeadForms) return;
 
-    // Collect form data for WhatsApp
-    var fd = new FormData(form);
-    var name = fd.get('name') || '';
-    var email = fd.get('email') || '';
-    var phone = fd.get('phone') || '';
-    var company = fd.get('company') || '';
-    var service = fd.get('service') || '';
-    var shipment = fd.get('shipment_type') || '';
-    var message = fd.get('message') || '';
-
-    // Send lead via WhatsApp
-    var waMsg = '\ud83d\udce9 *New Quote Request*\n\n'
-      + '\ud83d\udc64 *Name:* ' + name + '\n'
-      + '\ud83c\udfe2 *Company:* ' + company + '\n'
-      + '\ud83d\udce7 *Email:* ' + email + '\n'
-      + '\ud83d\udcf1 *Phone:* ' + phone + '\n'
-      + '\ud83d\udce6 *Service:* ' + service + '\n'
-      + '\ud83d\ude9a *Shipment:* ' + shipment + '\n'
-      + '\ud83d\udcdd *Message:* ' + message;
-    window.open('https://wa.me/917034298745?text=' + encodeURIComponent(waMsg), '_blank');
-    btn.textContent = '\u2705 Sent Successfully!';
-    btn.style.background = '#10B981';
-    form.reset();
-    setTimeout(function() {
-      btn.textContent = origText;
-      btn.style.background = '';
-      btn.disabled = false;
-      var modal = bootstrap.Modal.getInstance(document.getElementById('ctaModal'));
-      if (modal) modal.hide();
-    }, 2500);
+  window.HexagoLeadForms.attach(form, {
+    title: 'New Quote Request',
+    sourceLabel: 'Homepage Quote Modal',
+    statusId: 'ctaFormStatus',
+    whatsAppNumber: '917034298745',
+    submittingText: 'Submitting request...',
+    successText: 'Request submitted',
+    errorText: 'Submission failed',
+    successMessage: 'Thank you. Your quote request has been sent successfully. Our team will review it and contact you shortly.',
+    errorMessage: 'We could not submit your quote request right now. Please try again or call us directly.',
+    resetDelayMs: 2800,
+    fields: [
+      { name: 'name', label: 'Name' },
+      { name: 'company', label: 'Company' },
+      { name: 'email', label: 'Email' },
+      { name: 'phone', label: 'Phone' },
+      { name: 'service', label: 'Service' },
+      { name: 'shipment_type', label: 'Shipment Type' },
+      { name: 'message', label: 'Requirement' }
+    ],
+    afterSuccess: function() {
+      setTimeout(function() {
+        var modal = bootstrap.Modal.getInstance(document.getElementById('ctaModal'));
+        if (modal) modal.hide();
+      }, 1200);
+    }
   });
 })();
 </script>
