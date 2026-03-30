@@ -89,6 +89,7 @@
           {
             "@type": "ContactPoint",
             "telephone": "+91-7034298745",
+            "name": "Kichu Harishankar",
             "contactType": "customer service",
             "contactOption": "HearingImpairedSupported",
             "areaServed": "IN",
@@ -98,7 +99,16 @@
           {
             "@type": "ContactPoint",
             "telephone": "+91-8848776836",
+            "name": "Appu",
             "contactType": "sales",
+            "areaServed": "IN",
+            "availableLanguage": ["English","Malayalam"]
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+91-8848776836",
+            "name": "Akshy Raj",
+            "contactType": "operations",
             "areaServed": "IN",
             "availableLanguage": ["English","Malayalam"]
           },
@@ -160,6 +170,37 @@
         .contact-info p{
             margin-bottom:15px;
             font-size:15px;
+        }
+
+        .contact-people{
+            display:grid;
+            gap:14px;
+            margin:16px 0 22px;
+        }
+
+        .contact-person{
+            background:rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.12);
+            border-radius:16px;
+            padding:16px 18px;
+        }
+
+        .contact-person-name{
+            margin:0 0 6px;
+            font-size:16px;
+            font-weight:700;
+            color:#ffffff;
+        }
+
+        .contact-person a{
+            color:#ffffff;
+            font-size:18px;
+            font-weight:600;
+            text-decoration:none;
+        }
+
+        .contact-person a:hover{
+            color:#ffb08a;
         }
 
         .form-control{
@@ -251,7 +292,7 @@
         <div class="col-lg-7" data-reveal="left">
             <div class="contact-card">
                 <h3 class="mb-4">Send us a Message</h3>
-                <form id="contactForm" action="https://formspree.io/f/YOUR_ID" method="POST" autocomplete="on" novalidate>
+                <form id="contactForm" action="https://formspree.io/f/mgopkvvz" method="POST" autocomplete="on" novalidate>
                     <div class="row">
                         <div class="col-md-6">
                             <input type="text" class="form-control" name="name" placeholder="Full Name" autocomplete="name" required>
@@ -286,8 +327,23 @@
                 Aluva, Ernakulam, Kerala, India</p>
 
                 <p><strong>📞 Phone:</strong><br>
-                +91 7034298745 <br>
-                +91 8848776836</p>
+                </p>
+                <div class="contact-people">
+                    <div class="contact-person">
+                        <p class="contact-person-name">Kichu Harishankar</p>
+                        <a href="tel:+917034298745">+91 70342 98745</a>
+                    </div>
+
+                    <div class="contact-person">
+                        <p class="contact-person-name">Appu</p>
+                        <a href="tel:+918848776836">+91 884 877 6836</a>
+                    </div>
+
+                    <div class="contact-person">
+                        <p class="contact-person-name">Akshy Raj</p>
+                        <a href="tel:+918848776836">+91 884 877 6836</a>
+                    </div>
+                </div>
 
                 <p><strong>✉️ Email:</strong><br>
                 Mail-hexagologistics888@gmail.com</p>
