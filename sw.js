@@ -2,10 +2,11 @@
    Hexago Logistics - Service Worker
    Strategy:
      - HTML pages: network-first with timeout, then cache, then offline fallback
-     - Assets (CSS/JS/images/fonts): cache-first with network fill
+     - CSS/JS: network-first with cache fallback
+     - Other assets (images/fonts): cache-first with network fill
    ============================================================ */
 
-const CACHE_NAME = 'hexago-v7';
+const CACHE_NAME = 'hexago-v8';
 const OFFLINE_PAGE = '/404.html';
 const NAVIGATION_TIMEOUT_MS = 4000;
 
@@ -103,6 +104,11 @@ self.addEventListener('fetch', event => {
     request.headers.get('Accept')?.includes('text/html') ||
     url.pathname.endsWith('.html') ||
     url.pathname === '/';
+  const isCriticalAsset =
+    request.destination === 'style' ||
+    request.destination === 'script' ||
+    url.pathname.endsWith('.css') ||
+    url.pathname.endsWith('.js');
 
   if (isHTML) {
     /* Network-first for HTML pages with timeout + offline fallback */
@@ -130,6 +136,23 @@ self.addEventListener('fetch', event => {
           statusText: 'Offline',
           headers: { 'Content-Type': 'text/plain; charset=utf-8' }
         });
+      }
+    })());
+    return;
+  }
+
+  if (isCriticalAsset) {
+    event.respondWith((async () => {
+      const cache = await caches.open(CACHE_NAME);
+
+      try {
+        const response = await fetch(request, { cache: 'no-store' });
+        await cacheResponse(request, response);
+        return response;
+      } catch (error) {
+        const cached = await cache.match(request);
+        if (cached) return cached;
+        return Response.error();
       }
     })());
     return;

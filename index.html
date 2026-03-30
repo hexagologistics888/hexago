@@ -515,11 +515,41 @@
 <!-- Sectors Section -->
 <section class="sectors-section" id="sector">
 
-  <div class="sectors-heading-wrap">
-    <h2 class="section-title">Our Sectors</h2>
-  </div>
+  <div class="sectors-shell">
+    <div class="section-header sectors-header">
+      <span class="sectors-kicker">Our Sectors</span>
+      <h2>Industries and Operations We Support</h2>
+      <p>Hexago supports transportation, warehousing, planning, and execution across practical supply chain operations for businesses moving freight across India.</p>
+    </div>
 
-  <div class="image-container">
+    <div class="sectors-showcase">
+      <article class="sector-tile sector-tile-wide">
+        <img src="images/ser2.png" alt="Freight and transportation management by Hexago Logistics" loading="lazy">
+        <div class="sector-card-content"><h3>Freight &amp; Transportation Management</h3></div>
+      </article>
+
+      <article class="sector-tile sector-tile-wide">
+        <img src="images/carousel3.jpg" alt="Route planning and scheduling support by Hexago Logistics" loading="lazy">
+        <div class="sector-card-content"><h3>Route Planning &amp; Scheduling</h3></div>
+      </article>
+
+      <article class="sector-tile">
+        <img src="images/img02.jpeg" alt="Logistics technology integration support by Hexago Logistics" loading="lazy">
+        <div class="sector-card-content"><h3>Logistics Technology Integration</h3></div>
+      </article>
+
+      <article class="sector-tile sector-tile-large">
+        <img src="images/service-warehousing.webp" alt="Warehouse and distribution strategy by Hexago Logistics" loading="lazy">
+        <div class="sector-card-content"><h3>Warehouse &amp; Distribution Strategy</h3></div>
+      </article>
+
+      <article class="sector-tile">
+        <img src="images/service-fleet.webp" alt="Transportation cost reduction planning by Hexago Logistics" loading="lazy">
+        <div class="sector-card-content"><h3>Transportation Cost Reduction</h3></div>
+      </article>
+    </div>
+
+  <div class="image-container" hidden aria-hidden="true">
     <span style="--i: 1"><img src="images/carousel1.jpeg" alt="Fleet transport services — Hexago Logistics Kerala" /><div class="sector-label">Fleet Transport</div></span>
     <span style="--i: 2"><img src="images/ser1.png" alt="3PL warehousing solutions — Hexago Logistics Aluva" /><div class="sector-label">Warehousing</div></span>
     <span style="--i: 3"><img src="images/ser2.png" alt="Full truckload FTL freight services India" /><div class="sector-label">Full Truckload</div></span>
@@ -530,59 +560,86 @@
     <span style="--i: 8"><img src="images/carousel3.jpg" alt="E-commerce logistics and fulfilment India" /><div class="sector-label">E-Commerce</div></span>
   </div>
 
-  <div class="btn-container">
+  <div class="btn-container" hidden aria-hidden="true">
     <button class="sector-btn" id="prev">&#8592;</button>
     <button class="sector-btn" id="next">&#8594;</button>
+  </div>
   </div>
 </section>
 
 <script>
 (function() {
-  var ic = document.querySelector('.image-container');
-  var pb = document.getElementById('prev');
-  var nb = document.getElementById('next');
-  if (!ic || !pb || !nb) return;
-
-  var deg = 0;
+  var rail = document.getElementById('sectorsRail');
+  var prev = document.getElementById('sectorPrev');
+  var next = document.getElementById('sectorNext');
+  if (!rail || !prev || !next) return;
   var timer = null;
 
-  function persp() {
-    var w = window.innerWidth;
-    if (w <= 400) return 420;
-    if (w <= 600) return 580;
-    if (w <= 900) return 720;
-    if (w <= 1200) return 900;
-    return 1100;
+  function getStep() {
+    var firstCard = rail.querySelector('.sector-card');
+    if (!firstCard) return Math.max(rail.clientWidth * 0.78, 280);
+    var gap = parseFloat(window.getComputedStyle(rail).gap || '16');
+    return firstCard.getBoundingClientRect().width + gap;
   }
 
-  function spin() {
-    ic.style.transform = 'perspective(' + persp() + 'px) rotateY(' + deg + 'deg)';
+  function move(direction) {
+    var step = getStep();
+    var maxLeft = Math.max(0, rail.scrollWidth - rail.clientWidth);
+    var target = rail.scrollLeft + (step * direction);
+
+    if (direction > 0 && target >= maxLeft - 4) {
+      target = 0;
+    } else if (direction < 0 && rail.scrollLeft <= 4) {
+      target = maxLeft;
+    }
+
+    rail.scrollTo({ left: target, behavior: 'smooth' });
   }
 
-  function startTimer() {
-    if (timer) return;
-    timer = setInterval(function() { deg -= 45; spin(); }, 3000);
+  prev.addEventListener('click', function() {
+    stopAuto();
+    move(-1);
+    startAuto();
+  });
+
+  next.addEventListener('click', function() {
+    stopAuto();
+    move(1);
+    startAuto();
+  });
+
+  function startAuto() {
+    stopAuto();
+    timer = window.setInterval(function() {
+      move(1);
+    }, 3200);
   }
 
-  function stopTimer() {
-    clearInterval(timer);
-    timer = null;
+  function stopAuto() {
+    if (timer) {
+      window.clearInterval(timer);
+      timer = null;
+    }
   }
 
-  pb.addEventListener('click', function() { deg += 45; spin(); });
-  nb.addEventListener('click', function() { deg -= 45; spin(); });
+  rail.addEventListener('mouseenter', stopAuto);
+  rail.addEventListener('mouseleave', startAuto);
+  rail.addEventListener('touchstart', stopAuto, { passive: true });
+  rail.addEventListener('touchend', startAuto, { passive: true });
+  rail.addEventListener('focusin', stopAuto);
+  rail.addEventListener('focusout', startAuto);
 
-  ic.addEventListener('mouseenter', stopTimer);
-  ic.addEventListener('mouseleave', startTimer);
-  ic.addEventListener('touchstart', stopTimer, { passive: true });
-  ic.addEventListener('touchend', startTimer, { passive: true });
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      stopAuto();
+    } else {
+      startAuto();
+    }
+  });
 
-  window.addEventListener('resize', spin);
-
-  startTimer();
+  startAuto();
 })();
 </script>
-
 
     <!-- Clients Section -->
     <section class="clients">
@@ -602,6 +659,7 @@
                 <div class="client-logo"><img src="images/company2.jpeg" alt="Hexago logistics partner company"></div>
                 <div class="client-logo"><img src="images/company3.webp" alt="Hexago logistics partner company"></div>
                 <div class="client-logo"><img src="images/company4.jpg" alt="Hexago logistics partner company"></div>
+                <div class="client-logo"><img src="images/company5.png" alt="Hexago logistics partner company"></div>
             </div>
         </div>
     </section>

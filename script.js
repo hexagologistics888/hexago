@@ -5,6 +5,7 @@ const OFFLINE_RETURN_SCROLL_KEY = 'hexago_offline_return_scroll_y';
 const OFFLINE_RESTORE_PENDING_KEY = 'hexago_offline_restore_pending';
 const CONTACT_RETURN_PAGE_KEY = 'hexago_contact_return_page';
 const HERO_CAROUSEL_INTERVAL_MS = 3000;
+const MOBILE_NAV_BREAKPOINT = 768;
 
 function getCurrentRelativeUrl() {
     return window.location.pathname + window.location.search + window.location.hash;
@@ -299,13 +300,62 @@ function initHeroCarousel() {
 }
 
 // Mobile Menu Toggle
-function toggleMobileMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('active');
-    const toggle = document.querySelector('.mobile-menu-toggle');
-    if (toggle) {
-        toggle.setAttribute('aria-expanded', navLinks.classList.contains('active') ? 'true' : 'false');
+function getMobileMenuElements() {
+    return {
+        navLinks: document.getElementById('navLinks'),
+        toggle: document.querySelector('.mobile-menu-toggle')
+    };
+}
+
+function setMobileMenuState(isOpen) {
+    const elements = getMobileMenuElements();
+    if (!elements.navLinks) return;
+
+    elements.navLinks.classList.toggle('active', isOpen);
+    document.body.classList.toggle('mobile-nav-open', isOpen);
+
+    if (elements.toggle) {
+        elements.toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        elements.toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+        elements.toggle.textContent = isOpen ? '✕' : '☰';
     }
+}
+
+function closeMobileMenu() {
+    setMobileMenuState(false);
+}
+
+function toggleMobileMenu() {
+    const elements = getMobileMenuElements();
+    if (!elements.navLinks) return;
+
+    setMobileMenuState(!elements.navLinks.classList.contains('active'));
+}
+
+function initMobileMenu() {
+    const elements = getMobileMenuElements();
+    if (!elements.navLinks) return;
+
+    setMobileMenuState(false);
+
+    if (elements.navLinks.dataset.mobileMenuReady === '1') return;
+    elements.navLinks.dataset.mobileMenuReady = '1';
+
+    elements.navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeMobileMenu();
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > MOBILE_NAV_BREAKPOINT) {
+            closeMobileMenu();
+        }
+    }, { passive: true });
 }
 
 // Transparent -> White navbar on scroll
@@ -333,6 +383,7 @@ try { gsap.registerPlugin(ScrollTrigger); } catch(e) {}
 document.addEventListener('DOMContentLoaded', function() {
     initConnectivityFallback();
     rememberContactReturnPage();
+    initMobileMenu();
     initScrollHeader();
     initHeroCarousel();
     

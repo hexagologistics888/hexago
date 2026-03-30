@@ -179,10 +179,23 @@
         }
 
         .contact-person{
+            display:block;
             background:rgba(255,255,255,0.08);
             border:1px solid rgba(255,255,255,0.12);
             border-radius:16px;
             padding:16px 18px;
+            text-decoration:none;
+            color:#ffffff;
+            transition:transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+        }
+
+        .contact-person:hover,
+        .contact-person:focus-visible{
+            transform:translateY(-2px);
+            background:rgba(255,255,255,0.14);
+            border-color:rgba(255,176,138,0.6);
+            color:#ffffff;
+            outline:none;
         }
 
         .contact-person-name{
@@ -192,14 +205,16 @@
             color:#ffffff;
         }
 
-        .contact-person a{
+        .contact-person-number{
+            display:block;
             color:#ffffff;
             font-size:18px;
             font-weight:600;
-            text-decoration:none;
+            line-height:1.4;
         }
 
-        .contact-person a:hover{
+        .contact-person:hover .contact-person-number,
+        .contact-person:focus-visible .contact-person-number{
             color:#ffb08a;
         }
 
@@ -332,20 +347,20 @@
                 <p><strong>📞 Phone:</strong><br>
                 </p>
                 <div class="contact-people">
-                    <div class="contact-person">
+                    <a class="contact-person" href="tel:+917034298745" aria-label="Call Kichu Harishankar at +91 70342 98745">
                         <p class="contact-person-name">Kichu Harishankar</p>
-                        <a href="tel:+917034298745">+91 70342 98745</a>
-                    </div>
+                        <span class="contact-person-number">+91 70342 98745</span>
+                    </a>
 
-                    <div class="contact-person">
+                    <a class="contact-person" href="tel:+918848776836" aria-label="Call Appu at +91 884 877 6836">
                         <p class="contact-person-name">Appu</p>
-                        <a href="tel:+918848776836">+91 884 877 6836</a>
-                    </div>
+                        <span class="contact-person-number">+91 884 877 6836</span>
+                    </a>
 
-                    <div class="contact-person">
+                    <a class="contact-person" href="tel:+918848776836" aria-label="Call Akshy Raj at +91 884 877 6836">
                         <p class="contact-person-name">Akshy Raj</p>
-                        <a href="tel:+918848776836">+91 884 877 6836</a>
-                    </div>
+                        <span class="contact-person-number">+91 884 877 6836</span>
+                    </a>
                 </div>
 
                 <p><strong>✉️ Email:</strong><br>
