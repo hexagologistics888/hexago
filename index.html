@@ -293,7 +293,7 @@
 <body>
 
 <!-- Preloader -->
-<div id="hexago-preloader" aria-hidden="true">
+<div id="hexago-preloader" aria-hidden="true" style="pointer-events:none;">
   <div class="pre-hex-wrap">
     <div class="pre-ring pre-ring-1"></div>
     <div class="pre-ring pre-ring-2"></div>
@@ -304,7 +304,7 @@
 </div>
 
 <!-- Reading Progress -->
-<div id="reading-progress" role="progressbar" aria-hidden="true"></div>
+<div id="reading-progress" role="progressbar" aria-hidden="true" style="pointer-events:none;"></div>
 
     <!-- Header -->
     <header>
@@ -314,16 +314,72 @@
                     <img src="images/logo3.png" alt="Hexago Logistics and Transport Logo">
                 </a>
             </div>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+                <span class="mobile-menu-toggle__line" aria-hidden="true"></span>
+                <span class="mobile-menu-toggle__line" aria-hidden="true"></span>
+                <span class="mobile-menu-toggle__line" aria-hidden="true"></span>
+            </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="about_us.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
+                <li><a href="index.html" data-page="index.html">Home</a></li>
+                <li><a href="about_us.html" data-page="about_us.html">About</a></li>
+                <li><a href="service.html" data-page="service.html">Services</a></li>
                 <li><a href="#sector">Sectors</a></li>
-                <li><a href="contact_us.html">Contact Us</a></li>
-                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact_us.html" data-page="contact_us.html">Contact Us</a></li>
+                <li><a href="careers.html" data-page="careers.html">Careers</a></li>
+                <li class="nav-contact-item" aria-hidden="true">
+                    <span class="nav-contact-phone">Get in touch</span>
+                    <span class="nav-contact-num">+91 70342 98745</span>
+                    <a href="https://wa.me/917034298745" target="_blank" rel="noopener noreferrer" class="nav-wa-btn">💬 Chat on WhatsApp</a>
+                </li>
             </ul>
         </nav>
     </header>
+
+<!-- Mobile nav: active detection, stagger, 992px breakpoint -->
+<script>
+(function() {
+  var toggle = document.querySelector('.mobile-menu-toggle');
+  var navLinks = document.getElementById('navLinks');
+  if (!toggle || !navLinks) return;
+
+  // Mark active page link
+  var path = (window.location.pathname.replace(/\/$/, '').split('/').pop()) || 'index.html';
+  navLinks.querySelectorAll('a[data-page]').forEach(function(a) {
+    if (a.dataset.page === path) {
+      a.classList.add('nav-active');
+      a.setAttribute('aria-current', 'page');
+    }
+  });
+
+  function isMobileView() { return window.innerWidth <= 992; }
+
+  function setMenuState(open) {
+    navLinks.classList.toggle('active', open);
+    navLinks.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.classList.toggle('mobile-nav-open', open);
+    toggle.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  }
+
+  function closeMenu() { setMenuState(false); }
+  function toggleMenu(e) { if (e) e.preventDefault(); setMenuState(!navLinks.classList.contains('active')); }
+
+  toggle.addEventListener('click', toggleMenu);
+  navLinks.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() { if (isMobileView()) closeMenu(); });
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', function() { if (!isMobileView()) closeMenu(); }, { passive: true });
+  document.addEventListener('click', function(e) {
+    if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !toggle.contains(e.target)) closeMenu();
+  });
+
+  window.toggleMobileMenu = toggleMenu;
+  window.closeMobileMenu = closeMenu;
+  setMenuState(false);
+})();
+</script>
 
 <!-- Hero Section Bootstrap Carousel -->
 <section class="hero-section">
