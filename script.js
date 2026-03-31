@@ -6,6 +6,7 @@ const OFFLINE_RESTORE_PENDING_KEY = 'hexago_offline_restore_pending';
 const CONTACT_RETURN_PAGE_KEY = 'hexago_contact_return_page';
 const HERO_CAROUSEL_INTERVAL_MS = 3000;
 const MOBILE_NAV_BREAKPOINT = 768;
+const MOBILE_MENU_OPEN_CLASS = 'active';
 
 function getCurrentRelativeUrl() {
     return window.location.pathname + window.location.search + window.location.hash;
@@ -311,13 +312,14 @@ function setMobileMenuState(isOpen) {
     const elements = getMobileMenuElements();
     if (!elements.navLinks) return;
 
-    elements.navLinks.classList.toggle('active', isOpen);
+    elements.navLinks.classList.toggle(MOBILE_MENU_OPEN_CLASS, isOpen);
+    elements.navLinks.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
     document.body.classList.toggle('mobile-nav-open', isOpen);
 
     if (elements.toggle) {
+        elements.toggle.classList.toggle('is-open', isOpen);
         elements.toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         elements.toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-        elements.toggle.textContent = isOpen ? 'X' : 'Menu';
     }
 }
 
@@ -329,14 +331,27 @@ function toggleMobileMenu() {
     const elements = getMobileMenuElements();
     if (!elements.navLinks) return;
 
-    setMobileMenuState(!elements.navLinks.classList.contains('active'));
+    setMobileMenuState(!elements.navLinks.classList.contains(MOBILE_MENU_OPEN_CLASS));
 }
 
 function initMobileMenu() {
     const elements = getMobileMenuElements();
-    if (!elements.navLinks) return;
+    if (!elements.navLinks || !elements.toggle) return;
+
+    // If standalone inline script already initialised the menu, skip re-binding
+    if (typeof window.toggleMobileMenu === 'function' && elements.navLinks.getAttribute('aria-hidden') !== null) {
+        return;
+    }
 
     setMobileMenuState(false);
+
+    if (elements.toggle.dataset.mobileMenuReady !== '1') {
+        elements.toggle.dataset.mobileMenuReady = '1';
+        elements.toggle.addEventListener('click', (event) => {
+            event.preventDefault();
+            toggleMobileMenu();
+        });
+    }
 
     if (elements.navLinks.dataset.mobileMenuReady === '1') return;
     elements.navLinks.dataset.mobileMenuReady = '1';
@@ -363,6 +378,9 @@ function initMobileMenu() {
         }
     }, { passive: true });
 }
+
+window.toggleMobileMenu = toggleMobileMenu;
+window.closeMobileMenu = closeMobileMenu;
 
 // Transparent -> White navbar on scroll
 function initScrollHeader() {
@@ -563,23 +581,7 @@ document.addEventListener('DOMContentLoaded', function() {
             y: smallY, duration: 0.8, stagger: 0.2, ease: 'power2.out'
         });
 
-        // ==============================================
-        // ANIME.JS ANIMATIONS
-        // ==============================================
-        
-        // 1. Continuous "Breathing" Pulse on Primary Buttons
-        // We ensure Anime js only runs its loop if the user accepts motion
-        const reachButtons = document.querySelectorAll('.reach-btn');
-        if (reachButtons.length > 0) {
-            anime({
-                targets: '.reach-btn',
-                scale: [1, 1.05],
-                duration: 1500,
-                easing: 'easeInOutSine',
-                direction: 'alternate',
-                loop: true
-            });
-        }
+        // .reach-btn breathing pulse handled via CSS @keyframes (see styles.css)
 
     }); // End of matchMedia
 

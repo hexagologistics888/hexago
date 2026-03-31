@@ -1746,12 +1746,31 @@ nav {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
-    cursor: pointer;
+    cursor: default;
 }
 
-.blog-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-hover);
+.blog-card--soon {
+    opacity: 0.85;
+}
+
+.blog-card--soon:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.blog-soon-badge {
+    display: inline-block;
+    background: rgba(255, 107, 53, 0.12);
+    color: var(--primary-orange);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+    pointer-events: none;
 }
 
 .blog-card img {
@@ -2609,5 +2628,16 @@ footer {
     .wh-card--wide {
         grid-column: span 2;
     }
+}
+
+/* ---- REACH-BTN BREATHING PULSE (replaces anime.js) ---- */
+@media (prefers-reduced-motion: no-preference) {
+    .reach-btn {
+        animation: reachBtnPulse 1.5s ease-in-out infinite alternate;
+    }
+}
+@keyframes reachBtnPulse {
+    from { transform: scale(1); }
+    to   { transform: scale(1.05); }
 }
 

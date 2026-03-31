@@ -95,14 +95,6 @@
         { "@type": "State",   "name": "Andhra Pradesh" }
       ],
       "serviceArea": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": "10.1004", "longitude": "76.3567" }, "geoRadius": "3000000" },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingCount": "47",
-        "reviewCount": "47"
-      },
       "contactPoint": [
         { "@type": "ContactPoint", "telephone": "+91-7034298745", "contactType": "customer service", "areaServed": "IN", "availableLanguage": ["English","Malayalam","Hindi"] },
         { "@type": "ContactPoint", "telephone": "+91-8848776836", "contactType": "sales", "areaServed": "IN", "availableLanguage": ["English","Malayalam"] }
@@ -776,23 +768,26 @@
             <p>Explore our blogs and articles</p>
         </div>
         <div class="blog-grid">
-            <div class="blog-card">
+            <div class="blog-card blog-card--soon">
                 <img src="images/carousel1.jpeg" alt="Holiday logistics strategy — smart supply chain planning" loading="lazy">
                 <div class="blog-content">
+                    <span class="blog-soon-badge">Coming Soon</span>
                     <h3>Navigate This Holiday Season with Smart Logistics Strategy</h3>
                     <p>The in demand and sales for business. However, converting interest into purchases is just the beginning; efficiently completing the entire supply cycle is crucial.</p>
                 </div>
             </div>
-            <div class="blog-card">
+            <div class="blog-card blog-card--soon">
                 <img src="images/carousel2.jpg" alt="Material handling in a warehouse — efficient logistics operations" loading="lazy">
                 <div class="blog-content">
+                    <span class="blog-soon-badge">Coming Soon</span>
                     <h3>Material Handling for Warehousing: Ensuring Efficient Operations</h3>
                     <p>In the world of logistics, material handling plays a crucial role in determining the efficiency and quality of service provided.</p>
                 </div>
             </div>
-            <div class="blog-card">
+            <div class="blog-card blog-card--soon">
                 <img src="images/carousel3.jpg" alt="Occupational safety and health in supply chain work environment" loading="lazy">
                 <div class="blog-content">
+                    <span class="blog-soon-badge">Coming Soon</span>
                     <h3>Occupational Safety & Health in Supply Chain Work Environment</h3>
                     <p>Every supply chain focuses on building an ecosystem that provides hassle-free customer services.</p>
                 </div>
@@ -827,7 +822,6 @@
     <!-- Scripts: all deferred in order so GSAP is available when script.js runs -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script defer src="script.js"></script>
     <script defer src="enhancements.js"></script>
     <script>
@@ -863,7 +857,7 @@
         </h3>
 
         <form id="ctaModalForm" action="https://formspree.io/f/mgopkvvz" method="POST">
-          <input type="hidden" name="subject" value="Quote Request | {{ name }} | {{ service }}">
+          <input type="hidden" name="_subject" value="New Quote Request — Hexago Logistics Website">
           <input type="hidden" name="Submission Source" value="Homepage Quote Modal">
 
           <div class="row">

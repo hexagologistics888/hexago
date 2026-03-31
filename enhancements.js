@@ -43,17 +43,12 @@
         var et = conn.effectiveType || '';
 
         if (dl >= 5 || et === '4g') {
-          // 4G / 5G / 6G / WiFi — barely a flash
           delay = 250;
         } else if (dl >= 1 || et === '3g') {
-          // 3G — quick but visible
-          delay = 900;
-        } else if (dl >= 0.1 || et === '2g') {
-          // 2G
-          delay = 1600;
+          delay = 700;
         } else {
-          // slow-2g or unknown very slow
-          delay = 2000;
+          // 2G, slow-2g, or unknown — cap at 800ms
+          delay = 800;
         }
       }
     }
