@@ -1877,35 +1877,36 @@ footer {
         height: 38px !important;
     }
 
-    /* ── Hamburger ── */
+    /* ── Hamburger — three lines only, no box ── */
     .mobile-menu-toggle {
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        width: 40px !important;
-        height: 40px !important;
-        border-radius: 8px !important;
-        border: 1.5px solid rgba(255,255,255,0.22) !important;
-        background: rgba(255,255,255,0.08) !important;
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 0 !important;
+        border: none !important;
+        background: transparent !important;
         color: #fff !important;
         cursor: pointer !important;
-        transition: background 0.25s ease, border-color 0.25s ease !important;
+        transition: opacity 0.2s ease !important;
         flex-shrink: 0 !important;
     }
+    .mobile-menu-toggle:hover { opacity: 0.7 !important; }
     .mobile-menu-toggle__line {
         background: currentColor !important;
         border-radius: 2px !important;
     }
     header.scrolled .mobile-menu-toggle {
         color: #002855 !important;
-        background: rgba(0,40,85,0.07) !important;
-        border-color: rgba(0,40,85,0.18) !important;
+        background: transparent !important;
+        border: none !important;
     }
     body.mobile-nav-open .mobile-menu-toggle,
     body.mobile-nav-open header.scrolled .mobile-menu-toggle {
         color: #fff !important;
-        background: rgba(255,255,255,0.12) !important;
-        border-color: rgba(255,255,255,0.25) !important;
+        background: transparent !important;
+        border: none !important;
     }
 
     /* ── Full-screen dark backdrop ── */
