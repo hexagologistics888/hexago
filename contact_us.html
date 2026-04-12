@@ -347,9 +347,7 @@
         <div class="col-lg-7" data-reveal="left">
             <div class="contact-card">
                 <h3 class="mb-4">Send us a Message</h3>
-                <form id="contactForm" action="https://formspree.io/f/mgopkvvz" method="POST" autocomplete="on" novalidate>
-                    <input type="hidden" name="_subject" value="New Contact Enquiry — Hexago Logistics Website">
-                    <input type="hidden" name="Submission Source" value="Contact Page">
+                <form id="contactForm" autocomplete="on" novalidate>
                     <div class="row">
                         <div class="col-md-6">
                             <input type="text" class="form-control" name="name" placeholder="Full Name" autocomplete="name" required>
@@ -584,10 +582,9 @@ if ('serviceWorker' in navigator) {
     var data = new FormData(form);
 
     try {
-      var res = await fetch('https://formspree.io/f/mgopkvvz', {
+      var res = await fetch('https://script.google.com/a/macros/hexagologistics.com/s/AKfycbwoZMZOlv_XQQ4muD6ARuSn0vBUQizsvY0JVW0_ynpfGeujrOqHsNSGh5lbyG7ap25p/exec', {
         method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
+        body: data
       });
 
       if (!res.ok) throw new Error('failed');
