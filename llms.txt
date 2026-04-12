@@ -32,7 +32,7 @@ Retail, FMCG, Healthcare, Manufacturing, E-commerce, Automobile.
 
 ## Website
 
-- https://hexago-ochre.vercel.app
+- https://hexagologistics.com
 
 ## Key Facts
 

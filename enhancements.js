@@ -18,7 +18,7 @@
      saveData mode → 400ms (don't waste battery)
   ══════════════════════════════════════════ */
   var preloader = document.getElementById('hexago-preloader');
-  if (preloader) {
+  if (preloader && window.getComputedStyle(preloader).display !== 'none') {
     var hidePreloader = function () {
       if (preloader._gone) return;
       preloader._gone = true;
@@ -347,13 +347,22 @@
   /* ══════════════════════════════════════════
      INIT
   ══════════════════════════════════════════ */
-  document.addEventListener('DOMContentLoaded', function () {
+  function startEnhancements() {
     initReveal();
     initCounters();
     initParticles();
     initTilt();
     initRipple();
     initActiveNav();
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(startEnhancements, { timeout: 900 });
+      return;
+    }
+
+    setTimeout(startEnhancements, 120);
   });
 
 })();

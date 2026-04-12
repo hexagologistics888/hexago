@@ -251,8 +251,34 @@ function initConnectivityFallback() {
 function initHeroCarousel() {
     const heroCarousel = document.getElementById('heroCarousel');
     if (!heroCarousel) return;
+    const slides = Array.from(heroCarousel.querySelectorAll('.hero-slide'));
+
+    function loadHeroSlideBackground(slide) {
+        if (!slide || slide.dataset.bgLoaded === '1') return;
+
+        const bgUrl = slide.getAttribute('data-bg');
+        if (!bgUrl) return;
+
+        slide.style.backgroundImage = "url('" + bgUrl.replace(/'/g, "\\'") + "')";
+        slide.dataset.bgLoaded = '1';
+    }
+
+    function loadNextHeroSlide(index) {
+        if (!slides.length) return;
+        loadHeroSlideBackground(slides[(index + 1) % slides.length]);
+    }
+
+    let currentSlide = slides.findIndex((slide) => slide.classList.contains('active'));
+    if (currentSlide < 0) currentSlide = 0;
+
+    loadHeroSlideBackground(slides[currentSlide]);
 
     if (window.bootstrap && window.bootstrap.Carousel) {
+        heroCarousel.addEventListener('slide.bs.carousel', (event) => {
+            loadHeroSlideBackground(slides[event.to]);
+            loadNextHeroSlide(event.to);
+        });
+
         const carousel = window.bootstrap.Carousel.getOrCreateInstance(heroCarousel, {
             interval: HERO_CAROUSEL_INTERVAL_MS,
             ride: 'carousel',
@@ -260,21 +286,27 @@ function initHeroCarousel() {
             touch: true,
             wrap: true
         });
+
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => loadNextHeroSlide(currentSlide), { timeout: 1500 });
+        } else {
+            setTimeout(() => loadNextHeroSlide(currentSlide), 300);
+        }
+
         carousel.cycle();
         return;
     }
 
-    const slides = Array.from(heroCarousel.querySelectorAll('.hero-slide'));
     const indicators = Array.from(
         heroCarousel.querySelectorAll('.carousel-indicators [data-bs-slide-to]')
     );
 
     if (!slides.length) return;
 
-    let currentSlide = slides.findIndex((slide) => slide.classList.contains('active'));
-    if (currentSlide < 0) currentSlide = 0;
-
     function showSlide(index) {
+        loadHeroSlideBackground(slides[index]);
+        loadNextHeroSlide(index);
+
         slides.forEach((slide, slideIndex) => {
             slide.classList.toggle('active', slideIndex === index);
         });
@@ -400,17 +432,11 @@ function initScrollHeader() {
     checkScroll();
 }
 
-// GSAP & ScrollTrigger Animations
-try { gsap.registerPlugin(ScrollTrigger); } catch(e) {}
+function initGsapAnimations() {
+    if (!window.gsap || !window.ScrollTrigger) return;
 
-// Initialize animations on page load
-document.addEventListener('DOMContentLoaded', function() {
-    initConnectivityFallback();
-    rememberContactReturnPage();
-    initMobileMenu();
-    initScrollHeader();
-    initHeroCarousel();
-    
+    try { gsap.registerPlugin(ScrollTrigger); } catch (e) {}
+
     let mm = gsap.matchMedia();
 
     mm.add({
@@ -419,14 +445,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }, (context) => {
         let { isDesktop, isMobile } = context.conditions;
 
-        // Responsive animation values to prevent layout shifts on small screens
         const headerY = isMobile ? -60 : -100;
         const entryY = isMobile ? 30 : 60;
         const smallY = isMobile ? 15 : 30;
         const buttonY = isMobile ? 10 : 20;
         const imageScale = isMobile ? 0.95 : 0.85;
 
-        // Global Header Animation
         gsap.from('header', {
             y: headerY,
             opacity: 0,
@@ -434,7 +458,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ease: 'power3.out'
         });
 
-        // Hero Section Animations
         if (document.querySelector('.hero-content')) {
             gsap.from('.hero-content h1', {
                 y: entryY,
@@ -459,7 +482,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Section Headers Animation
         gsap.utils.toArray('.section-header, .section-title').forEach(header => {
             gsap.from(header, {
                 scrollTrigger: {
@@ -473,11 +495,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Creative Cards / Service Cards / Stat Cards Staggered Animation
         const cardContainers = [
-            '.why-choose .row', 
-            '.services-grid', 
-            '.owners-container', 
+            '.why-choose .row',
+            '.services-grid',
+            '.owners-container',
             '.blog-grid',
             '.stats-grid',
             '.services-container'
@@ -485,66 +506,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
         cardContainers.forEach(containerSelector => {
             const container = document.querySelector(containerSelector);
-            if (container) {
-                const cards = container.querySelectorAll('.creative-card, .service-card, .owner-card, .blog-card, .stat-card');
-                if (cards.length > 0) {
-                    // Initial Entry Animation
-                    gsap.from(cards, {
-                        scrollTrigger: {
-                            trigger: container,
-                            start: 'top 95%',
-                            once: true
-                        },
-                        y: entryY,
-                        duration: 0.8,
-                        stagger: 0.12,
-                        ease: 'power2.out'
+            if (!container) return;
+
+            const cards = container.querySelectorAll('.creative-card, .service-card, .owner-card, .blog-card, .stat-card');
+            if (!cards.length) return;
+
+            gsap.from(cards, {
+                scrollTrigger: {
+                    trigger: container,
+                    start: 'top 95%',
+                    once: true
+                },
+                y: entryY,
+                duration: 0.8,
+                stagger: 0.12,
+                ease: 'power2.out'
+            });
+
+            if (containerSelector === '.services-grid' || containerSelector === '.services-container') {
+                cards.forEach(card => {
+                    const img = card.querySelector('img');
+                    if (!img) return;
+
+                    card.addEventListener('mouseenter', () => {
+                        if (isDesktop || isMobile) {
+                            gsap.to(img, {
+                                scale: 1.05,
+                                duration: 0.5,
+                                ease: 'power2.out'
+                            });
+                        }
                     });
 
-                    // Specific internal standard enhancements for Service Cards
-                    if (containerSelector === '.services-grid' || containerSelector === '.services-container') {
-                        cards.forEach(card => {
-                            const img = card.querySelector('img');
-                            if (img) {
-                                // On hover/tap interaction: subtle scale with full color maintained
-                                card.addEventListener('mouseenter', () => {
-                                    if(isDesktop || isMobile) {
-                                        gsap.to(img, {
-                                            scale: 1.05,
-                                            duration: 0.5,
-                                            ease: 'power2.out'
-                                        });
-                                    }
-                                });
-                                
-                                card.addEventListener('mouseleave', () => {
-                                    if(isDesktop || isMobile) {
-                                        gsap.to(img, {
-                                            scale: 1,
-                                            duration: 0.5,
-                                            ease: 'power2.out'
-                                        });
-                                    }
-                                });
+                    card.addEventListener('mouseleave', () => {
+                        if (isDesktop || isMobile) {
+                            gsap.to(img, {
+                                scale: 1,
+                                duration: 0.5,
+                                ease: 'power2.out'
+                            });
+                        }
+                    });
 
-                                // For mobile/touch robustness: Subtle zoom midway through screen
-                                ScrollTrigger.create({
-                                    trigger: card,
-                                    start: 'top 60%',
-                                    end: 'bottom 40%',
-                                    onEnter: () => gsap.to(img, { scale: 1.05, duration: 0.6 }),
-                                    onLeave: () => gsap.to(img, { scale: 1, duration: 0.6 }),
-                                    onEnterBack: () => gsap.to(img, { scale: 1.05, duration: 0.6 }),
-                                    onLeaveBack: () => gsap.to(img, { scale: 1, duration: 0.6 })
-                                });
-                            }
-                        });
-                    }
-                }
+                    ScrollTrigger.create({
+                        trigger: card,
+                        start: 'top 60%',
+                        end: 'bottom 40%',
+                        onEnter: () => gsap.to(img, { scale: 1.05, duration: 0.6 }),
+                        onLeave: () => gsap.to(img, { scale: 1, duration: 0.6 }),
+                        onEnterBack: () => gsap.to(img, { scale: 1.05, duration: 0.6 }),
+                        onLeaveBack: () => gsap.to(img, { scale: 1, duration: 0.6 })
+                    });
+                });
             }
         });
 
-        // Global Standalone Image Entrance Animation
         const standaloneImages = document.querySelectorAll('img:not(nav img):not(footer img):not(.service-card img):not(.creative-card img):not(.owner-card img):not(.blog-card img):not(.stat-card img):not(.image-container img)');
 
         standaloneImages.forEach(img => {
@@ -559,7 +575,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // CTA Banner Animation
         if (document.querySelector('.cta-banner')) {
             gsap.from('.cta-banner h2', {
                 scrollTrigger: { trigger: '.cta-banner', start: 'top 95%', once: true },
@@ -575,16 +590,26 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Footer Animation
         gsap.from('footer .footer-content > div', {
             scrollTrigger: { trigger: 'footer', start: 'top 95%', once: true },
             y: smallY, duration: 0.8, stagger: 0.2, ease: 'power2.out'
         });
+    });
+}
 
-        // .reach-btn breathing pulse handled via CSS @keyframes (see styles.css)
+document.addEventListener('DOMContentLoaded', function() {
+    initConnectivityFallback();
+    rememberContactReturnPage();
+    initMobileMenu();
+    initScrollHeader();
+    initHeroCarousel();
 
-    }); // End of matchMedia
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(initGsapAnimations, { timeout: 1200 });
+        return;
+    }
 
+    setTimeout(initGsapAnimations, 160);
 });
 
 
