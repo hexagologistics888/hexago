@@ -471,6 +471,80 @@
   &#128172;<span class="fc-tip">Chat on WhatsApp</span>
 </a>
 
+<!-- Success Popup Toast -->
+<div id="hexagoToast" class="hexago-toast" role="alert" aria-live="polite" aria-atomic="true">
+  <div class="hexago-toast__icon">&#10003;</div>
+  <div class="hexago-toast__body">
+    <p class="hexago-toast__title">Message Sent!</p>
+    <p class="hexago-toast__sub">Thank you for reaching out. Our team will contact you shortly.</p>
+  </div>
+  <button class="hexago-toast__close" aria-label="Close">&times;</button>
+  <div class="hexago-toast__bar"></div>
+</div>
+
+<style>
+.hexago-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fff;
+  border-left: 4px solid #10B981;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  padding: 16px 18px 20px;
+  min-width: 300px;
+  max-width: 360px;
+  transform: translateX(120%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
+  overflow: hidden;
+}
+.hexago-toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+.hexago-toast__icon {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: #10B981;
+  color: #fff;
+  font-size: 17px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.hexago-toast__body { flex: 1; }
+.hexago-toast__title { font-weight: 700; font-size: 15px; color: #111; margin: 0 0 3px; }
+.hexago-toast__sub { font-size: 13px; color: #555; margin: 0; line-height: 1.45; }
+.hexago-toast__close {
+  background: none; border: none; cursor: pointer;
+  font-size: 20px; color: #aaa; padding: 0;
+  line-height: 1; align-self: flex-start;
+}
+.hexago-toast__close:hover { color: #333; }
+.hexago-toast__bar {
+  position: absolute; bottom: 0; left: 0;
+  height: 3px; width: 100%;
+  background: #10B981;
+  transform-origin: left;
+  animation: none;
+}
+.hexago-toast.show .hexago-toast__bar {
+  animation: toastProgress 4s linear forwards;
+}
+@keyframes toastProgress {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
+@media (max-width: 480px) {
+  .hexago-toast { right: 12px; left: 12px; min-width: unset; max-width: unset; }
+}
+</style>
+
 <!-- Service Worker Registration -->
 <script>
 if ('serviceWorker' in navigator) {
@@ -480,37 +554,70 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
-<!-- Contact Form AJAX Submission + WhatsApp Notification -->
+<!-- Contact Form Submission -->
 <script>
 (function() {
-  var form = document.getElementById('contactForm');
-  if (!form || !window.HexagoLeadForms) return;
+  /* ── Toast helper ── */
+  var toast = document.getElementById('hexagoToast');
+  var toastTimer;
+  function showToast() {
+    clearTimeout(toastTimer);
+    toast.classList.add('show');
+    toastTimer = setTimeout(hideToast, 4400);
+  }
+  function hideToast() {
+    toast.classList.remove('show');
+  }
+  toast.querySelector('.hexago-toast__close').addEventListener('click', hideToast);
 
-  window.HexagoLeadForms.attach(form, {
-    title: 'New Contact Enquiry',
-    sourceLabel: 'Contact Page',
-    statusId: 'contactFormStatus',
-    whatsAppNumber: '917034298745',
-    submittingText: 'Sending enquiry...',
-    successText: 'Enquiry received',
-    errorText: 'Unable to send',
-    successMessage: 'Thank you for contacting Hexago. Your message has been sent successfully. Our team will contact you shortly. Redirecting you back now...',
-    errorMessage: 'We could not send your enquiry right now. Please try again or call our team directly.',
-    resetDelayMs: 3000,
-    redirectDelayMs: 2400,
-    getRedirectUrl: function() {
-      var storedPage = window.sessionStorage ? sessionStorage.getItem('hexago_contact_return_page') : '';
-      if (storedPage && !/contact_us\.html/i.test(storedPage)) return storedPage;
-      return 'index.html';
-    },
-    fields: [
-      { name: 'name', label: 'Name' },
-      { name: 'company', label: 'Company' },
-      { name: 'email', label: 'Email' },
-      { name: 'phone', label: 'Phone' },
-      { name: 'service', label: 'Service' },
-      { name: 'message', label: 'Message' }
-    ]
+  /* ── Form handler ── */
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var originalText = btn.textContent;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    var data = new FormData(form);
+
+    try {
+      var res = await fetch('https://formspree.io/f/mgopkvvz', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!res.ok) throw new Error('failed');
+
+      /* Show popup */
+      showToast();
+      form.reset();
+
+      /* WhatsApp notification to team */
+      var name    = data.get('name') || '';
+      var phone   = data.get('phone') || '';
+      var service = data.get('service') || '';
+      var msg = 'New Enquiry — Hexago Website\n\nName: ' + name + '\nPhone: ' + phone + '\nService: ' + service + '\n\nSubmitted via hexagologistics.com';
+      window.open('https://wa.me/917034298745?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+
+      /* Auto-reply via EmailJS (runs if configured) */
+      if (window.emailjs) {
+        emailjs.send(window.HEXAGO_EMAILJS_SERVICE, window.HEXAGO_EMAILJS_TEMPLATE, {
+          to_name:  name,
+          to_email: data.get('email') || '',
+          service:  service
+        }).catch(function(){});
+      }
+
+    } catch(err) {
+      alert('Unable to send message. Please call us directly at +91 7034298745.');
+    } finally {
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }
   });
 })();
 </script>
