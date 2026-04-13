@@ -325,7 +325,8 @@
 /* ---- STATS BAR ---- */
 .stats-bar {
   background: linear-gradient(135deg, #002855 0%, #004E89 100%);
-  padding: 32px 0;
+  padding: 48px 0;
+  box-shadow: 0 -4px 32px rgba(0,40,85,0.18);
 }
 .stat-item {
   padding: 12px 8px;

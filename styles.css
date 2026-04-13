@@ -239,13 +239,13 @@ nav {
 .hero-section .carousel,
 .hero-section .carousel-inner,
 .hero-section .carousel-item {
-    height: 70vh;
-    min-height: 500px;
+    height: 85vh;
+    min-height: 580px;
 }
 
 .carousel-item.hero-slide {
-    height: 70vh;
-    min-height: 500px;
+    height: 85vh;
+    min-height: 580px;
     background-size: cover;
     background-position: center;
     position: relative;
@@ -275,12 +275,13 @@ nav {
     align-items: center;
 }
 
-.hero-content h1 {
-    font-size: clamp(2.2rem, 5vw, 4.4rem);
+.hero-content h1,
+.hero-content h2 {
+    font-size: clamp(1.9rem, 3.5vw, 3.2rem);
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    max-width: 14ch;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 22ch;
     margin: 0 auto 1rem;
     text-wrap: balance;
     word-break: normal;
