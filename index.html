@@ -275,7 +275,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -426,6 +426,38 @@
   </div>
 </section>
 
+
+<!-- Stats Bar -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="row text-center g-0">
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <div class="stat-number">1,000<span>+</span></div>
+          <div class="stat-label">Pincodes Covered</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <div class="stat-number">7<span>+</span></div>
+          <div class="stat-label">States Served</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Service Verticals</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <div class="stat-number">24<span>h</span></div>
+          <div class="stat-label">Quote Response</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
  <!-- Why Choose Section -->
 <section class="why-choose py-5">
@@ -620,7 +652,49 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+<!-- Client Testimonials -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>What Our Clients Say</h2>
+      <p>Trusted by businesses across Kerala and pan-India</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"Hexago has been a reliable partner for our distribution in Kerala. Their PTL service is cost-effective and the team is always responsive. Shipments arrive on schedule."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-name">Rajan Menon</div>
+            <div class="testimonial-role">Managing Director, FMCG Distributor &mdash; Ernakulam</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"We moved our Kochi to Mumbai route to Hexago FTL. On-time every time, real GPS tracking, and transparent pricing. Exactly what a growing manufacturing company needs."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-name">Priya Nair</div>
+            <div class="testimonial-role">Operations Head, Manufacturing Company &mdash; Kochi</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"Their 3PL warehousing in Aluva is well-managed and affordable. Inventory tracking is accurate and the dispatch team is proactive. Highly recommend for e-commerce."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-name">Anil Kumar</div>
+            <div class="testimonial-role">Founder, E-commerce Startup &mdash; Thrissur</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Meet Our Founders -->
     <section class="owners">
     <div class="section-header">
         <h2>Meet Our Founders</h2>
@@ -681,14 +755,14 @@
             <p>Explore our blogs and articles</p>
         </div>
         <div class="blog-grid">
-            <div class="blog-card blog-card--soon">
-                <img src="images/carousel1.jpeg" alt="Holiday logistics strategy - smart supply chain planning" loading="lazy">
+            <a href="blog-ftl-vs-ptl.html" class="blog-card blog-card-link" aria-label="Read: FTL vs PTL — Which Is Right for Your Business?">
+                <img src="images/ser2.webp" alt="FTL vs PTL logistics comparison India" width="896" height="564" loading="lazy" decoding="async">
                 <div class="blog-content">
-                    <span class="blog-soon-badge">Coming Soon</span>
-                    <h3>Navigate This Holiday Season with Smart Logistics Strategy</h3>
-                    <p>The in demand and sales for business. However, converting interest into purchases is just the beginning; efficiently completing the entire supply cycle is crucial.</p>
+                    <span class="blog-tag">Logistics Guide</span>
+                    <h3>FTL vs PTL: Which Is Right for Your Business?</h3>
+                    <p>Choosing between Full Truck Load and Partial Truck Load can save you thousands. Here's a practical guide for businesses shipping freight across India.</p>
                 </div>
-            </div>
+            </a>
             <div class="blog-card blog-card--soon">
                 <img src="images/carousel2.jpg" alt="Material handling in a warehouse - efficient logistics operations" loading="lazy">
                 <div class="blog-content">
@@ -733,8 +807,8 @@
     </footer>
 
     <!-- Scripts: all deferred in order so GSAP is available when script.js runs -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous"></script>
     <script defer src="script.js"></script>
     <script defer src="enhancements.js"></script>
     <script>
@@ -749,7 +823,7 @@
     }
     </script>
 
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <!-- Back to Top -->
 <button id="back-to-top" aria-label="Back to top">&#8679;</button>

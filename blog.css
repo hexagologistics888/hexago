@@ -1,0 +1,216 @@
+/* ================================================================
+   HEXAGO LOGISTICS — BLOG STYLES
+   ================================================================ */
+
+/* ---- HERO ---- */
+.blog-hero {
+  background: linear-gradient(135deg, #002855 0%, #004E89 100%);
+  padding: 80px 0 60px;
+  text-align: center;
+}
+.blog-hero-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.blog-breadcrumb {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 20px;
+}
+.blog-breadcrumb a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+}
+.blog-breadcrumb a:hover { color: #FF6B35; }
+.blog-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.blog-date {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+}
+.blog-hero h1 {
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.blog-subtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.75);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ---- ARTICLE WRAP ---- */
+.blog-article-wrap {
+  padding: 48px 0 72px;
+  background: #fff;
+}
+.blog-article {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.blog-hero-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  object-fit: cover;
+  max-height: 420px;
+}
+
+/* ---- BODY COPY ---- */
+.blog-body {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #2d2d2d;
+}
+.blog-lead {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #002855;
+  margin-bottom: 24px;
+  line-height: 1.75;
+}
+.blog-body h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #002855;
+  margin-top: 44px;
+  margin-bottom: 16px;
+}
+.blog-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #004E89;
+  margin-bottom: 8px;
+}
+.blog-body p { margin-bottom: 18px; }
+.blog-body ul, .blog-body ol {
+  padding-left: 22px;
+  margin-bottom: 18px;
+}
+.blog-body li { margin-bottom: 8px; }
+.blog-body strong { color: #002855; }
+
+/* ---- COMPARISON TABLE ---- */
+.comparison-table-wrap {
+  overflow-x: auto;
+  margin: 24px 0 32px;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0,46,85,0.08);
+}
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.comparison-table thead tr {
+  background: linear-gradient(135deg, #002855, #004E89);
+  color: #fff;
+}
+.comparison-table th {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 600;
+}
+.comparison-table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+.comparison-table tbody tr:nth-child(even) { background: #f5f8ff; }
+.comparison-table tbody tr:last-child td { border-bottom: none; }
+
+/* ---- SCENARIO BLOCKS ---- */
+.scenario-block {
+  background: #f5f8ff;
+  border-left: 4px solid #FF6B35;
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.scenario-block h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #002855;
+  margin-bottom: 8px;
+}
+.scenario-block p { margin-bottom: 6px; font-size: 0.93rem; }
+.scenario-block p:last-child { margin-bottom: 0; }
+
+/* ---- CTA BOX ---- */
+.blog-cta-box {
+  background: linear-gradient(135deg, #002855 0%, #004E89 100%);
+  border-radius: 14px;
+  padding: 36px 32px;
+  text-align: center;
+  margin-top: 40px;
+}
+.blog-cta-box h3 {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.blog-cta-box p {
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+.blog-cta-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---- RELATED SERVICES ---- */
+.blog-related {
+  margin-top: 60px;
+  border-top: 1px solid #eee;
+  padding-top: 40px;
+}
+.blog-related h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #002855;
+  margin-bottom: 24px;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+.related-card {
+  display: block;
+  padding: 20px;
+  border: 1px solid #e3eaf5;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.related-card:hover {
+  border-color: #FF6B35;
+  box-shadow: 0 4px 20px rgba(255,107,53,0.12);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.related-card h3 { font-size: 0.95rem; font-weight: 700; color: #002855; margin-bottom: 8px; }
+.related-card p { font-size: 0.83rem; color: #666; margin-bottom: 14px; line-height: 1.5; }
+.link-label { font-size: 0.8rem; font-weight: 600; color: #FF6B35; }
+
+@media (max-width: 575px) {
+  .blog-cta-box { padding: 28px 18px; }
+  .blog-body h2 { font-size: 1.25rem; }
+  .comparison-table th, .comparison-table td { padding: 10px 12px; font-size: 0.82rem; }
+}
