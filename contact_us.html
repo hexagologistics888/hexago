@@ -601,22 +601,6 @@ if ('serviceWorker' in navigator) {
       showToast();
       form.reset();
 
-      /* WhatsApp notification to team */
-      var name    = data.get('name') || '';
-      var phone   = data.get('phone') || '';
-      var service = data.get('service') || '';
-      var msg = 'New Enquiry — Hexago Website\n\nName: ' + name + '\nPhone: ' + phone + '\nService: ' + service + '\n\nSubmitted via hexagologistics.com';
-      window.open('https://wa.me/917034298745?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-
-      /* Auto-reply via EmailJS (runs if configured) */
-      if (window.emailjs) {
-        emailjs.send(window.HEXAGO_EMAILJS_SERVICE, window.HEXAGO_EMAILJS_TEMPLATE, {
-          to_name:  name,
-          to_email: data.get('email') || '',
-          service:  service
-        }).catch(function(){});
-      }
-
     } catch(err) {
       alert('Unable to send message. Please call us directly at +91 7034298745.');
     } finally {
