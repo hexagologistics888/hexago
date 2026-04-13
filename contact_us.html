@@ -582,9 +582,17 @@ if ('serviceWorker' in navigator) {
     var data = new FormData(form);
 
     try {
+      var params = new URLSearchParams();
+      params.append('name',    data.get('name')    || '');
+      params.append('email',   data.get('email')   || '');
+      params.append('phone',   data.get('phone')   || '');
+      params.append('company', data.get('company') || '');
+      params.append('service', data.get('service') || '');
+      params.append('message', data.get('message') || '');
+
       await fetch('https://script.google.com/a/macros/hexagologistics.com/s/AKfycbwoZMZOlv_XQQ4muD6ARuSn0vBUQizsvY0JVW0_ynpfGeujrOqHsNSGh5lbyG7ap25p/exec', {
         method: 'POST',
-        body: data,
+        body: params,
         mode: 'no-cors'
       });
 
