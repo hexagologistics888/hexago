@@ -590,9 +590,10 @@ if ('serviceWorker' in navigator) {
       params.append('service', data.get('service') || '');
       params.append('message', data.get('message') || '');
 
-      await fetch('https://script.google.com/a/macros/hexagologistics.com/s/AKfycbwoZMZOlv_XQQ4muD6ARuSn0vBUQizsvY0JVW0_ynpfGeujrOqHsNSGh5lbyG7ap25p/exec', {
-        method: 'POST',
-        body: params,
+      var scriptUrl = 'https://script.google.com/a/macros/hexagologistics.com/s/AKfycbwoZMZOlv_XQQ4muD6ARuSn0vBUQizsvY0JVW0_ynpfGeujrOqHsNSGh5lbyG7ap25p/exec';
+
+      await fetch(scriptUrl + '?' + params.toString(), {
+        method: 'GET',
         mode: 'no-cors'
       });
 
