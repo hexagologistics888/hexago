@@ -582,20 +582,34 @@ if ('serviceWorker' in navigator) {
     var data = new FormData(form);
 
     try {
-      var params = new URLSearchParams();
-      params.append('name',    data.get('name')    || '');
-      params.append('email',   data.get('email')   || '');
-      params.append('phone',   data.get('phone')   || '');
-      params.append('company', data.get('company') || '');
-      params.append('service', data.get('service') || '');
-      params.append('message', data.get('message') || '');
-
       var scriptUrl = 'https://script.google.com/a/macros/hexagologistics.com/s/AKfycbwoZMZOlv_XQQ4muD6ARuSn0vBUQizsvY0JVW0_ynpfGeujrOqHsNSGh5lbyG7ap25p/exec';
 
-      await fetch(scriptUrl + '?' + params.toString(), {
-        method: 'GET',
-        mode: 'no-cors'
+      /* Hidden iframe + form — only method that reliably passes data through Google's redirects */
+      var iframe = document.createElement('iframe');
+      iframe.name = 'hexago_submit_frame';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      var hiddenForm = document.createElement('form');
+      hiddenForm.method = 'POST';
+      hiddenForm.action = scriptUrl;
+      hiddenForm.target = 'hexago_submit_frame';
+
+      ['name','email','phone','company','service','message'].forEach(function(f) {
+        var inp = document.createElement('input');
+        inp.type = 'hidden';
+        inp.name = f;
+        inp.value = data.get(f) || '';
+        hiddenForm.appendChild(inp);
       });
+
+      document.body.appendChild(hiddenForm);
+      hiddenForm.submit();
+
+      setTimeout(function() {
+        document.body.removeChild(hiddenForm);
+        document.body.removeChild(iframe);
+      }, 5000);
 
       /* Show popup */
       showToast();
