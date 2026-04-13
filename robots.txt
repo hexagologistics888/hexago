@@ -6,5 +6,15 @@ Disallow: /images/*.pdf
 Disallow: /images/*.docx
 Disallow: /images/*.rar
 
+# AI crawlers — see llms.txt for structured company data
+User-agent: GPTBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Googlebot
+Allow: /
+
 # Sitemap location
 Sitemap: https://hexagologistics.com/sitemap.xml
