@@ -2,3 +2,17 @@ node_modules/
 .vscode/
 .claude/
 *.rar
+FULL-AUDIT-REPORT.md
+IMAGE_URLS.md
+emails/
+package.json
+package-lock.json
+images/....jpg
+images/...jpg
+images/supply-chain-representation-still-life.jpg.jpeg
+images/full-shot-men-wearing-helmets-vests.jpg.jpeg
+images/scene-with-photorealistic-logistics-operations-proceedings.jpg.jpeg
+images/ser1.png
+images/ser2.png
+images/ser3.png
+images/ser4.png
