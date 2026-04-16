@@ -57,7 +57,7 @@ function getLeadTimestamp() {
 }
 
 function buildWhatsAppLeadMessage(title, fields, sourceLabel) {
-    var lines = ['Hexa Go Logistics - ' + title, ''];
+    var lines = ['Hexa-go Logistics - ' + title, ''];
 
     fields.forEach(function(field) {
         lines.push(field.label + ': ' + normalizeLeadValue(field.value));

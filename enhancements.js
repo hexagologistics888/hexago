@@ -1,5 +1,5 @@
 /* ================================================================
-   Hexa Go Logistics — VISUAL ENHANCEMENTS v2.1
+   Hexa-go Logistics — VISUAL ENHANCEMENTS v2.1
    Mobile-first · All networks (2G→6G+) · All devices
    ================================================================ */
 

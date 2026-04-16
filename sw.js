@@ -1,5 +1,5 @@
 /* ============================================================
-   Hexa Go Logistics - Service Worker
+   Hexa-go Logistics - Service Worker
    Strategy:
      - HTML pages: network-first with timeout, then cache, then offline fallback
      - CSS/JS: network-first with cache fallback

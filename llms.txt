@@ -1,6 +1,6 @@
-# Hexa Go Logistics and Transport
+# Hexa-go Logistics and Transport
 
-> Hexa Go Logistics and Transport is a professional logistics company headquartered in Aluva, Ernakulam, Kerala, India. Founded in 2024, the company provides Full Truck Load (FTL), Partial Truck Load (PTL), 3PL Warehouse Management, and 4PL Supply Chain solutions across India.
+> Hexa-go Logistics and Transport is a professional logistics company headquartered in Aluva, Ernakulam, Kerala, India. Founded in 2024, the company provides Full Truck Load (FTL), Partial Truck Load (PTL), 3PL Warehouse Management, and 4PL Supply Chain solutions across India.
 
 ## Company Details
 - Official Website: https://hexagologistics.com
