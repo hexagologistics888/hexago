@@ -61,10 +61,17 @@
   ══════════════════════════════════════════ */
   var progressBar = document.getElementById('reading-progress');
   if (progressBar) {
+    var progressTicking = false;
     window.addEventListener('scroll', function () {
-      var scrollTop = window.scrollY || window.pageYOffset;
-      var docH = document.documentElement.scrollHeight - window.innerHeight;
-      progressBar.style.width = (docH > 0 ? (scrollTop / docH) * 100 : 0) + '%';
+      if (!progressTicking) {
+        requestAnimationFrame(function () {
+          var scrollTop = window.scrollY || window.pageYOffset;
+          var docH = document.documentElement.scrollHeight - window.innerHeight;
+          progressBar.style.width = (docH > 0 ? (scrollTop / docH) * 100 : 0) + '%';
+          progressTicking = false;
+        });
+        progressTicking = true;
+      }
     }, { passive: true });
   }
 
@@ -73,13 +80,18 @@
   ══════════════════════════════════════════ */
   var btt = document.getElementById('back-to-top');
   if (btt) {
-    var onScroll = function () {
-      var y = window.scrollY || window.pageYOffset;
-      btt.classList.toggle('visible', y > 420);
+    var bttTicking = false;
+    var onBttScroll = function () {
+      if (!bttTicking) {
+        requestAnimationFrame(function () {
+          var y = window.scrollY || window.pageYOffset;
+          btt.classList.toggle('visible', y > 420);
+          bttTicking = false;
+        });
+        bttTicking = true;
+      }
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    // Touch devices fire touchmove too
-    window.addEventListener('touchmove', onScroll, { passive: true });
+    window.addEventListener('scroll', onBttScroll, { passive: true });
     btt.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });

@@ -254,6 +254,8 @@
 </head>
 
 <body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
 
 <!-- Preloader -->
 <div id="hexago-preloader" aria-hidden="true">
@@ -332,7 +334,7 @@
 </script>
 
 <!-- Hero -->
-<section class="page-hero contact-hero">
+<section id="main-content" class="page-hero contact-hero">
     <canvas class="p-canvas" aria-hidden="true"></canvas>
     <div class="hero-overlay"></div>
     <div class="page-hero-content" data-reveal="up">
@@ -349,25 +351,34 @@
         <div class="col-lg-7" data-reveal="left">
             <div class="contact-card">
                 <h3 class="mb-4">Send us a Message</h3>
-                <form id="contactForm" autocomplete="on" novalidate>
+                <form id="contactForm" action="https://formspree.io/YOUR_ID" autocomplete="on" novalidate>
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="name" placeholder="Full Name" autocomplete="name" required>
+                            <label for="name" class="visually-hidden">Full Name</label>
+                            <input type="text" id="name" class="form-control" name="name" placeholder="Full Name" autocomplete="name" required>
                         </div>
                         <div class="col-md-6">
-                            <input type="email" class="form-control" name="email" placeholder="Email Address" autocomplete="email" required>
+                            <label for="email" class="visually-hidden">Email Address</label>
+                            <input type="email" id="email" class="form-control" name="email" placeholder="Email Address" autocomplete="email" required>
                         </div>
                     </div>
-                    <input type="text" class="form-control" name="company" placeholder="Company Name" autocomplete="organization">
-                    <input type="tel" class="form-control" name="phone" placeholder="Phone Number" autocomplete="tel">
-                    <select class="form-control" name="service">
+                    <label for="company" class="visually-hidden">Company Name</label>
+                    <input type="text" id="company" class="form-control" name="company" placeholder="Company Name" autocomplete="organization">
+                    
+                    <label for="phone" class="visually-hidden">Phone Number</label>
+                    <input type="tel" id="phone" class="form-control" name="phone" placeholder="Phone Number" autocomplete="tel">
+                    
+                    <label for="service" class="visually-hidden">Select Service Interested In</label>
+                    <select id="service" class="form-control" name="service">
                         <option value="">Select Service Interested In</option>
                         <option>Warehouse Management (3PL)</option>
                         <option>Full Truck Load (FTL)</option>
                         <option>Partial Truck Load (PTL)</option>
                         <option>4PL Logistics</option>
                     </select>
-                    <textarea class="form-control" name="message" rows="5" placeholder="Your Message"></textarea>
+                    
+                    <label for="message" class="visually-hidden">Your Message</label>
+                    <textarea id="message" class="form-control" name="message" rows="5" placeholder="Your Message"></textarea>
 
                     <button class="send-btn mt-3" type="submit">Send Message</button>
                     <div id="contactFormStatus" class="form-status-message" hidden></div>
@@ -428,7 +439,6 @@
             height="350"
             style="border:0;"
             allowfullscreen=""
-            loading="lazy"
             title="Hexago Logistics office location — Aluva, Kerala">
         </iframe>
     </div>
@@ -556,75 +566,22 @@ if ('serviceWorker' in navigator) {
 
 <!-- Contact Form Submission -->
 <script>
-(function() {
-  /* ── Toast helper ── */
-  var toast = document.getElementById('hexagoToast');
-  var toastTimer;
-  function showToast() {
-    clearTimeout(toastTimer);
-    toast.classList.add('show');
-    toastTimer = setTimeout(hideToast, 4400);
-  }
-  function hideToast() {
-    toast.classList.remove('show');
-  }
-  toast.querySelector('.hexago-toast__close').addEventListener('click', hideToast);
-
-  /* ── Form handler ── */
-  var form = document.getElementById('contactForm');
-  if (!form) return;
-
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    var btn = form.querySelector('button[type="submit"]');
-    var originalText = btn.textContent;
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
-
-    var data = new FormData(form);
-
-    try {
-      var scriptUrl = 'https://script.google.com/macros/s/AKfycbwoZMZOlv_XQQ4muD6ARuSn0vBUQizsvY0JVW0_ynpfGeujrOqHsNSGh5lbyG7ap25p/exec';
-
-      /* Hidden iframe + form — only method that reliably passes data through Google's redirects */
-      var iframe = document.createElement('iframe');
-      iframe.name = 'hexago_submit_frame';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-
-      var hiddenForm = document.createElement('form');
-      hiddenForm.method = 'POST';
-      hiddenForm.action = scriptUrl;
-      hiddenForm.target = 'hexago_submit_frame';
-
-      ['name','email','phone','company','service','message'].forEach(function(f) {
-        var inp = document.createElement('input');
-        inp.type = 'hidden';
-        inp.name = f;
-        inp.value = data.get(f) || '';
-        hiddenForm.appendChild(inp);
-      });
-
-      document.body.appendChild(hiddenForm);
-      hiddenForm.submit();
-
-      setTimeout(function() {
-        document.body.removeChild(hiddenForm);
-        document.body.removeChild(iframe);
-      }, 5000);
-
-      /* Show popup */
-      showToast();
-      form.reset();
-
-    } catch(err) {
-      alert('Unable to send message. Please call us directly at +91 7034298745.');
-    } finally {
-      btn.textContent = originalText;
-      btn.disabled = false;
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.HexagoLeadForms) {
+        window.HexagoLeadForms.attach(document.getElementById('contactForm'), {
+            whatsAppNumber: '917034298745',
+            title: 'Contact Us Page Lead',
+            fields: [
+                { name: 'name', label: 'Name' },
+                { name: 'phone', label: 'Phone' },
+                { name: 'email', label: 'Email' },
+                { name: 'company', label: 'Company' },
+                { name: 'service', label: 'Service' },
+                { name: 'message', label: 'Message' }
+            ]
+        });
     }
-  });
-})();
+});
 </script>
 
 </body>

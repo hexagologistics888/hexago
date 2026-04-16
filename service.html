@@ -280,14 +280,12 @@
     .page-hero::after {
       display: none;
     }
-
-    .deferred-section {
-      content-visibility: auto;
-      contain-intrinsic-size: 1px 820px;
     }
   </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
 
 <!-- Preloader -->
 <div id="hexago-preloader" aria-hidden="true">
@@ -364,7 +362,7 @@
 </script>
 
   <!-- Page Hero -->
-  <section class="page-hero" style="background-image: url('images/service-about.webp');">
+  <section id="main-content" class="page-hero" style="background-image: url('images/service-about.webp');">
     <div class="hero-overlay"></div>
     <div class="page-hero-content" data-reveal="up">
       <h1>Our Logistics Services</h1>
@@ -373,7 +371,7 @@
   </section>
 
   <!-- Service Cards -->
-  <section class="services deferred-section">
+  <section class="services">
     <div class="section-header">
       <h2>What We Offer</h2>
       <p>End-to-end logistics built for scale — warehousing, full truckload, part load, and integrated 4PL solutions.</p>
@@ -381,23 +379,23 @@
     <div class="services-grid" data-stagger="100">
 
       <a href="warehousing.html" class="service-card service-card-link" aria-label="View 3PL Warehousing service page">
-        <img src="images/ser1.webp" alt="3PL Warehousing" width="896" height="858" loading="lazy" decoding="async">
+        <img src="images/ser1.webp" alt="3PL Warehousing" width="896" height="858">
         <h3>3PL Warehousing</h3>
       </a>
 
       <a href="ftl.html" class="service-card service-card-link" aria-label="View FTL service page">
-        <img src="images/ser2.webp" alt="FTL Services" width="896" height="564" loading="lazy" decoding="async">
+        <img src="images/ser2.webp" alt="FTL Services" width="896" height="564">
         <h3>FTL Services</h3>
       </a>
 
       <a href="ptl.html" class="service-card service-card-link" aria-label="View PTL service page">
         <span class="service-soon-badge">Coming Soon</span>
-        <img src="images/ser3.webp" alt="PTL Services" width="896" height="1008" loading="lazy" decoding="async">
+        <img src="images/ser3.webp" alt="PTL Services" width="896" height="1008">
         <h3>PTL Services</h3>
       </a>
 
       <a href="fourpl.html" class="service-card service-card-link" aria-label="View 4PL Supply Chain service page">
-        <img src="images/ser4.webp" alt="4PL Supply Chain" width="896" height="571" loading="lazy" decoding="async">
+        <img src="images/ser4.webp" alt="4PL Supply Chain" width="896" height="571">
         <h3>4PL Supply Chain</h3>
       </a>
 
@@ -405,7 +403,7 @@
   </section>
 
   <!-- Service Details -->
-  <section class="page-section deferred-section">
+  <section class="page-section">
     <div class="page-container">
       <div class="section-header mb-5">
         <h2>Our Capabilities</h2>
@@ -414,42 +412,42 @@
       <div class="row g-4" data-stagger="110">
         <div class="col-md-6 col-lg-4">
           <div class="detail-item">
-            <div class="icon">🚛</div>
+            <div class="icon"><svg width="34" height="34" fill="none" stroke="var(--primary-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v10h2l3 3v2c0 1.1-.9 2-2 2H5zm0 0v2m12-2v2M7 16V6h8v10H7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
             <h3>Full Truckload (FTL)</h3>
             <p>Dedicated trucks for large shipments ensuring faster transit times and lower risk of damage.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="detail-item">
-            <div class="icon">📦</div>
+            <div class="icon"><svg width="34" height="34" fill="none" stroke="var(--primary-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
             <h3>Partial Truckload (PTL)</h3>
             <p>Cost-effective shared truck solutions for smaller loads without compromising delivery reliability.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="detail-item">
-            <div class="icon">🏭</div>
+            <div class="icon"><svg width="34" height="34" fill="none" stroke="var(--primary-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22h20"/><path d="M2 22V6l8 4V6l8 4v12"/><path d="M10 22v-4h4v4"/></svg></div>
             <h3>Warehouse Management</h3>
             <p>State-of-the-art storage facilities with real-time inventory tracking and efficient dispatch systems.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="detail-item">
-            <div class="icon">🔗</div>
+            <div class="icon"><svg width="34" height="34" fill="none" stroke="var(--primary-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
             <h3>Supply Chain & 4PL</h3>
             <p>Comprehensive supply chain orchestration, from sourcing to last-mile delivery optimization.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="detail-item">
-            <div class="icon">📍</div>
+            <div class="icon"><svg width="34" height="34" fill="none" stroke="var(--primary-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <h3>Real-Time Tracking</h3>
             <p>Live GPS monitoring and status updates so you always know where your shipment is.</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-4">
           <div class="detail-item">
-            <div class="icon">🌍</div>
+            <div class="icon"><svg width="34" height="34" fill="none" stroke="var(--primary-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
             <h3>Pan-India Coverage</h3>
             <p>Extensive network spanning all major cities and industrial corridors across India.</p>
           </div>
@@ -459,7 +457,7 @@
   </section>
 
   <!-- Warehouse Gallery -->
-  <section class="page-section bg-alt deferred-section">
+  <section class="page-section bg-alt">
     <div class="page-container">
       <div class="section-header mb-5">
         <h2>Inside Our Warehouses</h2>
@@ -467,39 +465,39 @@
       </div>
       <div class="wh-gallery">
         <div class="wh-item wh-wide">
-          <img src="images/service-gallery-01.webp" alt="Hexago warehouse logistics operations — Aluva, Kerala" loading="lazy" decoding="async" fetchpriority="low">
+          <img src="images/service-gallery-01.webp" alt="Hexago warehouse logistics operations — Aluva, Kerala" fetchpriority="low">
           <div class="wh-cap">Logistics Operations</div>
         </div>
         <div class="wh-item">
-          <img src="images/service-gallery-01.webp" alt="Hexago warehouse facility view — Ernakulam" loading="lazy" decoding="async" fetchpriority="low">
+          <img src="images/service-gallery-01.webp" alt="Hexago warehouse facility view — Ernakulam" fetchpriority="low">
           <div class="wh-cap">Facility View</div>
         </div>
         <div class="wh-item wh-tall">
-          <img src="images/service-gallery-02.webp" alt="Warehouse storage area — organised inventory at Hexago" loading="lazy" decoding="async" fetchpriority="low">
+          <img src="images/service-gallery-02.webp" alt="Warehouse storage area — organised inventory at Hexago" fetchpriority="low">
           <div class="wh-cap">Storage Area</div>
         </div>
         <div class="wh-item">
-          <img src="images/service-gallery-03.webp" alt="Inventory management at Hexago warehouse Kerala" loading="lazy" decoding="async" fetchpriority="low">
+          <img src="images/service-gallery-03.webp" alt="Inventory management at Hexago warehouse Kerala" fetchpriority="low">
           <div class="wh-cap">Inventory Management</div>
         </div>
         <div class="wh-item">
-          <img src="images/service-gallery-04.webp" alt="Loading bay operations at Hexago logistics warehouse" loading="lazy" decoding="async" fetchpriority="low">
+          <img src="images/service-gallery-04.webp" alt="Loading bay operations at Hexago logistics warehouse" fetchpriority="low">
           <div class="wh-cap">Loading Bay</div>
         </div>
         <div class="wh-item wh-wide">
-          <img src="images/service-gallery-05.webp" alt="Hexago transport fleet and dispatch centre" loading="lazy" decoding="async" fetchpriority="low">
+          <img src="images/service-gallery-05.webp" alt="Hexago transport fleet and dispatch centre" fetchpriority="low">
           <div class="wh-cap">Fleet & Dispatch</div>
         </div>
         <div class="wh-item">
-          <img src="images/service-gallery-06.webp" alt="Day-to-day logistics operations at Hexago warehouse" loading="lazy" decoding="async" fetchpriority="low">
+          <img src="images/service-gallery-06.webp" alt="Day-to-day logistics operations at Hexago warehouse" fetchpriority="low">
           <div class="wh-cap">Operations</div>
         </div>
         <div class="wh-item">
-          <img src="images/service-gallery-07.webp" alt="Hexago warehouse floor — 3PL storage Kerala" loading="lazy" decoding="async" fetchpriority="low">
+          <img src="images/service-gallery-07.webp" alt="Hexago warehouse floor — 3PL storage Kerala" fetchpriority="low">
           <div class="wh-cap">Warehouse Floor</div>
         </div>
         <div class="wh-item">
-          <img src="images/service-gallery-08.webp" alt="Dispatch area at Hexago logistics and transport facility" loading="lazy" decoding="async" fetchpriority="low">
+          <img src="images/service-gallery-08.webp" alt="Dispatch area at Hexago logistics and transport facility" fetchpriority="low">
           <div class="wh-cap">Dispatch Area</div>
         </div>
       </div>
@@ -557,7 +555,7 @@
   </style>
 
   <!-- CTA Strip -->
-  <section class="services-cta deferred-section">
+  <section class="services-cta">
     <h2>Ready to Streamline Your Logistics?</h2>
     <p>Contact our team today and get a customized quote for your business.</p>
     <a href="contact_us.html">Get in Touch →</a>

@@ -65,7 +65,7 @@
   width: 0;
   height: 3px;
   background: linear-gradient(90deg, #FF6B35, #e63946);
-  z-index: 99998;
+  z-index: var(--z-reading-progress);
   transition: width 0.1s linear;
   pointer-events: none;
 }
@@ -89,7 +89,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  z-index: 9001;
+  z-index: var(--z-back-to-top);
   opacity: 0;
   pointer-events: none;
   transform: translateY(16px);
@@ -114,7 +114,7 @@
   font-size: 26px;
   text-decoration: none;
   box-shadow: 0 4px 20px rgba(37,211,102,0.55);
-  z-index: 9001;
+  z-index: var(--z-whatsapp);
   animation: floatBob 3s ease-in-out infinite;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -317,9 +317,9 @@
   [data-reveal="left"]  { transform: translateX(-24px); }
   [data-reveal="right"] { transform: translateX(24px); }
 
-  /* Buttons — safe tap target size (min 44px) */
-  #back-to-top { bottom: 16px; right: 16px; width: 44px; height: 44px; font-size: 18px; }
-  .float-call  { bottom: 70px; right: 16px; width: 48px; height: 48px; font-size: 22px; }
+  /* Buttons — safe tap target size (min 48px) */
+  #back-to-top { bottom: 16px; right: 16px; width: 48px; height: 48px; font-size: 18px; }
+  .float-call  { bottom: 74px; right: 16px; width: 48px; height: 48px; font-size: 22px; }
 }
 
 /* ---- STATS BAR ---- */
