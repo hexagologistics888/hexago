@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Truck Load (FTL) Logistics Kerala | Hexago</title>
-  <meta name="description" content="Dedicated Full Truck Load logistics across India from Hexago. Fast dispatch, route planning, live tracking, and reliable FTL movement for high-volume shipments.">
-  <meta name="keywords" content="FTL logistics Kerala, full truck load India, dedicated truck service, truck transport Kerala, Hexago FTL">
+  <title>Full Truck Load (FTL) Logistics Kerala | Hexa Go</title>
+  <meta name="description" content="Dedicated Full Truck Load logistics across India from Hexa Go. Fast dispatch, route planning, live tracking, and reliable FTL movement for high-volume shipments.">
+  <meta name="keywords" content="FTL logistics Kerala, full truck load India, dedicated truck service, truck transport Kerala, Hexa Go FTL">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-  <meta name="author" content="Hexago Logistics and Transport">
+  <meta name="author" content="Hexa Go Logistics and Transport">
   <meta name="theme-color" content="#FF6B35">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -26,14 +26,14 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hexagologistics.com/ftl.html">
-  <meta property="og:title" content="Dedicated Full Truck Load Services Across India | Hexago">
+  <meta property="og:title" content="Dedicated Full Truck Load Services Across India | Hexa Go">
   <meta property="og:description" content="Dedicated FTL transport for large shipments across India with faster turnaround, lower handling risk, and live visibility.">
   <meta property="og:image" content="https://hexagologistics.com/images/service-about.webp">
   <meta property="og:locale" content="en_IN">
-  <meta property="og:site_name" content="Hexago Logistics and Transport">
+  <meta property="og:site_name" content="Hexa Go Logistics and Transport">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Full Truck Load (FTL) Logistics Kerala | Hexago">
+  <meta name="twitter:title" content="Full Truck Load (FTL) Logistics Kerala | Hexa Go">
   <meta name="twitter:description" content="Dedicated truck capacity for full-load freight movement across India.">
   <meta name="twitter:image" content="https://hexagologistics.com/images/service-about.webp">
 
@@ -59,7 +59,7 @@
     "areaServed": "India",
     "provider": {
       "@type": "Organization",
-      "name": "Hexago Logistics and Transport",
+      "name": "Hexa Go Logistics and Transport",
       "url": "https://hexagologistics.com"
     },
     "url": "https://hexagologistics.com/ftl.html",
@@ -86,10 +86,10 @@
       },
       {
         "@type": "Question",
-        "name": "Which routes does Hexago handle for FTL movement?",
+        "name": "Which routes does Hexa Go handle for FTL movement?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Hexago supports pan-India FTL movement, with strong coverage across Kerala, Tamil Nadu, Karnataka, Maharashtra, Telangana, Andhra Pradesh, Delhi NCR, and linked industrial corridors."
+          "text": "Hexa Go supports pan-India FTL movement, with strong coverage across Kerala, Tamil Nadu, Karnataka, Maharashtra, Telangana, Andhra Pradesh, Delhi NCR, and linked industrial corridors."
         }
       },
       {
@@ -97,7 +97,7 @@
         "name": "Can I get tracking on FTL consignments?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Hexago provides operational visibility and live movement updates so teams can monitor dispatch, transit progress, and expected delivery milestones."
+          "text": "Yes. Hexa Go provides operational visibility and live movement updates so teams can monitor dispatch, transit progress, and expected delivery milestones."
         }
       },
       {
@@ -105,7 +105,7 @@
         "name": "What vehicle formats are typically available for FTL?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Based on route and cargo type, Hexago can arrange full truck formats such as 20 ft trucks, 32 ft single-axle or multi-axle options, and containerized movement for suitable freight."
+          "text": "Based on route and cargo type, Hexa Go can arrange full truck formats such as 20 ft trucks, 32 ft single-axle or multi-axle options, and containerized movement for suitable freight."
         }
       },
       {
@@ -153,7 +153,7 @@
     <nav>
       <div class="logo">
         <a href="index.html">
-          <img src="images/logo3.png" alt="Hexago Logistics Logo">
+          <img src="images/logo3.png" alt="Hexa Go Logistics Logo">
         </a>
       </div>
       <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
@@ -172,37 +172,7 @@
     </nav>
   </header>
 
-<!-- Mobile nav: active detection, stagger, 992px breakpoint -->
-<script>
-(function() {
-  var toggle = document.querySelector('.mobile-menu-toggle');
-  var navLinks = document.getElementById('navLinks');
-  if (!toggle || !navLinks) return;
-  function isMobileView() { return window.innerWidth <= 992; }
-  function setMenuState(open) {
-    navLinks.classList.toggle('active', open);
-    navLinks.setAttribute('aria-hidden', open ? 'false' : 'true');
-    document.body.classList.toggle('mobile-nav-open', open);
-    toggle.classList.toggle('is-open', open);
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-  }
-  function closeMenu() { setMenuState(false); }
-  function toggleMenu(e) { if (e) e.preventDefault(); setMenuState(!navLinks.classList.contains('active')); }
-  toggle.addEventListener('click', toggleMenu);
-  navLinks.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() { if (isMobileView()) closeMenu(); });
-  });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
-  window.addEventListener('resize', function() { if (!isMobileView()) closeMenu(); }, { passive: true });
-  document.addEventListener('click', function(e) {
-    if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !toggle.contains(e.target)) closeMenu();
-  });
-  window.toggleMobileMenu = toggleMenu;
-  window.closeMobileMenu = closeMenu;
-  setMenuState(false);
-})();
-</script>
+<script src="mobile-nav.js"></script>
 
   <section id="main-content" class="page-hero" style="background-image: url('images/service-about.webp');">
     <div class="hero-overlay"></div>
@@ -270,8 +240,8 @@
           </ul>
         </div>
         <div class="service-panel">
-          <h2>Why Businesses Choose Hexago For FTL</h2>
-          <p>Hexago combines routing support, operations coordination, and shipment visibility so the transport leg aligns with your supply plan instead of disrupting it.</p>
+          <h2>Why Businesses Choose Hexa Go For FTL</h2>
+          <p>Hexa Go combines routing support, operations coordination, and shipment visibility so the transport leg aligns with your supply plan instead of disrupting it.</p>
           <ul class="list-check">
             <li>Coverage across Kerala and major inter-state freight corridors</li>
             <li>Options for direct dispatch, scheduled replenishment, and recurring movement</li>
@@ -343,7 +313,7 @@
   <section class="page-section bg-alt">
     <div class="page-container">
       <div class="section-header mb-5">
-        <h2>How Hexago Executes FTL Jobs</h2>
+        <h2>How Hexa Go Executes FTL Jobs</h2>
         <p>A simple four-stage operating flow keeps dispatch predictable and transparent.</p>
       </div>
       <div class="process-grid">
@@ -355,7 +325,7 @@
         <div class="process-step">
           <div class="step-index">2</div>
           <h3>Vehicle Planning</h3>
-          <p>Hexago matches the movement to the right truck format, route plan, and pickup timing.</p>
+          <p>Hexa Go matches the movement to the right truck format, route plan, and pickup timing.</p>
         </div>
         <div class="process-step">
           <div class="step-index">3</div>
@@ -414,12 +384,12 @@
           <p>Yes. Because the freight stays in one truck with fewer loading cycles, the cargo usually faces less manual handling across the trip.</p>
         </div>
         <div class="faq-item">
-          <h3>Can Hexago support recurring lanes?</h3>
+          <h3>Can Hexa Go support recurring lanes?</h3>
           <p>Yes. Repeat interstate movement and planned dispatch lanes can be structured as a regular operating flow with coordinated truck allocation.</p>
         </div>
         <div class="faq-item">
           <h3>Is tracking available during movement?</h3>
-          <p>Hexago provides shipment visibility and operational updates so teams can plan receiving and downstream dispatch more accurately.</p>
+          <p>Hexa Go provides shipment visibility and operational updates so teams can plan receiving and downstream dispatch more accurately.</p>
         </div>
       </div>
     </div>
@@ -439,7 +409,7 @@
         </a>
         <a class="related-card" href="warehousing.html">
           <h3>3PL Warehousing</h3>
-          <p>Secure storage, dispatch support, and inventory coordination from Hexago facilities.</p>
+          <p>Secure storage, dispatch support, and inventory coordination from Hexa Go facilities.</p>
           <span class="link-label">View Warehousing</span>
         </a>
         <a class="related-card" href="fourpl.html">
@@ -453,7 +423,7 @@
 
   <section class="services-cta">
     <h2>Need Dedicated Truck Capacity For Your Next Movement?</h2>
-    <p>Share your route, cargo profile, and target dispatch date. Hexago will structure the right FTL plan for it.</p>
+    <p>Share your route, cargo profile, and target dispatch date. Hexa Go will structure the right FTL plan for it.</p>
     <a href="contact_us.html">Request a Quote</a>
   </section>
 
@@ -461,7 +431,7 @@
     <div class="footer-content">
       <div>
         <div class="footer-logo mt-4">
-          <img src="images/logo3.png" alt="Hexago Logistics">
+          <img src="images/logo3.png" alt="Hexa Go Logistics">
         </div>
       </div>
       <div class="footer-links">
@@ -476,7 +446,7 @@
       </div>
     </div>
     <div class="footer-bottom" style="text-align:center;width:100%;display:block;">
-      <p>&copy; 2024&ndash;2026 Hexago Logistics and Transport. All rights reserved.</p>
+      <p>&copy; 2024&ndash;2026 Hexa Go Logistics and Transport. All rights reserved.</p>
     </div>
   </footer>
 

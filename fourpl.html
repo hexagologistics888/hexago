@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+          <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4PL Supply Chain Management India | Hexago</title>
-  <meta name="description" content="End-to-end 4PL supply chain management from Hexago. Coordinate transport, warehousing, vendors, reporting, and execution through one logistics partner.">
-  <meta name="keywords" content="4PL logistics India, supply chain management Kerala, 4PL partner India, Hexago 4PL">
+  <title>4PL Supply Chain Management India | Hexa Go</title>
+  <meta name="description" content="End-to-end 4PL supply chain management from Hexa Go. Coordinate transport, warehousing, vendors, reporting, and execution through one logistics partner.">
+  <meta name="keywords" content="4PL logistics India, supply chain management Kerala, 4PL partner India, Hexa Go 4PL">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-  <meta name="author" content="Hexago Logistics and Transport">
+  <meta name="author" content="Hexa Go Logistics and Transport">
   <meta name="theme-color" content="#FF6B35">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -26,14 +26,14 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hexagologistics.com/fourpl.html">
-  <meta property="og:title" content="End-To-End 4PL Logistics Partner For Growing Businesses | Hexago">
-  <meta property="og:description" content="Use Hexago as a central 4PL layer for transport planning, carrier coordination, reporting, and supply chain execution.">
+  <meta property="og:title" content="End-To-End 4PL Logistics Partner For Growing Businesses | Hexa Go">
+  <meta property="og:description" content="Use Hexa Go as a central 4PL layer for transport planning, carrier coordination, reporting, and supply chain execution.">
   <meta property="og:image" content="https://hexagologistics.com/images/service-supply-chain.webp">
   <meta property="og:locale" content="en_IN">
-  <meta property="og:site_name" content="Hexago Logistics and Transport">
+  <meta property="og:site_name" content="Hexa Go Logistics and Transport">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="4PL Supply Chain Management India | Hexago">
+  <meta name="twitter:title" content="4PL Supply Chain Management India | Hexa Go">
   <meta name="twitter:description" content="One operating partner for logistics planning, transport execution, and reporting.">
   <meta name="twitter:image" content="https://hexagologistics.com/images/service-supply-chain.webp">
 
@@ -59,7 +59,7 @@
     "areaServed": "India",
     "provider": {
       "@type": "Organization",
-      "name": "Hexago Logistics and Transport",
+      "name": "Hexa Go Logistics and Transport",
       "url": "https://hexagologistics.com"
     },
     "url": "https://hexagologistics.com/fourpl.html"
@@ -81,10 +81,10 @@
       },
       {
         "@type": "Question",
-        "name": "What does Hexago manage in a 4PL engagement?",
+        "name": "What does Hexa Go manage in a 4PL engagement?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Hexago can align transport planning, warehousing support, shipment visibility, carrier coordination, exception handling, and operational reporting as part of a 4PL-style logistics setup."
+          "text": "Hexa Go can align transport planning, warehousing support, shipment visibility, carrier coordination, exception handling, and operational reporting as part of a 4PL-style logistics setup."
         }
       },
       {
@@ -105,10 +105,10 @@
       },
       {
         "@type": "Question",
-        "name": "How do I start a 4PL conversation with Hexago?",
+        "name": "How do I start a 4PL conversation with Hexa Go?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Start by sharing your current transport network, dispatch flow, storage points, reporting gaps, and the main operational issues you want to solve. Hexago can then scope the right 4PL support model."
+          "text": "Start by sharing your current transport network, dispatch flow, storage points, reporting gaps, and the main operational issues you want to solve. Hexa Go can then scope the right 4PL support model."
         }
       }
     ]
@@ -148,7 +148,7 @@
     <nav>
       <div class="logo">
         <a href="index.html">
-          <img src="images/logo3.png" alt="Hexago Logistics Logo">
+          <img src="images/logo3.png" alt="Hexa Go Logistics Logo">
         </a>
       </div>
       <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
@@ -167,37 +167,7 @@
     </nav>
   </header>
 
-<!-- Mobile nav: active detection, stagger, 992px breakpoint -->
-<script>
-(function() {
-  var toggle = document.querySelector('.mobile-menu-toggle');
-  var navLinks = document.getElementById('navLinks');
-  if (!toggle || !navLinks) return;
-  function isMobileView() { return window.innerWidth <= 992; }
-  function setMenuState(open) {
-    navLinks.classList.toggle('active', open);
-    navLinks.setAttribute('aria-hidden', open ? 'false' : 'true');
-    document.body.classList.toggle('mobile-nav-open', open);
-    toggle.classList.toggle('is-open', open);
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-  }
-  function closeMenu() { setMenuState(false); }
-  function toggleMenu(e) { if (e) e.preventDefault(); setMenuState(!navLinks.classList.contains('active')); }
-  toggle.addEventListener('click', toggleMenu);
-  navLinks.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() { if (isMobileView()) closeMenu(); });
-  });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMenu(); });
-  window.addEventListener('resize', function() { if (!isMobileView()) closeMenu(); }, { passive: true });
-  document.addEventListener('click', function(e) {
-    if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !toggle.contains(e.target)) closeMenu();
-  });
-  window.toggleMobileMenu = toggleMenu;
-  window.closeMobileMenu = closeMenu;
-  setMenuState(false);
-})();
-</script>
+<script src="mobile-nav.js"></script>
 
   <section id="main-content" class="page-hero" style="background-image: url('images/service-supply-chain.webp');">
     <div class="hero-overlay"></div>
@@ -233,7 +203,7 @@
       <div class="metric-grid">
         <div class="metric-card">
           <h3>Control Tower Thinking</h3>
-          <p>Hexago can act as a central point that aligns movement decisions with the wider supply chain need.</p>
+          <p>Hexa Go can act as a central point that aligns movement decisions with the wider supply chain need.</p>
         </div>
         <div class="metric-card">
           <h3>Cross-Function Coordination</h3>
@@ -280,7 +250,7 @@
   <section class="page-section bg-alt">
     <div class="page-container">
       <div class="section-header mb-5">
-        <h2>What Hexago Can Coordinate On Your Behalf</h2>
+        <h2>What Hexa Go Can Coordinate On Your Behalf</h2>
         <p>The goal is to reduce operational friction, not add another reporting layer without action.</p>
       </div>
       <div class="service-card-grid">
@@ -314,7 +284,7 @@
         <div class="process-step">
           <div class="step-index">1</div>
           <h3>Network Review</h3>
-          <p>Hexago studies the current flow, route structure, stock points, and operational constraints.</p>
+          <p>Hexa Go studies the current flow, route structure, stock points, and operational constraints.</p>
         </div>
         <div class="process-step">
           <div class="step-index">2</div>
@@ -417,7 +387,7 @@
 
   <section class="services-cta">
     <h2>Need More Than Basic Transport Execution?</h2>
-    <p>Share your current logistics setup and where it is breaking. Hexago can map a practical 4PL operating model around it.</p>
+    <p>Share your current logistics setup and where it is breaking. Hexa Go can map a practical 4PL operating model around it.</p>
     <a href="contact_us.html">Schedule A Consultation</a>
   </section>
 
@@ -425,7 +395,7 @@
     <div class="footer-content">
       <div>
         <div class="footer-logo mt-4">
-          <img src="images/logo3.png" alt="Hexago Logistics">
+          <img src="images/logo3.png" alt="Hexa Go Logistics">
         </div>
       </div>
       <div class="footer-links">
@@ -440,7 +410,7 @@
       </div>
     </div>
     <div class="footer-bottom" style="text-align:center;width:100%;display:block;">
-      <p>&copy; 2024&ndash;2026 Hexago Logistics and Transport. All rights reserved.</p>
+      <p>&copy; 2024&ndash;2026 Hexa Go Logistics and Transport. All rights reserved.</p>
     </div>
   </footer>
 

@@ -18,6 +18,14 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "www.hexagologistics.com" }],
+      "destination": "https://hexagologistics.com/:path",
+      "permanent": true
+    }
+  ],
   "routes": [
     {
       "handle": "filesystem"

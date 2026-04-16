@@ -1,12 +1,12 @@
 /* ============================================================
-   Hexago Logistics - Service Worker
+   Hexa Go Logistics - Service Worker
    Strategy:
      - HTML pages: network-first with timeout, then cache, then offline fallback
      - CSS/JS: network-first with cache fallback
      - Other assets (images/fonts): cache-first with network fill
    ============================================================ */
 
-const CACHE_NAME = 'hexago-v15';
+const CACHE_NAME = 'hexago-v16';
 const OFFLINE_PAGE = '/404.html';
 const NAVIGATION_TIMEOUT_MS = 4000;
 
@@ -29,6 +29,7 @@ const PRECACHE = [
   '/enhancements.css',
   '/enhancements.js',
   '/script.js',
+  '/mobile-nav.js',
   '/manifest.json',
   '/images/logo3.png',
   '/images/carousel1.jpeg',

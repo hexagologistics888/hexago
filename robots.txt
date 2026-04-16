@@ -9,5 +9,27 @@ Disallow: /images/*.rar
 User-agent: Googlebot
 Allow: /
 
+# AI Search Crawlers - explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 # Sitemap location
-Sitemap: https://www.hexagologistics.com/sitemap.xml
+Sitemap: https://hexagologistics.com/sitemap.xml
