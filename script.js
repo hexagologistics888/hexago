@@ -113,7 +113,7 @@ function attachLeadForm(form, options) {
         try {
             await fetch(formAction, {
                 method: 'POST',
-                body: formData,
+                body: new URLSearchParams(formData),
                 mode: 'no-cors'
             });
 
