@@ -284,9 +284,9 @@
                     btn.disabled = true;
                     btn.textContent = 'Sending…';
                     status.textContent = '';
-                    fetch(form.action, {
-                        method: 'POST',
-                        body: new URLSearchParams(new FormData(form)),
+                    var params = new URLSearchParams(new FormData(form)).toString();
+                    fetch(form.action + '?' + params, {
+                        method: 'GET',
                         mode: 'no-cors'
                     }).then(function(){
                         status.style.color = '#10B981';

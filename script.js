@@ -111,9 +111,8 @@ function attachLeadForm(form, options) {
         }
 
         try {
-            await fetch(formAction, {
-                method: 'POST',
-                body: new URLSearchParams(formData),
+            await fetch(formAction + '?' + new URLSearchParams(formData).toString(), {
+                method: 'GET',
                 mode: 'no-cors'
             });
 
