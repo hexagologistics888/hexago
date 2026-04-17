@@ -213,8 +213,7 @@
                     <div style="font-size:1.05rem; font-weight:700; color:#fff; margin-top:2px;">Career Enquiry Form</div>
                 </div>
             </div>
-            <iframe name="careers_iframe" style="display:none;" aria-hidden="true"></iframe>
-            <form id="careersForm" action="https://script.google.com/macros/s/AKfycbzvWCfIu0rxehTfbvzTyd42BVZuxFxDpsB2TqYFIYoEozDAIpoHN7OLs5nqqYmY1qyZ/exec" method="GET" target="careers_iframe" novalidate
+            <form id="careersForm" action="https://script.google.com/macros/s/AKfycbzvWCfIu0rxehTfbvzTyd42BVZuxFxDpsB2TqYFIYoEozDAIpoHN7OLs5nqqYmY1qyZ/exec" method="GET" novalidate
                   style="display:flex; flex-direction:column; gap:18px;">
 
                 <input type="hidden" name="formType" value="careers">
@@ -276,32 +275,20 @@
 
             <script>
             (function(){
-                const form = document.getElementById('careersForm');
-                const btn  = document.getElementById('careers-submit');
-                const status = document.getElementById('careers-status');
-                if (!form) return;
-                form.addEventListener('submit', function(e){
-                    if (!form.checkValidity()) return;
-                    e.preventDefault();
-                    btn.disabled = true;
-                    btn.textContent = 'Sending…';
-                    var body = new URLSearchParams(new FormData(form)).toString();
-                    fetch(form.action, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: body
-                    }).then(function(){
+                if (window.location.search.indexOf('submitted=1') !== -1) {
+                    history.replaceState(null, '', window.location.pathname + '#careers-contact');
+                    setTimeout(function(){
                         showHexagoPopup('Application Received', 'Thank you for applying to Hexa-go! Check your inbox — we\'ve sent you a confirmation and next steps by email.');
-                        form.reset();
-                    }).catch(function(){
-                        showHexagoPopup('Application Received', 'Thank you for applying to Hexa-go! Check your inbox — we\'ve sent you a confirmation and next steps by email.');
-                        form.reset();
-                    }).finally(function(){
-                        btn.disabled = false;
-                        btn.textContent = 'Send Application';
+                    }, 400);
+                }
+                var form = document.getElementById('careersForm');
+                if (form) {
+                    form.addEventListener('submit', function(){
+                        if (!form.checkValidity()) return;
+                        var btn = document.getElementById('careers-submit');
+                        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
                     });
-                });
+                }
             })();
             </script>
         </div>
