@@ -6,7 +6,7 @@
      - Other assets (images/fonts): cache-first with network fill
    ============================================================ */
 
-const CACHE_NAME = 'hexago-v18';
+const CACHE_NAME = 'hexago-v19';
 const OFFLINE_PAGE = '/404.html';
 const NAVIGATION_TIMEOUT_MS = 4000;
 
