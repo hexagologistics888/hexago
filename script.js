@@ -70,6 +70,26 @@ function buildWhatsAppLeadMessage(title, fields, sourceLabel) {
     return lines.join('\n');
 }
 
+function showHexagoPopup(title, message) {
+    var existing = document.getElementById('hexago-popup-overlay');
+    if (existing) existing.remove();
+    var overlay = document.createElement('div');
+    overlay.id = 'hexago-popup-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,10,30,0.65);backdrop-filter:blur(6px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;animation:hxFadeIn .25s ease';
+    overlay.innerHTML =
+        '<style>@keyframes hxFadeIn{from{opacity:0}to{opacity:1}}@keyframes hxSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}</style>' +
+        '<div style="background:#fff;border-radius:20px;max-width:420px;width:100%;padding:44px 36px 36px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.2);animation:hxSlideUp .3s ease;position:relative">' +
+        '<div style="width:56px;height:56px;background:linear-gradient(135deg,#FF6B35,#e8521f);border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center">' +
+        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>' +
+        '<h3 style="margin:0 0 10px;font-size:1.3rem;font-weight:800;color:#0a1628">' + title + '</h3>' +
+        '<p style="margin:0 0 28px;font-size:0.93rem;color:#64748b;line-height:1.7">' + message + '</p>' +
+        '<button onclick="document.getElementById(\'hexago-popup-overlay\').remove()" ' +
+        'style="background:linear-gradient(135deg,#FF6B35,#e8521f);color:#fff;border:none;padding:13px 40px;border-radius:50px;font-size:0.9rem;font-weight:700;cursor:pointer;letter-spacing:0.04em;box-shadow:0 4px 16px rgba(255,107,53,0.35)">Done</button>' +
+        '</div>';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.remove(); });
+}
+
 function setLeadFormStatus(form, statusId, type, message) {
     var target = statusId ? document.getElementById(statusId) : form.querySelector('.form-status-message');
     if (!target) return;
@@ -111,59 +131,22 @@ function attachLeadForm(form, options) {
         }
 
         try {
-            await fetch(formAction + '?' + new URLSearchParams(formData).toString(), {
-                method: 'GET',
-                mode: 'no-cors'
-            });
-
-            if (options.whatsAppNumber) {
-                var whatsAppMessage = buildWhatsAppLeadMessage(
-                    options.title || 'New Website Enquiry',
-                    (options.fields || []).map(function(field) {
-                        return {
-                            label: field.label,
-                            value: formData.get(field.name)
-                        };
-                    }),
-                    options.sourceLabel || window.location.pathname
-                );
-
-                window.open(
-                    'https://wa.me/' + options.whatsAppNumber + '?text=' + encodeURIComponent(whatsAppMessage),
-                    '_blank',
-                    'noopener'
-                );
+            var contactIframe = document.getElementById('contact_iframe');
+            if (!contactIframe) {
+                contactIframe = document.createElement('iframe');
+                contactIframe.id = 'contact_iframe';
+                contactIframe.name = 'contact_iframe';
+                contactIframe.style.display = 'none';
+                document.body.appendChild(contactIframe);
             }
+            form.target = 'contact_iframe';
+            form.method = 'POST';
+            form.submit();
 
-            submitButton.textContent = options.successText || 'Submitted';
+            submitButton.textContent = options.successText || 'Sent!';
             submitButton.style.background = '#10B981';
             form.reset();
-            setLeadFormStatus(
-                form,
-                options.statusId,
-                'success',
-                options.successMessage || 'Thank you. Your enquiry has been received and our team will contact you shortly.'
-            );
-
-            if (typeof options.afterSuccess === 'function') {
-                options.afterSuccess({
-                    form: form,
-                    submitButton: submitButton
-                });
-            }
-
-            var redirectUrl = '';
-            if (typeof options.getRedirectUrl === 'function') {
-                redirectUrl = options.getRedirectUrl() || '';
-            } else if (typeof options.redirectUrl === 'string') {
-                redirectUrl = options.redirectUrl;
-            }
-
-            if (redirectUrl) {
-                setTimeout(function() {
-                    window.location.href = redirectUrl;
-                }, options.redirectDelayMs || 2200);
-            }
+            showHexagoPopup('Enquiry Received', 'Thank you for reaching out. Our team will contact you within 24 hours.');
 
             setTimeout(function() {
                 submitButton.textContent = originalText;

@@ -288,8 +288,7 @@
                     status.textContent = '';
                     form.submit();
                     setTimeout(function(){
-                        status.style.color = '#10B981';
-                        status.textContent = '✓ Application sent! Check your inbox for a confirmation email.';
+                        showHexagoPopup('Application Received', 'Thank you for applying to Hexa-go! Check your inbox — we\'ve sent you a confirmation and next steps by email.');
                         form.reset();
                         btn.disabled = false;
                         btn.textContent = 'Send Application';
