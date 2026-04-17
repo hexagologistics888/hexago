@@ -213,7 +213,8 @@
                     <div style="font-size:1.05rem; font-weight:700; color:#fff; margin-top:2px;">Career Enquiry Form</div>
                 </div>
             </div>
-            <form id="careersForm" action="https://script.google.com/macros/s/AKfycbyeZna8h_xRaM3jtnKbrnLV_LlVP69cSKoUV-EOW2RPaHzv8Jp9W7evP81l3TdMjhw/exec" method="POST" novalidate
+            <iframe name="careers_iframe" style="display:none;" aria-hidden="true"></iframe>
+            <form id="careersForm" action="https://script.google.com/macros/s/AKfycbyeZna8h_xRaM3jtnKbrnLV_LlVP69cSKoUV-EOW2RPaHzv8Jp9W7evP81l3TdMjhw/exec" method="POST" target="careers_iframe" novalidate
                   style="display:flex; flex-direction:column; gap:18px;">
 
                 <input type="hidden" name="formType" value="careers">
@@ -280,25 +281,19 @@
                 const status = document.getElementById('careers-status');
                 if (!form) return;
                 form.addEventListener('submit', function(e){
+                    if (!form.checkValidity()) return;
                     e.preventDefault();
                     btn.disabled = true;
                     btn.textContent = 'Sending…';
                     status.textContent = '';
-                    var params = new URLSearchParams(new FormData(form)).toString();
-                    fetch(form.action + '?' + params, {
-                        method: 'GET',
-                        mode: 'no-cors'
-                    }).then(function(){
+                    form.submit();
+                    setTimeout(function(){
                         status.style.color = '#10B981';
-                        status.textContent = '✓ Application sent! Check your email for confirmation.';
+                        status.textContent = '✓ Application sent! Check your inbox for a confirmation email.';
                         form.reset();
-                    }).catch(function(){
-                        status.style.color = '#e63946';
-                        status.textContent = 'Something went wrong. Please email us at hr@hexagologistics.com';
-                    }).finally(function(){
                         btn.disabled = false;
                         btn.textContent = 'Send Application';
-                    });
+                    }, 1500);
                 });
             })();
             </script>
