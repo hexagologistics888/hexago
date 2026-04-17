@@ -140,7 +140,7 @@ function attachLeadForm(form, options) {
                 document.body.appendChild(contactIframe);
             }
             form.target = 'contact_iframe';
-            form.method = 'POST';
+            form.method = 'GET';
             form.submit();
 
             submitButton.textContent = options.successText || 'Sent!';
