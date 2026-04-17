@@ -279,31 +279,26 @@
                 const btn  = document.getElementById('careers-submit');
                 const status = document.getElementById('careers-status');
                 if (!form) return;
-                form.addEventListener('submit', async function(e){
+                form.addEventListener('submit', function(e){
                     e.preventDefault();
                     btn.disabled = true;
                     btn.textContent = 'Sending…';
                     status.textContent = '';
-                    try {
-                        const res = await fetch(form.action, {
-                            method: 'POST',
-                            body: new FormData(form),
-                            headers: { 'Accept': 'application/json' }
-                        });
-                        if (res.ok) {
-                            status.style.color = '#10B981';
-                            status.textContent = '✓ Message sent! We\'ll be in touch soon.';
-                            form.reset();
-                        } else {
-                            throw new Error();
-                        }
-                    } catch {
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        mode: 'no-cors'
+                    }).then(function(){
+                        status.style.color = '#10B981';
+                        status.textContent = '✓ Application sent! Check your email for confirmation.';
+                        form.reset();
+                    }).catch(function(){
                         status.style.color = '#e63946';
                         status.textContent = 'Something went wrong. Please email us at hr@hexagologistics.com';
-                    } finally {
+                    }).finally(function(){
                         btn.disabled = false;
-                        btn.textContent = 'Send Message';
-                    }
+                        btn.textContent = 'Send Application';
+                    });
                 });
             })();
             </script>

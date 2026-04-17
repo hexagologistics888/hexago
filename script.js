@@ -111,17 +111,11 @@ function attachLeadForm(form, options) {
         }
 
         try {
-            var response = await fetch(formAction, {
+            await fetch(formAction, {
                 method: 'POST',
                 body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                mode: 'no-cors'
             });
-
-            if (!response.ok) {
-                throw new Error('Lead submission failed');
-            }
 
             if (options.whatsAppNumber) {
                 var whatsAppMessage = buildWhatsAppLeadMessage(
