@@ -213,7 +213,8 @@
                     <div style="font-size:1.05rem; font-weight:700; color:#fff; margin-top:2px;">Career Enquiry Form</div>
                 </div>
             </div>
-            <form id="careersForm" action="https://script.google.com/macros/s/AKfycbzvWCfIu0rxehTfbvzTyd42BVZuxFxDpsB2TqYFIYoEozDAIpoHN7OLs5nqqYmY1qyZ/exec" method="GET" novalidate
+            <iframe name="careers_iframe" id="careers_iframe" style="display:none; position:absolute; width:0; height:0; border:0;" aria-hidden="true" tabindex="-1"></iframe>
+            <form id="careersForm" action="https://script.google.com/macros/s/AKfycbzvWCfIu0rxehTfbvzTyd42BVZuxFxDpsB2TqYFIYoEozDAIpoHN7OLs5nqqYmY1qyZ/exec" method="GET" target="careers_iframe" novalidate
                   style="display:flex; flex-direction:column; gap:18px;">
 
                 <input type="hidden" name="formType" value="careers">
@@ -275,20 +276,26 @@
 
             <script>
             (function(){
-                if (window.location.search.indexOf('submitted=1') !== -1) {
-                    history.replaceState(null, '', window.location.pathname + '#careers-contact');
-                    setTimeout(function(){
-                        showHexagoPopup('Application Received', 'Thank you for applying to Hexa-go! Check your inbox — we\'ve sent you a confirmation and next steps by email.');
-                    }, 400);
-                }
                 var form = document.getElementById('careersForm');
-                if (form) {
-                    form.addEventListener('submit', function(){
-                        if (!form.checkValidity()) return;
-                        var btn = document.getElementById('careers-submit');
-                        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
-                    });
-                }
+                if (!form) return;
+
+                form.addEventListener('submit', function(e){
+                    if (!form.checkValidity()) {
+                        form.reportValidity();
+                        e.preventDefault();
+                        return;
+                    }
+                    var btn = document.getElementById('careers-submit');
+                    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+                    setTimeout(function(){
+                        if (typeof showHexagoPopup === 'function') {
+                            showHexagoPopup('Application Received', 'Thank you for applying to Hexa-go! Check your inbox — we\'ve sent you a confirmation and next steps by email.');
+                        }
+                        form.reset();
+                        if (btn) { btn.disabled = false; btn.textContent = 'Send Application'; }
+                    }, 900);
+                });
             })();
             </script>
         </div>
