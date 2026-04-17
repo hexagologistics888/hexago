@@ -483,6 +483,7 @@ function initGsapAnimations() {
         }
 
         gsap.utils.toArray('.section-header, .section-title').forEach(header => {
+            if (header.closest('.why-choose')) return;
             gsap.from(header, {
                 scrollTrigger: {
                     trigger: header,
@@ -496,7 +497,6 @@ function initGsapAnimations() {
         });
 
         const cardContainers = [
-            '.why-choose .row',
             '.services-grid',
             '.owners-container',
             '.blog-grid',

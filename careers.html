@@ -155,7 +155,6 @@
         </nav>
     </header>
 
-<script src="mobile-nav.js"></script>
 
     <!-- Page Hero -->
     <section id="main-content" class="page-hero" style="background-image: url('images/carousel3.jpg');">
@@ -199,31 +198,157 @@
         </div>
     </section>
 
-    <!-- Open Roles -->
-    <section class="services">
-        <div class="section-header">
-            <h2>Current Openings</h2>
-            <p>We're actively hiring for the following roles at our Aluva, Kerala office.</p>
+    <!-- Get in Touch — Careers -->
+    <section class="services" id="careers-contact" style="background:linear-gradient(135deg,#0a1628 0%,#0d2044 50%,#0a1628 100%); padding:80px 20px;">
+        <div class="section-header" style="margin-bottom:40px;">
+            <h2 style="color:#fff; font-size:2rem;">Get in Touch</h2>
+            <p style="color:rgba(255,255,255,0.7);">Interested in joining Hexa-go? Drop us a message and we'll reach out when the right opportunity opens up.</p>
         </div>
-        <div class="about-content">
-            <div class="stats-grid" data-stagger="100" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-                <div class="stat-card" style="text-align:left; padding: 28px 24px;">
-                    <h3 style="font-size:1.1rem; color:#004E89; margin-bottom:8px;">Logistics Operations Executive</h3>
-                    <p style="font-size:0.88rem; color:#555; line-height:1.65; margin-bottom:12px;">Manage daily freight dispatch, driver coordination, and delivery tracking across Kerala and pan-India routes. 0–2 years experience in logistics or transport preferred.</p>
-                    <a href="contact_us.html" style="color:#FF6B35; font-weight:600; font-size:0.88rem; text-decoration:none;">Apply Now &rarr;</a>
-                </div>
-                <div class="stat-card" style="text-align:left; padding: 28px 24px;">
-                    <h3 style="font-size:1.1rem; color:#004E89; margin-bottom:8px;">Warehouse Associate</h3>
-                    <p style="font-size:0.88rem; color:#555; line-height:1.65; margin-bottom:12px;">Handle inbound receiving, inventory management, order picking, and outbound dispatch at our Aluva warehouse facility. Physical fitness and attention to detail required.</p>
-                    <a href="contact_us.html" style="color:#FF6B35; font-weight:600; font-size:0.88rem; text-decoration:none;">Apply Now &rarr;</a>
-                </div>
-                <div class="stat-card" style="text-align:left; padding: 28px 24px;">
-                    <h3 style="font-size:1.1rem; color:#004E89; margin-bottom:8px;">Business Development Executive</h3>
-                    <p style="font-size:0.88rem; color:#555; line-height:1.65; margin-bottom:12px;">Identify and onboard new B2B clients for FTL, PTL, and warehousing services. Strong communication skills and willingness to travel across Kerala required.</p>
-                    <a href="contact_us.html" style="color:#FF6B35; font-weight:600; font-size:0.88rem; text-decoration:none;">Apply Now &rarr;</a>
+        <div style="max-width:700px; margin:0 auto; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:40px 36px; backdrop-filter:blur(12px);">
+            <!-- Card header accent -->
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:28px;">
+                <div style="width:4px; height:36px; background:linear-gradient(180deg,#FF6B35,#e05a28); border-radius:4px;"></div>
+                <div>
+                    <div style="font-size:0.72rem; font-weight:700; color:#FF6B35; letter-spacing:0.12em; text-transform:uppercase;">Join Our Team</div>
+                    <div style="font-size:1.05rem; font-weight:700; color:#fff; margin-top:2px;">Career Enquiry Form</div>
                 </div>
             </div>
-            <p style="text-align:center; margin-top:32px; color:#555; font-size:0.92rem;">Don't see a role that fits? Send your CV to <a href="mailto:info@hexagologistics.com" style="color:#FF6B35; font-weight:600;">info@hexagologistics.com</a> — we're always open to hearing from talented people.</p>
+            <form id="careersForm" action="https://formspree.io/f/hr@hexagologistics.com" method="POST" novalidate
+                  style="display:flex; flex-direction:column; gap:18px;">
+
+                <!-- Hidden fields for Formspree -->
+                <input type="hidden" name="_subject" value="New Career Application — Hexa-go Logistics">
+                <input type="hidden" name="_cc" value="kichu@hexagologistics.com">
+                <input type="hidden" name="_autoresponse" value="Dear Applicant,
+
+Thank you for choosing Hexa-go Logistics and Transport.
+
+We are delighted to receive your application. Our HR team will review your profile carefully and we will be in touch with you shortly.
+
+——————————————————
+MESSAGE 1 — APPLICATION RECEIVED
+——————————————————
+Your enquiry has been successfully received. We appreciate your interest in building your career with Hexa-go — one of Kerala's fastest-growing logistics companies.
+
+Our recruitment team will assess your application against our current and upcoming requirements. If your profile is a strong match, a member of our HR team will contact you directly to discuss the next steps.
+
+——————————————————
+MESSAGE 2 — SEND US YOUR RESUME
+——————————————————
+To be considered for current and future openings, please email your updated resume / CV along with any relevant documents to:
+
+  hr@hexagologistics.com
+
+Please use the subject line: &quot;Application — [Role You Are Applying For]&quot;
+
+We will be in touch once your profile has been reviewed.
+
+We wish you the very best in your career journey and look forward to the possibility of welcoming you to the Hexa-go family.
+
+Warm regards,
+
+HR Team
+Hexa-go Logistics and Transport
+Vadakumury Building, Metro Pillar 174, Aluva
+Ernakulam, Kerala — 683101
+
+Email   : hr@hexagologistics.com
+Phone   : +91 70342 98745
+Website : hexagologistics.com
+
+——————————————————
+This is an automated message. Please do not reply directly to this email.
+——————————————————">
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                    <div>
+                        <label for="c-name" style="display:block; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.85); margin-bottom:6px; letter-spacing:0.03em;">Full Name <span style="color:#FF6B35;">*</span></label>
+                        <input id="c-name" name="name" type="text" required autocomplete="name"
+                               placeholder="Your name"
+                               style="width:100%; padding:12px 14px; border:1.5px solid rgba(255,255,255,0.15); border-radius:10px; font-size:0.9rem; outline:none; transition:border-color .2s; background:rgba(255,255,255,0.07); color:#fff;"
+                               onfocus="this.style.borderColor='#FF6B35'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                    </div>
+                    <div>
+                        <label for="c-phone" style="display:block; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.85); margin-bottom:6px; letter-spacing:0.03em;">Phone Number <span style="color:#FF6B35;">*</span></label>
+                        <input id="c-phone" name="phone" type="tel" required autocomplete="tel"
+                               placeholder="+91 XXXXX XXXXX"
+                               style="width:100%; padding:12px 14px; border:1.5px solid rgba(255,255,255,0.15); border-radius:10px; font-size:0.9rem; outline:none; transition:border-color .2s; background:rgba(255,255,255,0.07); color:#fff;"
+                               onfocus="this.style.borderColor='#FF6B35'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="c-email" style="display:block; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.85); margin-bottom:6px; letter-spacing:0.03em;">Email Address <span style="color:#FF6B35;">*</span></label>
+                    <input id="c-email" name="email" type="email" required autocomplete="email"
+                           placeholder="you@example.com"
+                           style="width:100%; padding:12px 14px; border:1.5px solid rgba(255,255,255,0.15); border-radius:10px; font-size:0.9rem; outline:none; transition:border-color .2s; background:rgba(255,255,255,0.07); color:#fff;"
+                           onfocus="this.style.borderColor='#FF6B35'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                </div>
+
+                <div>
+                    <label for="c-role" style="display:block; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.85); margin-bottom:6px; letter-spacing:0.03em;">Role You're Interested In</label>
+                    <select id="c-role" name="role"
+                            style="width:100%; padding:12px 14px; border:1.5px solid rgba(255,255,255,0.15); border-radius:10px; font-size:0.9rem; background:rgba(20,40,80,0.9); color:#fff; outline:none; transition:border-color .2s;"
+                            onfocus="this.style.borderColor='#FF6B35'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+                        <option value="">— Select a role —</option>
+                        <option>Logistics Operations Executive</option>
+                        <option>Warehouse Associate</option>
+                        <option>Business Development Executive</option>
+                        <option>Driver / Fleet Staff</option>
+                        <option>Other / Open to Opportunities</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="c-msg" style="display:block; font-size:0.82rem; font-weight:600; color:rgba(255,255,255,0.85); margin-bottom:6px; letter-spacing:0.03em;">Message</label>
+                    <textarea id="c-msg" name="message" rows="4" placeholder="Tell us a bit about yourself and your experience…"
+                              style="width:100%; padding:12px 14px; border:1.5px solid rgba(255,255,255,0.15); border-radius:10px; font-size:0.9rem; resize:vertical; outline:none; transition:border-color .2s; background:rgba(255,255,255,0.07); color:#fff;"
+                              onfocus="this.style.borderColor='#FF6B35'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"></textarea>
+                </div>
+
+                <div id="careers-status" role="alert" aria-live="polite" style="font-size:0.88rem; min-height:20px;"></div>
+
+                <button type="submit" id="careers-submit"
+                        style="align-self:flex-start; background:linear-gradient(135deg,#FF6B35,#e05a28); color:#fff; border:none; padding:14px 40px; border-radius:10px; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all .2s; letter-spacing:0.04em; box-shadow:0 4px 20px rgba(255,107,53,0.35);"
+                        onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(255,107,53,0.5)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(255,107,53,0.35)'">
+                    Send Application
+                </button>
+            </form>
+
+            <script>
+            (function(){
+                const form = document.getElementById('careersForm');
+                const btn  = document.getElementById('careers-submit');
+                const status = document.getElementById('careers-status');
+                if (!form) return;
+                form.addEventListener('submit', async function(e){
+                    e.preventDefault();
+                    btn.disabled = true;
+                    btn.textContent = 'Sending…';
+                    status.textContent = '';
+                    try {
+                        const res = await fetch(form.action, {
+                            method: 'POST',
+                            body: new FormData(form),
+                            headers: { 'Accept': 'application/json' }
+                        });
+                        if (res.ok) {
+                            status.style.color = '#10B981';
+                            status.textContent = '✓ Message sent! We\'ll be in touch soon.';
+                            form.reset();
+                        } else {
+                            throw new Error();
+                        }
+                    } catch {
+                        status.style.color = '#e63946';
+                        status.textContent = 'Something went wrong. Please email us at hr@hexagologistics.com';
+                    } finally {
+                        btn.disabled = false;
+                        btn.textContent = 'Send Message';
+                    }
+                });
+            })();
+            </script>
         </div>
     </section>
 
