@@ -285,8 +285,9 @@
                     e.preventDefault();
                     btn.disabled = true;
                     btn.textContent = 'Sending…';
-                    status.textContent = '';
-                    form.submit();
+                    var params = new URLSearchParams(new FormData(form)).toString();
+                    var iframe = document.getElementById('careers_iframe');
+                    iframe.src = form.action + '?' + params;
                     setTimeout(function(){
                         showHexagoPopup('Application Received', 'Thank you for applying to Hexa-go! Check your inbox — we\'ve sent you a confirmation and next steps by email.');
                         form.reset();
