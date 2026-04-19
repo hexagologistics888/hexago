@@ -20,9 +20,9 @@
   ],
   "redirects": [
     {
-      "source": "/:path(.*)",
+      "source": "/:path*",
       "has": [{ "type": "host", "value": "www.hexagologistics.com" }],
-      "destination": "https://hexagologistics.com/:path",
+      "destination": "https://hexagologistics.com/:path*",
       "permanent": true
     }
   ],
