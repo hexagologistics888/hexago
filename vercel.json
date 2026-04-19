@@ -24,6 +24,16 @@
       "has": [{ "type": "host", "value": "www.hexagologistics.com" }],
       "destination": "https://hexagologistics.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/about-hexago.html",
+      "destination": "/about_us.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-hexago",
+      "destination": "/about_us.html",
+      "permanent": true
     }
   ],
   "routes": [
