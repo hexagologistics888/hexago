@@ -347,8 +347,9 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-    <!-- Bootstrap CSS: render-blocking on purpose — hero carousel depends on its layout rules (prevents CLS) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- Bootstrap full CSS async (needed for below-fold modal/dropdown; critical subset inlined below) -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"></noscript>
 
     <!-- Site CSS async (critical above-fold already inlined below) -->
     <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -389,6 +390,43 @@
       .hero-buttons{margin-top:1rem}
       .reach-btn{display:inline-block;background:#FF6B35;color:#fff;padding:14px 36px;border-radius:50px;text-decoration:none;font-weight:700;letter-spacing:.04em;box-shadow:0 8px 28px rgba(255,107,53,.3)}
       @media (max-width:992px){nav{padding:.7rem 1.1rem}.logo img{height:38px}.nav-links{display:none}.mobile-menu-toggle{display:inline-flex}}
+
+      /* Bootstrap 5 critical subset (carousel, grid, flex, text, spacing) — ~4KB inlined vs 28KB CDN */
+      .container{width:100%;padding-right:12px;padding-left:12px;margin-right:auto;margin-left:auto}
+      @media (min-width:576px){.container{max-width:540px}}
+      @media (min-width:768px){.container{max-width:720px}}
+      @media (min-width:992px){.container{max-width:960px}}
+      @media (min-width:1200px){.container{max-width:1140px}}
+      @media (min-width:1400px){.container{max-width:1320px}}
+      .row{display:flex;flex-wrap:wrap;margin-top:0;margin-right:calc(-.5*1.5rem);margin-left:calc(-.5*1.5rem)}
+      .row>*{box-sizing:border-box;flex-shrink:0;width:100%;max-width:100%;padding-right:calc(1.5rem*.5);padding-left:calc(1.5rem*.5);margin-top:0}
+      .col-6{flex:0 0 auto;width:50%}
+      @media (min-width:768px){.col-md-3{flex:0 0 auto;width:25%}.col-md-4{flex:0 0 auto;width:33.33333333%}.col-md-6{flex:0 0 auto;width:50%}}
+      @media (min-width:992px){.col-lg-3{flex:0 0 auto;width:25%}}
+      .g-0{--bs-gutter-x:0;--bs-gutter-y:0}.g-0>*{padding-right:0;padding-left:0;margin-top:0}
+      .g-4,.gx-4{--bs-gutter-x:1.5rem}.g-4,.gy-4{--bs-gutter-y:1.5rem}
+      .d-flex{display:flex!important}.flex-wrap{flex-wrap:wrap!important}
+      .justify-content-center{justify-content:center!important}
+      .align-items-center{align-items:center!important}.align-items-stretch{align-items:stretch!important}
+      .text-center{text-align:center!important}.text-white{color:#fff!important}
+      .text-muted{--bs-text-opacity:1;color:rgba(108,117,125,var(--bs-text-opacity))!important}
+      .fw-bold{font-weight:700!important}.lead{font-size:1.25rem;font-weight:300}
+      .display-5{font-size:calc(1.425rem + 2.1vw);font-weight:300;line-height:1.2}
+      @media (min-width:1200px){.display-5{font-size:3rem}}
+      .position-relative{position:relative!important}.p-0{padding:0!important}.p-5{padding:3rem!important}
+      .py-5{padding-top:3rem!important;padding-bottom:3rem!important}
+      .mb-3{margin-bottom:1rem!important}.mb-4{margin-bottom:1.5rem!important}.mb-5{margin-bottom:3rem!important}
+      .mt-4{margin-top:1.5rem!important}
+      .gap-3{gap:1rem!important}
+      .carousel{position:relative}
+      .carousel.pointer-event{touch-action:pan-y}
+      .carousel-inner{position:relative;width:100%;overflow:hidden}
+      .carousel-inner::after{display:block;clear:both;content:""}
+      .carousel-item{position:relative;display:none;float:left;width:100%;margin-right:-100%;backface-visibility:hidden;transition:transform .6s ease-in-out}
+      .carousel-item.active,.carousel-item-next,.carousel-item-prev{display:block}
+      .carousel-fade .carousel-item{opacity:0;transition-property:opacity;transform:none}
+      .carousel-fade .carousel-item.active,.carousel-fade .carousel-item-next.carousel-item-start,.carousel-fade .carousel-item-prev.carousel-item-end{z-index:1;opacity:1}
+      .carousel-fade .active.carousel-item-start,.carousel-fade .active.carousel-item-end{z-index:0;opacity:0;transition:opacity 0s .6s}
     </style>
 </head>
 <body>
