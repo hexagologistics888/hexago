@@ -1121,7 +1121,7 @@
   }
   window.addEventListener('scroll', syncHeaderScroll, { passive: true });
   window.addEventListener('load', syncHeaderScroll);
-  syncHeaderScroll();
+  requestAnimationFrame(syncHeaderScroll);
 })();
 
 /* Scroll to #sector if page was loaded with that hash (e.g. from another page) */
