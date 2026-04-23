@@ -427,6 +427,14 @@
       .carousel-fade .carousel-item{opacity:0;transition-property:opacity;transform:none}
       .carousel-fade .carousel-item.active,.carousel-fade .carousel-item-next.carousel-item-start,.carousel-fade .carousel-item-prev.carousel-item-end{z-index:1;opacity:1}
       .carousel-fade .active.carousel-item-start,.carousel-fade .active.carousel-item-end{z-index:0;opacity:0;transition:opacity 0s .6s}
+
+      /* Card image boxes (Why Choose Us / Services) — lock height early to prevent CLS from tall portrait images */
+      .imgBox{height:210px;flex-shrink:0;overflow:hidden;position:relative}
+      .imgBox img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+      .creative-card{background:#fff;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;height:100%;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+      .creative-card .details{padding:1.25rem}
+      .creative-card h4{font-size:1.1rem;font-weight:700;color:#0d2044;margin:0 0 .5rem}
+      .creative-card p{font-size:.95rem;color:#495670;margin:0;line-height:1.55}
     </style>
 </head>
 <body>
