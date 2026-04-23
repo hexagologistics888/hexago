@@ -6,7 +6,7 @@
      - Other assets (images/fonts): cache-first with network fill
    ============================================================ */
 
-const CACHE_NAME = 'hexago-v30';
+const CACHE_NAME = 'hexago-v31';
 const OFFLINE_PAGE = '/404.html';
 const NAVIGATION_TIMEOUT_MS = 4000;
 
@@ -31,6 +31,8 @@ const PRECACHE = [
   '/script.js',
   '/mobile-nav.js',
   '/manifest.json',
+  '/fonts/inter.css',
+  '/fonts/inter-latin.woff2',
   '/images/logo3.png',
   '/images/carousel1.jpeg',
   '/images/carousel1.webp',
