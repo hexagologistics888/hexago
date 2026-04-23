@@ -592,7 +592,7 @@ nav {
 /* CTA Banner */
 .cta-banner {
     min-height: 350px;
-    background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=60&fm=webp') center/cover no-repeat;
     position: relative;
     overflow: hidden;
 }
