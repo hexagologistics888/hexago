@@ -379,10 +379,10 @@
       .carousel-item.active{display:block}
       .carousel-item.hero-slide{position:relative;overflow:hidden}
       .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-      .carousel-item .overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:1}
+      .carousel-item .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.65) 100%);z-index:1}
       .hero-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:90%;max-width:860px;padding:0 2rem;color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem}
-      .hero-content h1{font-size:clamp(1.9rem,3.5vw,3.2rem);font-weight:700;line-height:1.15}
-      .hero-content p{font-size:clamp(1rem,1.5vw,1.2rem);opacity:.92;max-width:720px}
+      .hero-content h1{font-size:clamp(1.9rem,3.5vw,3.2rem);font-weight:700;line-height:1.15;text-shadow:0 2px 16px rgba(0,0,0,.55)}
+      .hero-content p{font-size:clamp(1rem,1.5vw,1.2rem);opacity:.95;max-width:720px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
       .carousel-indicators{position:absolute;right:0;bottom:1rem;left:0;z-index:3;display:flex;justify-content:center;padding:0;margin-bottom:1rem;list-style:none}
       .carousel-indicators button{box-sizing:content-box;flex:0 1 auto;width:30px;height:3px;padding:0;margin:0 3px;text-indent:-999px;cursor:pointer;background-color:#fff;background-clip:padding-box;border:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:.5;transition:opacity .6s ease}
       .carousel-indicators .active{opacity:1}
@@ -456,7 +456,7 @@
       <div class="carousel-item active hero-slide">
         <picture>
           <source type="image/webp" srcset="images/carousel1-sm.webp 768w, images/carousel1-mobile.webp 1200w, images/carousel1.webp 1920w" sizes="100vw">
-          <img src="images/carousel1.jpeg" alt="Hexa go Logistics truck on highway" class="hero-img" width="1920" height="1080" fetchpriority="high" decoding="async">
+          <img src="images/carousel1.jpeg" alt="Hexa go Logistics truck on highway" class="hero-img" width="1600" height="900" fetchpriority="high" decoding="async">
         </picture>
         <div class="overlay"></div>
         <div class="hero-content">
