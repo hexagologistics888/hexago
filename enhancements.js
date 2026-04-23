@@ -377,4 +377,48 @@
     setTimeout(startEnhancements, 120);
   });
 
+  /* ══════════════════════════════════════════
+     EAGER-LAZY IMAGE LOADER
+     Native lazy-load waits until an image is almost in viewport,
+     so users see blank -> pop-in while scrolling. This IntersectionObserver
+     starts the fetch 800px before the image enters the viewport, so by the
+     time the user scrolls to it, it's already decoded and painted.
+
+     PageSpeed still counts these images as deferred (not in initial LCP set)
+     because the observer only triggers post-load + post-scroll-intent.
+  ══════════════════════════════════════════ */
+  if ('IntersectionObserver' in window) {
+    var warmImages = function () {
+      var imgs = document.querySelectorAll('img[loading="lazy"]');
+      if (!imgs.length) return;
+
+      var io = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var img = entry.target;
+          // Force the browser to start the fetch by flipping to eager once near viewport.
+          // The image is already in DOM; this just nudges the priority up.
+          if (img.loading === 'lazy') {
+            img.loading = 'eager';
+            img.fetchPriority = 'high';
+          }
+          observer.unobserve(img);
+        });
+      }, {
+        // Start loading 800px before entering viewport -> feels instant on scroll
+        rootMargin: '800px 0px 800px 0px',
+        threshold: 0.01
+      });
+
+      imgs.forEach(function (img) { io.observe(img); });
+    };
+
+    // Run after initial paint so LCP / above-fold images aren't disturbed
+    if (document.readyState === 'complete') {
+      warmImages();
+    } else {
+      window.addEventListener('load', warmImages, { once: true });
+    }
+  }
+
 })();
