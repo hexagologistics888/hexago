@@ -353,8 +353,17 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Visual Enhancements -->
     <link rel="stylesheet" href="enhancements.css">
-    <!-- Preload hero image for LCP -->
-    <link rel="preload" as="image" href="images/carousel1.jpeg" fetchpriority="high">
+    <!-- Preload hero image for LCP (responsive: mobile WebP, desktop WebP, JPEG fallback) -->
+    <link rel="preload" as="image" href="images/carousel1-sm.webp" fetchpriority="high" imagesrcset="images/carousel1-sm.webp 768w, images/carousel1-mobile.webp 1200w, images/carousel1.webp 1920w" imagesizes="100vw" type="image/webp">
+
+    <!-- Critical above-the-fold CSS (inline to avoid render-block) -->
+    <style>
+      .hero-section,.hero-section .carousel,.hero-section .carousel-inner,.hero-section .carousel-item{height:85vh;min-height:580px}
+      .carousel-item.hero-slide{position:relative;overflow:hidden}
+      .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+      .carousel-item .overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:1}
+      .hero-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:90%;max-width:860px;padding:0 2rem;color:#fff;text-align:center}
+    </style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to content</a>
@@ -415,7 +424,11 @@
     <div class="carousel-inner">
 
       <!-- Slide 1 -->
-      <div class="carousel-item active hero-slide" style="background-image: url('images/carousel1.jpeg');">
+      <div class="carousel-item active hero-slide">
+        <picture>
+          <source type="image/webp" srcset="images/carousel1-sm.webp 768w, images/carousel1-mobile.webp 1200w, images/carousel1.webp 1920w" sizes="100vw">
+          <img src="images/carousel1.jpeg" alt="Hexa go Logistics truck on highway" class="hero-img" width="1920" height="1080" fetchpriority="high" decoding="async">
+        </picture>
         <div class="overlay"></div>
         <div class="hero-content">
           <h1><span style="font-size:0.55em; display:block; opacity:0.92; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; margin-bottom:0.4em;">Hexa go Logistics and Transport</span>Tackling Logistics Challenges Head-On.</h1>

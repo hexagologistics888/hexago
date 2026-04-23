@@ -6,7 +6,7 @@
      - Other assets (images/fonts): cache-first with network fill
    ============================================================ */
 
-const CACHE_NAME = 'hexago-v28';
+const CACHE_NAME = 'hexago-v29';
 const OFFLINE_PAGE = '/404.html';
 const NAVIGATION_TIMEOUT_MS = 4000;
 
@@ -33,6 +33,9 @@ const PRECACHE = [
   '/manifest.json',
   '/images/logo3.png',
   '/images/carousel1.jpeg',
+  '/images/carousel1.webp',
+  '/images/carousel1-mobile.webp',
+  '/images/carousel1-sm.webp',
   '/images/carousel2.jpg',
   '/images/carousel3.jpg',
   '/images/service-about.webp',
