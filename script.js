@@ -414,11 +414,12 @@ function initGsapAnimations() {
         ScrollTrigger.config({
             limitCallbacks: true,
             ignoreMobileResize: true,
-            autoRefreshEvents: 'DOMContentLoaded,load,resize'
+            autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load,resize'
         });
     } catch (e) {}
 
     let mm = gsap.matchMedia();
+    let desktopTriggersInit = false;
 
     mm.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
         gsap.fromTo('header', { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', overwrite: true });
@@ -447,26 +448,20 @@ function initGsapAnimations() {
             gsap.fromTo('.hero-content .reach-btn-ghost', { y: buttonY, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.6, ease: 'power3.out', overwrite: true });
         }
 
+        // Pre-hide all scroll-reveal elements synchronously so no FOUC during defer
         const headers = gsap.utils.toArray('.section-header, .section-title').filter(h => !h.closest('.why-choose'));
-        if (headers.length) {
-            gsap.set(headers, { y: smallY, opacity: 0 });
-            ScrollTrigger.batch(headers, {
-                start: 'top 95%',
-                once: true,
-                onEnter: batch => gsap.to(batch, { y: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: 'power2.out', overwrite: true })
-            });
-        }
-
+        if (headers.length) gsap.set(headers, { y: smallY, opacity: 0 });
         const allCards = document.querySelectorAll('.services-grid .creative-card, .services-grid .service-card, .owners-container .owner-card, .blog-grid .blog-card, .stats-grid .stat-card, .services-container .service-card');
-        if (allCards.length) {
-            gsap.set(allCards, { y: entryY, opacity: 0 });
-            ScrollTrigger.batch(allCards, {
-                start: 'top 95%',
-                once: true,
-                onEnter: batch => gsap.to(batch, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power2.out', overwrite: true })
-            });
-        }
+        if (allCards.length) gsap.set(allCards, { y: entryY, opacity: 0 });
+        const standaloneImages = Array.from(document.querySelectorAll('img:not(nav img):not(footer img):not(.service-card img):not(.creative-card img):not(.owner-card img):not(.blog-card img):not(.stat-card img):not(.image-container img)')).filter(img => img.complete && img.naturalWidth > 150);
+        if (standaloneImages.length) gsap.set(standaloneImages, { scale: imageScale, y: smallY });
+        const ctaBanner = document.querySelector('.cta-banner');
+        const ctaTargets = ctaBanner ? ctaBanner.querySelectorAll('h2, p, .d-flex') : null;
+        if (ctaTargets && ctaTargets.length) gsap.set(ctaTargets, { y: smallY, opacity: 0 });
+        const footerDivs = document.querySelectorAll('footer .footer-content > div');
+        if (footerDivs.length) gsap.set(footerDivs, { y: smallY, opacity: 0 });
 
+        // Hover zoom: no triggers, safe to bind now
         const hoverCards = document.querySelectorAll('.services-grid .creative-card, .services-grid .service-card, .services-container .service-card');
         hoverCards.forEach(card => {
             const img = card.querySelector('img');
@@ -475,21 +470,34 @@ function initGsapAnimations() {
             card.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.5, ease: 'power2.out' }));
         });
 
-        const standaloneImages = Array.from(document.querySelectorAll('img:not(nav img):not(footer img):not(.service-card img):not(.creative-card img):not(.owner-card img):not(.blog-card img):not(.stat-card img):not(.image-container img)')).filter(img => img.complete && img.naturalWidth > 150);
-        if (standaloneImages.length) {
-            gsap.set(standaloneImages, { scale: imageScale, y: smallY });
-            ScrollTrigger.batch(standaloneImages, {
-                start: 'top 95%',
-                once: true,
-                onEnter: batch => gsap.to(batch, { scale: 1, y: 0, duration: 1.2, stagger: 0.05, ease: 'power3.out', overwrite: true })
-            });
-        }
+        // Defer all ScrollTrigger setup until the user first scrolls or interacts
+        // This moves ~120ms of getBoundingClientRect measurements out of the critical path
+        function setupScrollTriggers() {
+            if (desktopTriggersInit) return;
+            desktopTriggersInit = true;
 
-        const ctaBanner = document.querySelector('.cta-banner');
-        if (ctaBanner) {
-            const ctaTargets = ctaBanner.querySelectorAll('h2, p, .d-flex');
-            if (ctaTargets.length) {
-                gsap.set(ctaTargets, { y: smallY, opacity: 0 });
+            if (headers.length) {
+                ScrollTrigger.batch(headers, {
+                    start: 'top 95%',
+                    once: true,
+                    onEnter: batch => gsap.to(batch, { y: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: 'power2.out', overwrite: true })
+                });
+            }
+            if (allCards.length) {
+                ScrollTrigger.batch(allCards, {
+                    start: 'top 95%',
+                    once: true,
+                    onEnter: batch => gsap.to(batch, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power2.out', overwrite: true })
+                });
+            }
+            if (standaloneImages.length) {
+                ScrollTrigger.batch(standaloneImages, {
+                    start: 'top 95%',
+                    once: true,
+                    onEnter: batch => gsap.to(batch, { scale: 1, y: 0, duration: 1.2, stagger: 0.05, ease: 'power3.out', overwrite: true })
+                });
+            }
+            if (ctaTargets && ctaTargets.length) {
                 ScrollTrigger.create({
                     trigger: ctaBanner,
                     start: 'top 95%',
@@ -497,18 +505,27 @@ function initGsapAnimations() {
                     onEnter: () => gsap.to(ctaTargets, { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out', overwrite: true })
                 });
             }
+            if (footerDivs.length) {
+                ScrollTrigger.create({
+                    trigger: 'footer',
+                    start: 'top 95%',
+                    once: true,
+                    onEnter: () => gsap.to(footerDivs, { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out', overwrite: true })
+                });
+            }
         }
 
-        const footerDivs = document.querySelectorAll('footer .footer-content > div');
-        if (footerDivs.length) {
-            gsap.set(footerDivs, { y: smallY, opacity: 0 });
-            ScrollTrigger.create({
-                trigger: 'footer',
-                start: 'top 95%',
-                once: true,
-                onEnter: () => gsap.to(footerDivs, { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out', overwrite: true })
-            });
-        }
+        const onFirstInteract = () => {
+            setupScrollTriggers();
+            window.removeEventListener('scroll', onFirstInteract);
+            window.removeEventListener('pointermove', onFirstInteract);
+            window.removeEventListener('touchstart', onFirstInteract);
+        };
+        window.addEventListener('scroll', onFirstInteract, { passive: true, once: false });
+        window.addEventListener('pointermove', onFirstInteract, { passive: true, once: false });
+        window.addEventListener('touchstart', onFirstInteract, { passive: true, once: false });
+        // Fallback: if user never interacts, init after 2.5s so reveals still work
+        setTimeout(setupScrollTriggers, 2500);
     });
 }
 
