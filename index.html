@@ -347,8 +347,8 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-    <!-- Bootstrap full CSS async (needed for below-fold modal/dropdown; critical subset inlined below) -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Bootstrap full CSS deferred via print-swap trick (only needed for modal/form styling below the fold) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" media="print" onload="this.media='all';this.onload=null">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"></noscript>
 
     <!-- Site CSS render-blocking (eliminates white-flash on reload at cost of ~300ms LCP) -->
