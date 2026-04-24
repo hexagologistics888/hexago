@@ -396,8 +396,7 @@ function initScrollHeader() {
     var scrollThreshold = 40;
 
     function checkScroll() {
-        var scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-        hdr.classList.toggle('scrolled', scrollTop > scrollThreshold);
+        hdr.classList.toggle('scrolled', window.scrollY > scrollThreshold);
     }
 
     window.addEventListener('scroll', checkScroll, { passive: true });
@@ -410,6 +409,13 @@ function initGsapAnimations() {
     if (!window.gsap || !window.ScrollTrigger) return;
 
     try { gsap.registerPlugin(ScrollTrigger); } catch (e) {}
+
+    try {
+        ScrollTrigger.config({
+            limitCallbacks: true,
+            ignoreMobileResize: true
+        });
+    } catch (e) {}
 
     let mm = gsap.matchMedia();
 
@@ -497,57 +503,37 @@ function initGsapAnimations() {
                 ease: 'power2.out'
             });
 
-            if (containerSelector === '.services-grid' || containerSelector === '.services-container') {
+            if (isDesktop && (containerSelector === '.services-grid' || containerSelector === '.services-container')) {
                 cards.forEach(card => {
                     const img = card.querySelector('img');
                     if (!img) return;
 
                     card.addEventListener('mouseenter', () => {
-                        if (isDesktop || isMobile) {
-                            gsap.to(img, {
-                                scale: 1.05,
-                                duration: 0.5,
-                                ease: 'power2.out'
-                            });
-                        }
+                        gsap.to(img, { scale: 1.05, duration: 0.5, ease: 'power2.out' });
                     });
 
                     card.addEventListener('mouseleave', () => {
-                        if (isDesktop || isMobile) {
-                            gsap.to(img, {
-                                scale: 1,
-                                duration: 0.5,
-                                ease: 'power2.out'
-                            });
-                        }
-                    });
-
-                    ScrollTrigger.create({
-                        trigger: card,
-                        start: 'top 60%',
-                        end: 'bottom 40%',
-                        onEnter: () => gsap.to(img, { scale: 1.05, duration: 0.6 }),
-                        onLeave: () => gsap.to(img, { scale: 1, duration: 0.6 }),
-                        onEnterBack: () => gsap.to(img, { scale: 1.05, duration: 0.6 }),
-                        onLeaveBack: () => gsap.to(img, { scale: 1, duration: 0.6 })
+                        gsap.to(img, { scale: 1, duration: 0.5, ease: 'power2.out' });
                     });
                 });
             }
         });
 
-        const standaloneImages = document.querySelectorAll('img:not(nav img):not(footer img):not(.service-card img):not(.creative-card img):not(.owner-card img):not(.blog-card img):not(.stat-card img):not(.image-container img)');
+        if (isDesktop) {
+            const standaloneImages = document.querySelectorAll('img:not(nav img):not(footer img):not(.service-card img):not(.creative-card img):not(.owner-card img):not(.blog-card img):not(.stat-card img):not(.image-container img)');
 
-        standaloneImages.forEach(img => {
-            if (img.complete && img.naturalWidth > 150) {
-                gsap.from(img, {
-                    scrollTrigger: { trigger: img, start: 'top 95%', once: true },
-                    scale: imageScale,
-                    y: smallY,
-                    duration: 1.2,
-                    ease: 'power3.out'
-                });
-            }
-        });
+            standaloneImages.forEach(img => {
+                if (img.complete && img.naturalWidth > 150) {
+                    gsap.from(img, {
+                        scrollTrigger: { trigger: img, start: 'top 95%', once: true },
+                        scale: imageScale,
+                        y: smallY,
+                        duration: 1.2,
+                        ease: 'power3.out'
+                    });
+                }
+            });
+        }
 
         if (document.querySelector('.cta-banner')) {
             gsap.from('.cta-banner h2', {
