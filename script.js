@@ -558,7 +558,8 @@ document.addEventListener('DOMContentLoaded', function() {
     rememberContactReturnPage();
     initMobileMenu();
     initScrollHeader();
-    initHeroCarousel();
+    // initHeroCarousel() replaced by inline minimal carousel in index.html
+    // (no Bootstrap dependency, ~600 bytes, zero layout reads)
 
     if ('requestIdleCallback' in window) {
         requestIdleCallback(initGsapAnimations, { timeout: 1200 });
