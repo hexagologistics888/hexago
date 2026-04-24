@@ -413,7 +413,8 @@ function initGsapAnimations() {
     try {
         ScrollTrigger.config({
             limitCallbacks: true,
-            ignoreMobileResize: true
+            ignoreMobileResize: true,
+            autoRefreshEvents: 'DOMContentLoaded,load,resize'
         });
     } catch (e) {}
 
@@ -469,96 +470,68 @@ function initGsapAnimations() {
             });
         }
 
-        gsap.utils.toArray('.section-header, .section-title').forEach(header => {
-            if (header.closest('.why-choose')) return;
-            gsap.from(header, {
-                scrollTrigger: {
-                    trigger: header,
-                    start: 'top 95%',
-                    once: true
-                },
-                y: smallY,
-                duration: 0.8,
-                ease: 'power2.out'
-            });
-        });
-
-        const cardContainers = [
-            '.services-grid',
-            '.owners-container',
-            '.blog-grid',
-            '.stats-grid',
-            '.services-container'
-        ];
-
-        cardContainers.forEach(containerSelector => {
-            const container = document.querySelector(containerSelector);
-            if (!container) return;
-
-            const cards = container.querySelectorAll('.creative-card, .service-card, .owner-card, .blog-card, .stat-card');
-            if (!cards.length) return;
-
-            gsap.from(cards, {
-                scrollTrigger: {
-                    trigger: container,
-                    start: 'top 95%',
-                    once: true
-                },
-                y: entryY,
-                duration: 0.8,
-                stagger: 0.12,
-                ease: 'power2.out'
-            });
-
-            if (containerSelector === '.services-grid' || containerSelector === '.services-container') {
-                cards.forEach(card => {
-                    const img = card.querySelector('img');
-                    if (!img) return;
-
-                    card.addEventListener('mouseenter', () => {
-                        gsap.to(img, { scale: 1.05, duration: 0.5, ease: 'power2.out' });
-                    });
-
-                    card.addEventListener('mouseleave', () => {
-                        gsap.to(img, { scale: 1, duration: 0.5, ease: 'power2.out' });
-                    });
-                });
-            }
-        });
-
-        const standaloneImages = document.querySelectorAll('img:not(nav img):not(footer img):not(.service-card img):not(.creative-card img):not(.owner-card img):not(.blog-card img):not(.stat-card img):not(.image-container img)');
-
-        standaloneImages.forEach(img => {
-            if (img.complete && img.naturalWidth > 150) {
-                gsap.from(img, {
-                    scrollTrigger: { trigger: img, start: 'top 95%', once: true },
-                    scale: imageScale,
-                    y: smallY,
-                    duration: 1.2,
-                    ease: 'power3.out'
-                });
-            }
-        });
-
-        if (document.querySelector('.cta-banner')) {
-            gsap.from('.cta-banner h2', {
-                scrollTrigger: { trigger: '.cta-banner', start: 'top 95%', once: true },
-                y: smallY, duration: 1, ease: 'power3.out'
-            });
-            gsap.from('.cta-banner p', {
-                scrollTrigger: { trigger: '.cta-banner', start: 'top 95%', once: true },
-                y: buttonY, duration: 1, delay: 0.2, ease: 'power3.out'
-            });
-            gsap.from('.cta-banner .d-flex', {
-                scrollTrigger: { trigger: '.cta-banner', start: 'top 95%', once: true },
-                y: buttonY, duration: 1, delay: 0.4, ease: 'power3.out'
+        const headers = gsap.utils.toArray('.section-header, .section-title').filter(h => !h.closest('.why-choose'));
+        if (headers.length) {
+            gsap.set(headers, { y: smallY, opacity: 0 });
+            ScrollTrigger.batch(headers, {
+                start: 'top 95%',
+                once: true,
+                onEnter: batch => gsap.to(batch, { y: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: 'power2.out', overwrite: true })
             });
         }
 
-        gsap.from('footer .footer-content > div', {
-            scrollTrigger: { trigger: 'footer', start: 'top 95%', once: true },
-            y: smallY, duration: 0.8, stagger: 0.2, ease: 'power2.out'
+        const allCards = document.querySelectorAll('.services-grid .creative-card, .services-grid .service-card, .owners-container .owner-card, .blog-grid .blog-card, .stats-grid .stat-card, .services-container .service-card');
+        if (allCards.length) {
+            gsap.set(allCards, { y: entryY, opacity: 0 });
+            ScrollTrigger.batch(allCards, {
+                start: 'top 95%',
+                once: true,
+                onEnter: batch => gsap.to(batch, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power2.out', overwrite: true })
+            });
+        }
+
+        const hoverCards = document.querySelectorAll('.services-grid .creative-card, .services-grid .service-card, .services-container .service-card');
+        hoverCards.forEach(card => {
+            const img = card.querySelector('img');
+            if (!img) return;
+            card.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.05, duration: 0.5, ease: 'power2.out' }));
+            card.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.5, ease: 'power2.out' }));
         });
+
+        const standaloneImages = Array.from(document.querySelectorAll('img:not(nav img):not(footer img):not(.service-card img):not(.creative-card img):not(.owner-card img):not(.blog-card img):not(.stat-card img):not(.image-container img)')).filter(img => img.complete && img.naturalWidth > 150);
+        if (standaloneImages.length) {
+            gsap.set(standaloneImages, { scale: imageScale, y: smallY });
+            ScrollTrigger.batch(standaloneImages, {
+                start: 'top 95%',
+                once: true,
+                onEnter: batch => gsap.to(batch, { scale: 1, y: 0, duration: 1.2, stagger: 0.05, ease: 'power3.out', overwrite: true })
+            });
+        }
+
+        const ctaBanner = document.querySelector('.cta-banner');
+        if (ctaBanner) {
+            const ctaTargets = ctaBanner.querySelectorAll('h2, p, .d-flex');
+            if (ctaTargets.length) {
+                gsap.set(ctaTargets, { y: smallY, opacity: 0 });
+                ScrollTrigger.create({
+                    trigger: ctaBanner,
+                    start: 'top 95%',
+                    once: true,
+                    onEnter: () => gsap.to(ctaTargets, { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out', overwrite: true })
+                });
+            }
+        }
+
+        const footerDivs = document.querySelectorAll('footer .footer-content > div');
+        if (footerDivs.length) {
+            gsap.set(footerDivs, { y: smallY, opacity: 0 });
+            ScrollTrigger.create({
+                trigger: 'footer',
+                start: 'top 95%',
+                once: true,
+                onEnter: () => gsap.to(footerDivs, { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out', overwrite: true })
+            });
+        }
     });
 }
 
