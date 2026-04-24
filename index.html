@@ -500,15 +500,17 @@
       <div class="carousel-item active hero-slide">
         <picture>
           <source type="image/webp" srcset="images/carousel1-sm.webp 768w, images/carousel1-mobile.webp 1200w, images/carousel1.webp 1920w" sizes="100vw">
-          <img src="images/carousel1.jpeg" alt="Hexa go Logistics truck on highway" class="hero-img" width="1600" height="900" fetchpriority="high" decoding="async">
+          <img src="images/carousel1.jpeg" alt="Hexa go Logistics and Transport fleet of freight trucks" class="hero-img" width="1600" height="900" fetchpriority="high" decoding="async">
         </picture>
         <div class="overlay"></div>
         <div class="hero-content">
-          <h1><span style="font-size:0.55em; display:block; opacity:0.92; letter-spacing:0.15em; text-transform:uppercase; font-weight:600; margin-bottom:0.4em;">Hexa go Logistics and Transport</span>Tackling Logistics Challenges Head-On.</h1>
-          <p>Driving your business forward with the best supply chain solutions.</p>
+          <span class="hero-kicker">Hexa go Logistics and Transport</span>
+          <h1>Freight Built on Trust.<br><span class="hero-accent">Delivered Across India.</span></h1>
+          <p>FTL, PTL, 3PL warehousing and 4PL supply chain — engineered for enterprises that can't afford delays.</p>
           <span style="display:none">Hexa go Logistics and Transport (also written as Hexago or Hexa-go) — Aluva, Kerala. FTL, PTL, Warehousing and 4PL across India.</span>
           <div class="hero-buttons">
-            <a href="contact_us.html" class="reach-btn">Get Started</a>
+            <a href="contact_us.html" class="reach-btn">Request a Quote</a>
+            <a href="#services" class="reach-btn-ghost">Our Services</a>
           </div>
         </div>
       </div>
@@ -517,10 +519,12 @@
       <div class="carousel-item hero-slide" data-bg="images/carousel2.jpg">
         <div class="overlay"></div>
         <div class="hero-content">
-          <h2>Pan-India Freight. On Time, Every Time.</h2>
-          <p>FTL and PTL solutions built for reliability across 7+ states.</p>
+          <span class="hero-kicker">Pan-India Freight Network</span>
+          <h2>On Time. <span class="hero-accent">Every Time.</span></h2>
+          <p>FTL and PTL solutions built for reliability — now serving 7+ states and 1,000+ pincodes.</p>
           <div class="hero-buttons">
-            <a href="contact_us.html" class="reach-btn">Contact Us</a>
+            <a href="contact_us.html" class="reach-btn">Get a Quote</a>
+            <a href="#sector" class="reach-btn-ghost">Industries We Serve</a>
           </div>
         </div>
       </div>
@@ -529,10 +533,12 @@
       <div class="carousel-item hero-slide" data-bg="images/carousel3.jpg">
         <div class="overlay"></div>
         <div class="hero-content">
-          <h2>Your Supply Chain Catalyst.</h2>
-          <p>Innovative solutions, industry trust, and unwavering commitment to your goals.</p>
+          <span class="hero-kicker">Your Supply Chain Catalyst</span>
+          <h2>End-to-End Logistics.<br><span class="hero-accent">Uncompromising Standards.</span></h2>
+          <p>From first-mile pickup to last-mile delivery — one partner, full visibility, zero excuses.</p>
           <div class="hero-buttons">
-            <a href="contact_us.html" class="reach-btn">Explore More</a>
+            <a href="contact_us.html" class="reach-btn">Talk to Our Team</a>
+            <a href="about_us.html" class="reach-btn-ghost">About Hexa go</a>
           </div>
         </div>
       </div>
@@ -1109,18 +1115,8 @@
 </div>
 
 <script>
-/* Home page fallback: force white navbar after scrolling */
-(function() {
-  var hdr = document.querySelector('header');
-  if (!hdr) return;
-  function syncHeaderScroll() {
-    var scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-    hdr.classList.toggle('scrolled', scrollTop > 40);
-  }
-  window.addEventListener('scroll', syncHeaderScroll, { passive: true });
-  window.addEventListener('load', syncHeaderScroll);
-  requestAnimationFrame(syncHeaderScroll);
-})();
+/* Header scroll sync is handled by initScrollHeader() in script.js —
+   duplicate removed to eliminate double layout reads per scroll event. */
 
 /* Scroll to #sector if page was loaded with that hash (e.g. from another page) */
 (function() {
