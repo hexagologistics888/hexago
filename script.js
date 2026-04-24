@@ -419,17 +419,24 @@ function initGsapAnimations() {
 
     let mm = gsap.matchMedia();
 
-    mm.add({
-        isDesktop: "(min-width: 769px) and (prefers-reduced-motion: no-preference)",
-        isMobile: "(max-width: 768px) and (prefers-reduced-motion: no-preference)"
-    }, (context) => {
-        let { isDesktop, isMobile } = context.conditions;
+    mm.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+        gsap.from('header', { y: -60, opacity: 0, duration: 0.8, ease: 'power3.out' });
 
-        const headerY = isMobile ? -60 : -100;
-        const entryY = isMobile ? 30 : 60;
-        const smallY = isMobile ? 15 : 30;
-        const buttonY = isMobile ? 10 : 20;
-        const imageScale = isMobile ? 0.95 : 0.85;
+        if (document.querySelector('.hero-content')) {
+            gsap.from('.hero-content h1', { y: 30, opacity: 0, duration: 0.8, delay: 0.2, ease: 'power3.out' });
+            gsap.from('.hero-content p', { y: 15, opacity: 0, duration: 0.8, delay: 0.4, ease: 'power3.out' });
+            gsap.from('.hero-content .reach-btn', { y: 10, opacity: 0, duration: 0.8, delay: 0.6, ease: 'power3.out' });
+        }
+    });
+
+    mm.add({
+        isDesktop: "(min-width: 769px) and (prefers-reduced-motion: no-preference)"
+    }, () => {
+        const headerY = -100;
+        const entryY = 60;
+        const smallY = 30;
+        const buttonY = 20;
+        const imageScale = 0.85;
 
         gsap.from('header', {
             y: headerY,
@@ -503,7 +510,7 @@ function initGsapAnimations() {
                 ease: 'power2.out'
             });
 
-            if (isDesktop && (containerSelector === '.services-grid' || containerSelector === '.services-container')) {
+            if (containerSelector === '.services-grid' || containerSelector === '.services-container') {
                 cards.forEach(card => {
                     const img = card.querySelector('img');
                     if (!img) return;
@@ -519,21 +526,19 @@ function initGsapAnimations() {
             }
         });
 
-        if (isDesktop) {
-            const standaloneImages = document.querySelectorAll('img:not(nav img):not(footer img):not(.service-card img):not(.creative-card img):not(.owner-card img):not(.blog-card img):not(.stat-card img):not(.image-container img)');
+        const standaloneImages = document.querySelectorAll('img:not(nav img):not(footer img):not(.service-card img):not(.creative-card img):not(.owner-card img):not(.blog-card img):not(.stat-card img):not(.image-container img)');
 
-            standaloneImages.forEach(img => {
-                if (img.complete && img.naturalWidth > 150) {
-                    gsap.from(img, {
-                        scrollTrigger: { trigger: img, start: 'top 95%', once: true },
-                        scale: imageScale,
-                        y: smallY,
-                        duration: 1.2,
-                        ease: 'power3.out'
-                    });
-                }
-            });
-        }
+        standaloneImages.forEach(img => {
+            if (img.complete && img.naturalWidth > 150) {
+                gsap.from(img, {
+                    scrollTrigger: { trigger: img, start: 'top 95%', once: true },
+                    scale: imageScale,
+                    y: smallY,
+                    duration: 1.2,
+                    ease: 'power3.out'
+                });
+            }
+        });
 
         if (document.querySelector('.cta-banner')) {
             gsap.from('.cta-banner h2', {
