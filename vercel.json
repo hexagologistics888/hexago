@@ -20,19 +20,24 @@
   ],
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.hexagologistics.com" }],
-      "destination": "https://hexagologistics.com/:path*",
-      "permanent": true
-    },
-    {
       "source": "/about-hexago.html",
-      "destination": "/about_us.html",
+      "destination": "https://hexagologistics.com/about_us.html",
       "permanent": true
     },
     {
       "source": "/about-hexago",
-      "destination": "/about_us.html",
+      "destination": "https://hexagologistics.com/about_us.html",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "https://hexagologistics.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.hexagologistics.com" }],
+      "destination": "https://hexagologistics.com/:path*",
       "permanent": true
     }
   ],
