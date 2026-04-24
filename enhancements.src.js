@@ -18,7 +18,11 @@
      saveData mode → 400ms (don't waste battery)
   ══════════════════════════════════════════ */
   var preloader = document.getElementById('hexago-preloader');
-  if (preloader && window.getComputedStyle(preloader).display !== 'none') {
+  // Check inline style + class (no getComputedStyle — avoids forced layout read at parse time)
+  var preloaderVisible = preloader
+    && preloader.style.display !== 'none'
+    && !preloader.classList.contains('hidden');
+  if (preloaderVisible) {
     var hidePreloader = function () {
       if (preloader._gone) return;
       preloader._gone = true;
