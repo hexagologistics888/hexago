@@ -421,12 +421,12 @@ function initGsapAnimations() {
     let mm = gsap.matchMedia();
 
     mm.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
-        gsap.from('header', { y: -60, opacity: 0, duration: 0.8, ease: 'power3.out' });
+        gsap.fromTo('header', { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', overwrite: true });
 
         if (document.querySelector('.hero-content')) {
-            gsap.from('.hero-content h1', { y: 30, opacity: 0, duration: 0.8, delay: 0.2, ease: 'power3.out' });
-            gsap.from('.hero-content p', { y: 15, opacity: 0, duration: 0.8, delay: 0.4, ease: 'power3.out' });
-            gsap.from('.hero-content .reach-btn', { y: 10, opacity: 0, duration: 0.8, delay: 0.6, ease: 'power3.out' });
+            gsap.fromTo('.hero-content h1', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: 'power3.out', overwrite: true });
+            gsap.fromTo('.hero-content p', { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.4, ease: 'power3.out', overwrite: true });
+            gsap.fromTo('.hero-content .reach-btn-ghost', { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.6, ease: 'power3.out', overwrite: true });
         }
     });
 
@@ -439,35 +439,12 @@ function initGsapAnimations() {
         const buttonY = 20;
         const imageScale = 0.85;
 
-        gsap.from('header', {
-            y: headerY,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-        });
+        gsap.fromTo('header', { y: headerY, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out', overwrite: true });
 
         if (document.querySelector('.hero-content')) {
-            gsap.from('.hero-content h1', {
-                y: entryY,
-                opacity: 0,
-                duration: 1,
-                delay: 0.2,
-                ease: 'power3.out'
-            });
-            gsap.from('.hero-content p', {
-                y: smallY,
-                opacity: 0,
-                duration: 1,
-                delay: 0.4,
-                ease: 'power3.out'
-            });
-            gsap.from('.hero-content .reach-btn', {
-                y: buttonY,
-                opacity: 0,
-                duration: 1,
-                delay: 0.6,
-                ease: 'power3.out'
-            });
+            gsap.fromTo('.hero-content h1', { y: entryY, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.2, ease: 'power3.out', overwrite: true });
+            gsap.fromTo('.hero-content p', { y: smallY, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.4, ease: 'power3.out', overwrite: true });
+            gsap.fromTo('.hero-content .reach-btn-ghost', { y: buttonY, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.6, ease: 'power3.out', overwrite: true });
         }
 
         const headers = gsap.utils.toArray('.section-header, .section-title').filter(h => !h.closest('.why-choose'));
