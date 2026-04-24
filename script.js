@@ -406,6 +406,40 @@ function initScrollHeader() {
 }
 
 function initGsapAnimations() {
+    var mobileViewport = window.matchMedia('(max-width: 768px)').matches;
+
+    // Mobile: use a single IntersectionObserver for reveals, NO GSAP/ScrollTrigger.
+    // Pure CSS transitions via [data-mreveal] class. Zero forced reflows.
+    if (mobileViewport) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!('IntersectionObserver' in window)) return;
+
+        var mobileTargets = document.querySelectorAll(
+            '.section-header, .section-title, ' +
+            '.services-grid .creative-card, .services-grid .service-card, ' +
+            '.owners-container .owner-card, .blog-grid .blog-card, ' +
+            '.stats-grid .stat-card, .services-container .service-card, ' +
+            '.cta-banner h2, .cta-banner p, .cta-banner .d-flex, ' +
+            'footer .footer-content > div'
+        );
+        if (!mobileTargets.length) return;
+
+        mobileTargets.forEach(function (el) { el.classList.add('m-reveal'); });
+
+        var io = new IntersectionObserver(function (entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    entries[i].target.classList.add('m-reveal-in');
+                    io.unobserve(entries[i].target);
+                }
+            }
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+
+        mobileTargets.forEach(function (el) { io.observe(el); });
+        return;
+    }
+
+    // Desktop: full GSAP + ScrollTrigger (unchanged from before)
     if (!window.gsap || !window.ScrollTrigger) return;
 
     try { gsap.registerPlugin(ScrollTrigger); } catch (e) {}
@@ -420,16 +454,6 @@ function initGsapAnimations() {
 
     let mm = gsap.matchMedia();
     let desktopTriggersInit = false;
-
-    mm.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
-        gsap.fromTo('header', { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', overwrite: true });
-
-        if (document.querySelector('.hero-content')) {
-            gsap.fromTo('.hero-content h1', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: 'power3.out', overwrite: true });
-            gsap.fromTo('.hero-content p', { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.4, ease: 'power3.out', overwrite: true });
-            gsap.fromTo('.hero-content .reach-btn-ghost', { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.6, ease: 'power3.out', overwrite: true });
-        }
-    });
 
     mm.add({
         isDesktop: "(min-width: 769px) and (prefers-reduced-motion: no-preference)"
