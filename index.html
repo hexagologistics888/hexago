@@ -185,30 +185,41 @@
     }
     </script>
 
-    <!-- SCHEMA 6: Review — client testimonials -->
+    <!-- SCHEMA 6: Review — client testimonials with aggregateRating -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Hexa-go Logistics and Transport",
       "url": "https://hexagologistics.com",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "3",
+        "reviewCount": "3"
+      },
       "review": [
         {
           "@type": "Review",
           "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
           "author": { "@type": "Person", "name": "Suresh Pillai" },
+          "datePublished": "2026-03-15",
           "reviewBody": "Hexa-go manages our multi-city distribution with great consistency. Coordination across pickup, transit, and delivery is seamless and the operations team keeps us informed at every stage."
         },
         {
           "@type": "Review",
           "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
           "author": { "@type": "Person", "name": "Priya Nair" },
+          "datePublished": "2026-03-22",
           "reviewBody": "We moved our Kochi to Mumbai route to Hexa-go FTL. On-time every time, real GPS tracking, and transparent pricing. Exactly what a growing manufacturing company needs."
         },
         {
           "@type": "Review",
           "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
           "author": { "@type": "Person", "name": "Anil Kumar" },
+          "datePublished": "2026-04-02",
           "reviewBody": "Their 3PL warehousing in Aluva is well-managed and affordable. Inventory tracking is accurate and the dispatch team is proactive. Highly recommend for e-commerce."
         }
       ]
